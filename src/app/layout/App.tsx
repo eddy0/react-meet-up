@@ -9,9 +9,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <NavBar />
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Event</h1>
-        </header>
         <EventDashboard />
       </div>
     )

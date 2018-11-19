@@ -11,7 +11,7 @@ class EventDashboard extends React.Component {
         <Grid item={true} xs={2}>
           <h2>right</h2>
         </Grid>
-      </Grid>
+      </Grid >
     )
   }
 }
