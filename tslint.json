@@ -12,6 +12,8 @@
     ]
   },
   "rules": {
+    "ordered-imports": false,
+    "member-access": false,
     "no-console": false //Disable for typescript
   },
   "jsRules": {
