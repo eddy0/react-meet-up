@@ -25,7 +25,7 @@ export default class NavBar extends React.Component<{}, IState> {
     return (
       <div>
         <AppBar position='fixed' color='primary'>
-          <Toolbar disableGutters={true}>
+          <Toolbar disableGutters={true} style={{minHeight: 48}}>
             <img src="./assets/logo.png" alt="logo" style={{width: 50, height: 50, display: 'block'}} />
             <Typography variant='h6' color='inherit' gutterBottom={false} style={{marginLeft: '1rem'}}>
               Re-vents
@@ -34,6 +34,7 @@ export default class NavBar extends React.Component<{}, IState> {
               <Tab label='Events' />
             </Tabs>
             <Button color="inherit">Login</Button>
+            <Button color="inherit">Sign out</Button>
           </Toolbar>
         </AppBar>
       </div>
