@@ -1,23 +1,15 @@
 {
-  "extends": [
-//    "tslint:recommended",
-//    "tslint-react",
-//    "tslint-config-prettier"
-  ],
-  "defaultSeverity": "warning",
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "no-console": false,
+    "member-access":false,
+    "jsx-boolean-value": false,
+  },
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js"
     ]
-  },
-  "rules": {
-    "ordered-imports": false,
-    "member-access": false,
-    "no-console": false //Disable for typescript
-  },
-  "jsRules": {
-    "no-console": false //Disable for javascript
   }
 }
