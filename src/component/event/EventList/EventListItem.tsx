@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import * as React from 'react';
 import { Grid, Divider, Avatar, Typography, Button, Card, Icon, CardContent } from '@material-ui/core'
 import styled from 'styled-components'
 import { CalendarToday, Timer } from '@material-ui/icons'
@@ -36,7 +36,7 @@ const CardInfo = styled.div`
   }
 `
 
-class EventListItem extends Component {
+class EventListItem extends React.Component {
   render() {
     const { event } = this.props
     return (

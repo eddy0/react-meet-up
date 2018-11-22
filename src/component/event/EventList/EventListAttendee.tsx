@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import { Avatar, Tooltip, Button } from '@material-ui/core'
+import * as React from 'react';
+import styled from 'styled-components';
+
+import { Avatar, Button, Tooltip } from '@material-ui/core';
 
 const AttendeeList = styled.div`
   display: flex;

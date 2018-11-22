@@ -1,5 +1,6 @@
-import React from 'react'
-import { Grid, Avatar, Typography } from '@material-ui/core'
+import * as React from 'react';
+
+import { Avatar, Grid, Typography } from '@material-ui/core';
 
 export default function EventListHeader({ event }) {
   return (

@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import EventListItem from './EventListItem'
 
-class EventList extends Component {
+interface IProps {
+  events: {id: '' }[]
+}
+
+class EventList extends React.Component<IProps> {
   render() {
     const { events } = this.props
     return (
       <Grid container alignItems='center' direction='column'>
-        {events.map((event, index) => {
+        {events.map((event) => {
           return <EventListItem key={event.id} event={event} />
         })}
         {/* <EventListItem />

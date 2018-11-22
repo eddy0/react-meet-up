@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import FormControl from '@material-ui/core/FormControl'
 import { InputLabel, Input, InputAdornment } from '@material-ui/core'
-import {Face} from '@material-ui/icons'
-export default class EventForm extends Component {
+import { Face } from '@material-ui/icons'
+
+export default class EventForm extends React.Component {
   render() {
     return (
       <div>
@@ -11,7 +12,11 @@ export default class EventForm extends Component {
           <Input
             id='name'
             name='username'
-            // startAdornment={ <InputAdornment position='start'><Face /></InputAdornment>}
+            startAdornment={
+              <InputAdornment position='start'>
+                <Face />
+              </InputAdornment>
+            }
           />
         </FormControl>
       </div>

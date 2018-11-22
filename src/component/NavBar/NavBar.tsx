@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
 import styled from 'styled-components'
@@ -28,7 +28,7 @@ const NavButton = styled(Button)`
   }
 `
 
-class NavBar extends Component {
+class NavBar extends React.Component {
   render() {
     return (
       <AppBar color='primary' position='sticky'>
