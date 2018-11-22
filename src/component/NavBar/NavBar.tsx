@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import { withRouter, NavLink } from 'react-router-dom'
+import Button, { ButtonProps } from '@material-ui/core/Button'
+import { withRouter, NavLink, RouteComponentProps } from 'react-router-dom'
 
 const Logo = styled.div`
   width: 55px;
@@ -18,7 +18,7 @@ const Logo = styled.div`
   }
 `
 
-const NavButton = styled(Button)`
+const NavButton = styled<any>(Button)`
   && {
     border-radius: 0;
   }
@@ -27,8 +27,10 @@ const NavButton = styled(Button)`
     color: #2bb9ad;
   }
 `
+const NavbarLink: React.SFC<NavButton> = props => <NavLink to='/' {...props} />;
 
-class NavBar extends React.Component {
+
+class NavBar extends React.Component<RouteComponentProps>  {
   render() {
     return (
       <AppBar color='primary' position='sticky'>
@@ -45,10 +47,10 @@ class NavBar extends React.Component {
 
           {/* navLink */}
           <Grid container item style={{ flex: 1, marginLeft: '0.5rem' }}>
-            <NavButton component={NavLink} to='/' activeClassName='active' variant='text' color='secondary'>
+            <NavButton component={({innerRef, ...props}) => <NavLink to= '/' activeClassName='active' {...props} />}   variant='text' color='secondary'>
               Event
             </NavButton>
-            <NavButton component={NavLink} to='/create' activeStyle={{ backgroundColor: '#f4f4f4', color: '#2BB9AD' }} variant='text' color='secondary'>
+            <NavButton  component={ ({innerRef, ...props}) => <NavLink {...props} to='/create'  activeStyle={{ backgroundColor: '#f4f4f4', color: '#2BB9AD' }}  /> } variant='text' color='secondary'>
               Create Event
             </NavButton>
           </Grid>

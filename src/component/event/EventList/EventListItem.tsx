@@ -5,7 +5,7 @@ import { CalendarToday, Timer } from '@material-ui/icons'
 import EventAttendee from './EventListAttendee'
 import EventListHeader from './EventListHeader'
 
-const CardBox = styled(Card)`
+const CardBox = styled<any>(Card)`
   && {
     width: 90%;
     margin: 1rem 0;
@@ -36,7 +36,21 @@ const CardInfo = styled.div`
   }
 `
 
-class EventListItem extends React.Component {
+interface IPropsEventAttendee {
+  
+  id: string,
+
+}
+
+interface IPropsEventListItem {
+  event: {
+    data: Date,
+    attendees: IPropsEventAttendee[],
+    description: string,
+  }
+}
+
+class EventListItem extends React.Component<IPropsEventListItem> {
   render() {
     const { event } = this.props
     return (

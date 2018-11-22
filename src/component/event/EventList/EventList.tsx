@@ -3,12 +3,9 @@ import { Grid, Typography } from '@material-ui/core'
 import EventListItem from './EventListItem'
 
 
-interface EventItem {
-  id: string,
-}
 
 interface Props {
-  events: EventItem[]
+  events: {id: string}[]
 }
 
 class EventList extends React.Component<Props> {
@@ -17,7 +14,7 @@ class EventList extends React.Component<Props> {
     return (
       <Grid container alignItems='center' direction='column'>
         {events.map((event) => {
-          return <EventListItem key={event.id} event={event} />
+          return <EventListItem key={event.id} {...event}  event={event} />
         })}
         {/* <EventListItem />
         <EventListItem /> */}

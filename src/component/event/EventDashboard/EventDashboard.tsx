@@ -3,8 +3,9 @@ import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
+import Button, { ButtonProps } from '@material-ui/core/Button'
 import { withRouter, NavLink } from 'react-router-dom'
+import { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 
 const Logo = styled.div`
   width: 55px;
@@ -18,7 +19,8 @@ const Logo = styled.div`
   }
 `
 
-const NavButton = styled(Button)`
+
+const NavButton = styled(Button as React.SFC<ButtonProps>)`
   && {
     border-radius: 0;
   }
@@ -28,7 +30,9 @@ const NavButton = styled(Button)`
   }
 `
 
-class NavBar extends React.Component {
+const MyLink = props => <NavLink to='/' {...props} />
+
+class NavBar extends React.Component<any, any> {
   render() {
     return (
       <AppBar color='primary' position='sticky'>
@@ -42,15 +46,16 @@ class NavBar extends React.Component {
               Revent
             </Typography>
           </Grid>
+          
 
           {/* navLink */}
           <Grid container item style={{ flex: 1, marginLeft: '0.5rem' }}>
-            <NavButton component={<NavLink to='/' /> }  activeClassName='active' variant='text' color='secondary'>
+            <NavButton  variant='text' color='secondary'>
               Event
             </NavButton>
-            <NavButton component={NavLink} to='/create' activeStyle={{ backgroundColor: '#f4f4f4', color: '#2BB9AD' }} variant='text' color='secondary'>
+            <NavButton  variant='text' color='secondary'>
               Create Event
-            </NavButton>
+            </NavButton> 
           </Grid>
 
           {/* login status */}
