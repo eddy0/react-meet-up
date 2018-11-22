@@ -6,7 +6,7 @@ import './index.css'
 const root: HTMLElement = document.getElementById('root') as HTMLElement
 
 const render = (): void => {
-  ReactDOM.render(<App />, root)
+  ReactDOM.render(<App />, root as HTMLElement)
 }
 
 if ((module as any).hot) {
