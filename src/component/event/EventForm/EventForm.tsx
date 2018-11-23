@@ -1,25 +1,42 @@
 import * as React from 'react'
-import FormControl from '@material-ui/core/FormControl'
-import { InputLabel, Input, InputAdornment } from '@material-ui/core'
-import { Face } from '@material-ui/icons'
+import { TextField } from '@material-ui/core'
+import { useState } from 'react'
 
-export default class EventForm extends React.Component {
-  render() {
-    return (
-      <div>
-        <FormControl>
-          <InputLabel htmlFor='name'>name</InputLabel>
-          <Input
-            id='name'
-            name='username'
-            startAdornment={
-              <InputAdornment position='start'>
-                <Face />
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-      </div>
-    )
-  }
+interface FormValue {
+  name: string
+  username: string
+  password: string
+  todo: string
 }
+
+const state: FormValue = {
+  name: '',
+  username: '',
+  password: '',
+  todo: '',
+}
+
+const EventForm: React.SFC = () => {
+  const [form, update] = useState(state)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    let { name, value } = e.target
+
+    update({
+      ...form,
+      [name]: value,
+    })
+  }
+
+  return (
+    <form autoComplete='off'>
+      {JSON.stringify(form)}
+      <TextField id='name' name='name' label='Name' value={form.name} onChange={handleChange} />
+      <TextField id='username' name='username' label='username' value={form.username} onChange={handleChange} />
+      <TextField id='password' name='password' label='password' value={form.password} onChange={handleChange} />
+      <TextField id='todo' name='todo' label='todo' value={form.todo} onChange={handleChange} />
+    </form>
+  )
+}
+
+export default EventForm
