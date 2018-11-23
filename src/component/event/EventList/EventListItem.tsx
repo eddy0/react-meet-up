@@ -1,11 +1,13 @@
-import * as React from 'react';
-import { Grid, Divider, Avatar, Typography, Button, Card, Icon, CardContent } from '@material-ui/core'
+import * as React from 'react'
+import { Grid, Divider, Typography, Button, Card, CardContent } from '@material-ui/core'
 import styled from 'styled-components'
 import { CalendarToday, Timer } from '@material-ui/icons'
 import EventAttendee from './EventListAttendee'
 import EventListHeader from './EventListHeader'
+import { IEvent } from '../../../utils/DATA';
+import { CardProps } from '@material-ui/core/Card';
 
-const CardBox = styled<any>(Card)`
+const CardBox:React.SFC<CardProps> = styled(Card)`
   && {
     width: 90%;
     margin: 1rem 0;
@@ -36,18 +38,9 @@ const CardInfo = styled.div`
   }
 `
 
-interface IPropsEventAttendee {
-  
-  id: string,
-
-}
 
 interface IPropsEventListItem {
-  event: {
-    data: Date,
-    attendees: IPropsEventAttendee[],
-    description: string,
-  }
+  event: IEvent
 }
 
 class EventListItem extends React.Component<IPropsEventListItem> {
@@ -75,7 +68,7 @@ class EventListItem extends React.Component<IPropsEventListItem> {
         <CardContent style={{ display: 'flex' }}>
           <Grid item style={{ flex: 1 }}>
             {'description this is to get the brief info of the event'}
-            {event.description}
+            {event.description} 
           </Grid>
           <Grid item style={{ justifySelf: 'flex-end', alignSelf: 'flex-end' }}>
             <Button variant='contained' color='primary'>

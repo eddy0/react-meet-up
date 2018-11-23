@@ -1,7 +1,8 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from 'react'
+import styled from 'styled-components'
 
-import { Avatar, Button, Tooltip } from '@material-ui/core';
+import { Avatar, Button, Tooltip } from '@material-ui/core'
+import { IAttendee } from '../../../utils/DATA'
 
 const AttendeeList = styled.div`
   display: flex;
@@ -16,7 +17,11 @@ const AttendeeList = styled.div`
   }
 `
 
-export default class EventAttendee extends Component {
+interface IEventAttendeeProps {
+  attendees: IAttendee[]
+}
+
+export default class EventAttendee extends React.Component<IEventAttendeeProps> {
   render() {
     const { attendees } = this.props
     return (

@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 import Button, { ButtonProps } from '@material-ui/core/Button'
-import { withRouter, NavLink, RouteComponentProps } from 'react-router-dom'
+import {  NavLink  } from 'react-router-dom'
 
 const Logo = styled.div`
   width: 55px;
@@ -18,7 +18,7 @@ const Logo = styled.div`
   }
 `
 
-const NavButton = styled<any>(Button)`
+const NavButton:React.SFC<ButtonProps> = styled(Button)`
   && {
     border-radius: 0;
   }
@@ -27,10 +27,8 @@ const NavButton = styled<any>(Button)`
     color: #2bb9ad;
   }
 `
-const NavbarLink: React.SFC<NavButton> = props => <NavLink to='/' {...props} />;
 
-
-class NavBar extends React.Component<RouteComponentProps>  {
+class NavBar extends React.Component<any, any>  {
   render() {
     return (
       <AppBar color='primary' position='sticky'>
@@ -70,4 +68,4 @@ class NavBar extends React.Component<RouteComponentProps>  {
   }
 }
 
-export default withRouter(NavBar)
+export default (NavBar)

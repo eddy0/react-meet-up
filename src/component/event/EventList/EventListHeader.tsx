@@ -1,8 +1,12 @@
-import * as React from 'react';
+import * as React from 'react'
+import { Avatar, Grid, Typography } from '@material-ui/core'
+import { IEvent } from '../../../utils/DATA'
 
-import { Avatar, Grid, Typography } from '@material-ui/core';
+interface HeaderProps {
+  event: IEvent
+}
 
-export default function EventListHeader({ event }) {
+export default function EventListHeader({ event }: HeaderProps) {
   return (
     <Grid container={true} style={{ padding: '1rem' }}>
       <Grid item>
@@ -10,7 +14,7 @@ export default function EventListHeader({ event }) {
       </Grid>
       <Grid item style={{ flex: 1, marginLeft: '2rem' }}>
         <Typography variant='subtitle1'>{event.title}</Typography>
-        <Typography variant='subtitle2'>Hosted by {event.host}</Typography>
+        <Typography variant='subtitle2'>Hosted by {event.hostedBy}</Typography>
       </Grid>
     </Grid>
   )

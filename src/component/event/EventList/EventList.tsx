@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import EventListItem from './EventListItem'
-
-
+import { IEvent } from '../../../utils/DATA'
 
 interface Props {
-  events: {id: string}[]
+  events: IEvent[]
 }
 
 class EventList extends React.Component<Props> {
@@ -14,10 +13,8 @@ class EventList extends React.Component<Props> {
     return (
       <Grid container alignItems='center' direction='column'>
         {events.map((event) => {
-          return <EventListItem key={event.id} {...event}  event={event} />
+          return <EventListItem key={event.id} event={event} />
         })}
-        {/* <EventListItem />
-        <EventListItem /> */}
       </Grid>
     )
   }

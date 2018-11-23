@@ -1,27 +1,37 @@
-import * as React from 'react';
-import './App.css';
+import * as React from 'react'
+import EventDashboard from './component/event/EventDashboard/EventDashboard'
+import NavBar from './component/NavBar/NavBar'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import createMuiTheme, {  Theme } from '@material-ui/core/styles/createMuiTheme'
+import { MuiThemeProvider } from '@material-ui/core'
 
-import logo from './logo.svg';
+const theme: Theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+  palette: {
+    primary: {
+      main: '#6b9aaf',
+    },
+    secondary: {
+      main: '#e6f8fb',
+    },
+  },
+})
 
-class App extends React.Component {
+class App extends React.Component<any, any> {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          welcome to see how slow...
-          chaning one word
-          hot load mode
-          faster
-          
-          
-        </p>
-      </div>
-    );
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <>
+            <NavBar />
+            <Route to='/' component={EventDashboard} />
+          </>
+        </Router>
+      </MuiThemeProvider>
+    )
   }
 }
 
-export default App;
+export default App
