@@ -9,7 +9,7 @@ class EventDashboard extends React.Component<any, any> {
       <div className='row'>
         <Grid container item xs={12}>
           <Grid container item xs={8} justify='center'>
-            <h3>this is fast load</h3>
+            <h3>这是 hot load</h3>
             <EventList events={events} />
           </Grid>
           <Grid container item xs={4} justify='center'>
