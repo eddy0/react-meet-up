@@ -16,7 +16,9 @@ const state: FormValue = {
   todo: '',
 }
 
-const EventForm: React.SFC = () => {
+
+
+const EventForm: React.SFC = (props) => {
   const [form, update] = useState(state)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -30,8 +32,7 @@ const EventForm: React.SFC = () => {
 
   return (
     <form autoComplete='off'>
-      {JSON.stringify(form)}
-      <TextField id='name' name='name' label='Name' value={form.name} onChange={handleChange} />
+      <TextField id='name' name='name' label='name' value={form.name} onChange={handleChange} />
       <TextField id='username' name='username' label='username' value={form.username} onChange={handleChange} />
       <TextField id='password' name='password' label='password' value={form.password} onChange={handleChange} />
       <TextField id='todo' name='todo' label='todo' value={form.todo} onChange={handleChange} />

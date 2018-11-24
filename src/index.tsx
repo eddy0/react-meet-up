@@ -11,6 +11,7 @@ const render = (): void => {
 
 if ((module as any).hot) {
   (module as any).hot.accept('./App', () => {
+    console.log('hot load')
     render()
   })
 }
