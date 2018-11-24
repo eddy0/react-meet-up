@@ -14,7 +14,8 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
     isOpen: false,
   }
 
-  handleToggleForm = ():void => {
+  handleToggleForm = (e:React.MouseEvent<HTMLButtonElement>):void => {
+    e.preventDefault()
     this.setState((prevState) => {
       return {
         isOpen: !prevState.isOpen,
