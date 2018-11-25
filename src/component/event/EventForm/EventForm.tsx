@@ -6,13 +6,17 @@ import { generate, IEvent } from 'src/utils/DATA'
 import { IAttendee } from './../../../utils/DATA'
 
 interface FormValue {
+  id?: string
+  date?: string
+  attendees?: IAttendee[]
   title: string
   city: string
   description: string
   category: string
 }
 
-const state: FormValue = {
+
+const state: IEvent | FormValue = {
   title: '',
   city: '',
   description: '',
@@ -20,11 +24,25 @@ const state: FormValue = {
 }
 
 interface Iprops {
+  event: IEvent | null
   createEvent(form: IEvent): void
+  EditEvent(form: IEvent): void
 }
 
 const EventForm: React.SFC<Iprops> = (props: Iprops) => {
   const [form, update] = useState(state)
+
+  React.useEffect(
+    () => {
+      if (props.event !== null) {
+        const { title, city, description, category } = props.event
+        update({ title, city, description, category } as FormValue)
+      } else {
+        update(state)
+      }
+    },
+    [props.event]
+  )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let { name, value } = e.target
@@ -35,18 +53,31 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const createNewEvent = (form: FormValue):IEvent => {
     const id: string = generate()
     const date: string = new Date(Date.now()).toLocaleString()
-    const attendees: IAttendee[] = [{
-      id: 'a',
-      name: 'Bob',
-      photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
-    }]
-
+    const attendees: IAttendee[] = [
+      {
+        id: 'a',
+        name: 'Bob',
+        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+      },
+    ]
     const f: IEvent = { ...form, id, date, attendees }
-    props.createEvent(f)
+    return f
+  }
+
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>):void => {
+    e.preventDefault()
+    let f:IEvent
+    if (props.event !== null) {
+      f = {...props.event, ...form}
+      props.EditEvent(f)
+    } else {
+      f = createNewEvent(form)
+      props.createEvent(f)
+    }
     update(state)
   }
 
@@ -57,7 +88,7 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
       <TextField id='description' name='description' label='description' value={form.description} onChange={handleChange} />
       <TextField id='category' name='category' label='category' value={form.category} onChange={handleChange} />
       <Button type='submit' color='secondary' variant='contained'>
-        create a new event
+        {props.event === null ? 'create Event' : 'update Event'}
       </Button>
     </form>
   )

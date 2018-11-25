@@ -4,8 +4,10 @@ import EventListItem from './EventListItem'
 import { IEvent } from '../../../utils/DATA'
 
 interface Props {
-  events: IEvent[]
+  events: IEvent[],
+  handleToggleSelect(form:IEvent):void
 }
+
 
 class EventList extends React.Component<Props> {
   render() {
@@ -13,7 +15,7 @@ class EventList extends React.Component<Props> {
     return (
       <Grid container alignItems='center' direction='column'>
         {events.map((event) => {
-          return <EventListItem key={event.id} event={event} />
+          return <EventListItem handleToggleSelect={this.props.handleToggleSelect} key={event.id} event={event} />
         })}
       </Grid>
     )
