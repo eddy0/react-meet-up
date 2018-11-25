@@ -80,7 +80,7 @@ class EventListItem extends React.Component<IPropsEventListItem> {
               view
             </Button>
       
-            <Button color='primary' variant='contained' onClick={() => deleteEvent(event.id)}>
+            <Button color='secondary' variant='contained' onClick={() => deleteEvent(event.id)}>
               delete Event
             </Button>
             
