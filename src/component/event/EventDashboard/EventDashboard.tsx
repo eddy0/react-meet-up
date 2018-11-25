@@ -2,31 +2,30 @@ import * as React from 'react'
 import Grid from '@material-ui/core/Grid'
 import EventList from '../EventList/EventList'
 import { events, IEvent } from '../../../utils/DATA'
-import EventForm, { FormValue } from './../EventForm/EventForm'
+import EventForm from './../EventForm/EventForm'
 import Button from '@material-ui/core/Button'
 
 interface IEventDashboardState {
-  isOpen: boolean,
+  isOpen: boolean
   events: IEvent[]
 }
-
 
 class EventDashboard extends React.Component<{}, IEventDashboardState> {
   state: IEventDashboardState = {
     isOpen: false,
-    events: []
+    events: [],
   }
 
   componentDidMount() {
     this.setState((prevState: IEventDashboardState) => {
       return {
         ...prevState,
-        events: events
+        events: events,
       }
     })
   }
 
-  handleToggleForm = (e:React.MouseEvent<HTMLButtonElement>):void => {
+  handleToggleForm = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault()
     this.setState((prevState) => {
       return {
@@ -35,12 +34,12 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
     })
   }
 
-  createEvent = (form:FormValue) => {
+  createEvent = (form: IEvent) => {
     console.log(form)
     this.setState((prevState) => {
-      return  {
+      return {
         ...prevState,
-        events: prevState.events.concat(form)
+        events: prevState.events.concat(form),
       }
     })
   }
@@ -55,7 +54,7 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
           </Grid>
           <Grid container item xs={4} direction='column' alignItems='center'>
             <h4>right is hot fast</h4>
-        <Button color='primary' variant='contained' onClick={this.handleToggleForm}>
+            <Button color='primary' variant='contained' onClick={this.handleToggleForm}>
               create form
             </Button>
             {this.state.isOpen && <EventForm createEvent={this.createEvent} />}

@@ -62,7 +62,10 @@ class EventListItem extends React.Component<IPropsEventListItem> {
         </CardInfo>
         <Divider />
         <CardContent>
-          <EventAttendee attendees={event.attendees} />
+            {
+              event.attendees &&
+              <EventAttendee attendees={event.attendees} />
+            }
         </CardContent>
         <Divider />
         <CardContent style={{ display: 'flex' }}>

@@ -1,5 +1,5 @@
 const generate= ():string => {
-  return Math.random().toString(32).substring(0, 15) + Date.now().toString(32).substring(0, 15)
+  return Math.random().toString(32).substring(2, 15) + Date.now().toString(32).substring(2, 15)
 }
 
 export interface IAttendee{
@@ -10,14 +10,14 @@ export interface IAttendee{
 
 export interface IEvent{
   id: string,
-  title: string, 
-  date: string,
-  category: string, 
-  description: string,
-  city: string,
-  hostedBy: string,
-  hostPhotoURL: string, 
-  attendees: IAttendee[], 
+  title: string | '', 
+  date: string | '',
+  category?: string, 
+  description?: string,
+  city?: string,
+  hostedBy?: string,
+  hostPhotoURL?: string, 
+  attendees?: IAttendee[], 
 }
 
 const events = [

@@ -1,29 +1,29 @@
 import * as React from 'react'
 import { TextField } from '@material-ui/core'
 import { useState } from 'react'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
+import { generate, IEvent } from 'src/utils/DATA'
+import { IAttendee } from './../../../utils/DATA'
 
-export interface FormValue {
-  name: string
-  username: string
-  password: string
-  todo: string
+interface FormValue {
+  title: string
+  city: string
+  description: string
+  category: string
 }
 
 const state: FormValue = {
-  name: '',
-  username: '',
-  password: '',
-  todo: '',
+  title: '',
+  city: '',
+  description: '',
+  category: '',
 }
-
 
 interface Iprops {
-  createEvent(form:FormValue):void
+  createEvent(form: IEvent): void
 }
 
-
-const EventForm: React.SFC<Iprops> = (props:Iprops) => {
+const EventForm: React.SFC<Iprops> = (props: Iprops) => {
   const [form, update] = useState(state)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -35,18 +35,30 @@ const EventForm: React.SFC<Iprops> = (props:Iprops) => {
     })
   }
 
-  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    props.createEvent(form)
+    const id: string = generate()
+    const date: string = new Date(Date.now()).toLocaleString()
+    const attendees: IAttendee[] = [{
+      id: 'a',
+      name: 'Bob',
+      photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+    }]
+
+    const f: IEvent = { ...form, id, date, attendees }
+    props.createEvent(f)
+    update(state)
   }
 
   return (
     <form autoComplete='off' onSubmit={handleSubmit}>
-      <TextField id='name' name='name' label='name' value={form.name} onChange={handleChange} />
-      <TextField id='username' name='username' label='username' value={form.username} onChange={handleChange} />
-      <TextField id='password' name='password' label='password' value={form.password} onChange={handleChange} />
-      <TextField id='todo' name='todo' label='todo' value={form.todo} onChange={handleChange} />
-      <Button type='submit' color="secondary" variant='contained' >create a new event</Button>
+      <TextField id='title' name='title' label='title' value={form.title} onChange={handleChange} />
+      <TextField id='city' name='city' label='city' value={form.city} onChange={handleChange} />
+      <TextField id='description' name='description' label='description' value={form.description} onChange={handleChange} />
+      <TextField id='category' name='category' label='category' value={form.category} onChange={handleChange} />
+      <Button type='submit' color='secondary' variant='contained'>
+        create a new event
+      </Button>
     </form>
   )
 }
