@@ -26,7 +26,7 @@ const state: IEvent | FormValue = {
 interface Iprops {
   event: IEvent | null
   createEvent(form: IEvent): void
-  EditEvent(form: IEvent): void
+  editEvent(form: IEvent): void
 }
 
 const EventForm: React.SFC<Iprops> = (props: Iprops) => {
@@ -73,7 +73,7 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
     let f:IEvent
     if (props.event !== null) {
       f = {...props.event, ...form}
-      props.EditEvent(f)
+      props.editEvent(f)
     } else {
       f = createNewEvent(form)
       props.createEvent(f)

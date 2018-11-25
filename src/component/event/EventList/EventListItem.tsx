@@ -42,11 +42,12 @@ const CardInfo = styled.div`
 interface IPropsEventListItem {
   event: IEvent,
   handleToggleSelect(form:IEvent):void
+  deleteEvent(id:string):void
 }
 
 class EventListItem extends React.Component<IPropsEventListItem> {
   render() {
-    const { event, handleToggleSelect } = this.props
+    const { event, handleToggleSelect, deleteEvent } = this.props
     return (
       <CardBox>
         <EventListHeader event={event} />
@@ -75,12 +76,14 @@ class EventListItem extends React.Component<IPropsEventListItem> {
             {event.description} 
           </Grid>
           <Grid item style={{ justifySelf: 'flex-end', alignSelf: 'flex-end' }}>
-            <Button variant='contained' color='primary'>
+            <Button variant='contained' color='primary'  onClick={() => handleToggleSelect(this.props.event)}>
               view
             </Button>
-            <Button color='primary' variant='contained' onClick={() => handleToggleSelect(this.props.event)}>
-              Edit Event
+      
+            <Button color='primary' variant='contained' onClick={() => deleteEvent(event.id)}>
+              delete Event
             </Button>
+            
           </Grid>
         </CardContent>
       </CardBox>

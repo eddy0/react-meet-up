@@ -71,13 +71,26 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
     })
   }
 
+  deleteEvent = (id:string) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        events: prevState.events.filter((event) => event.id !== id)
+      }
+    })
+  }
+
   render() {
     return (
       <div className='row'>
         <Grid container item xs={12}>
           <Grid container item xs={8} justify='center'>
             <h3>这是 hot load</h3>
-            <EventList handleToggleSelect={this.handleToggleSelect} events={this.state.events} />
+            <EventList 
+              handleToggleSelect={this.handleToggleSelect} 
+              events={this.state.events}
+              deleteEvent={this.deleteEvent} 
+            />
           </Grid>
           <Grid container item xs={4} direction='column' alignItems='center'>
             <h4>right is hot fast</h4>
@@ -85,7 +98,14 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
               create form
             </Button>
 
-            {this.state.isOpen && <EventForm event={this.state.selected} createEvent={this.createEvent} EditEvent={this.handleEditEvent} />}
+            {
+              this.state.isOpen && 
+              <EventForm 
+                event={this.state.selected} 
+                createEvent={this.createEvent} 
+                editEvent={this.handleEditEvent}
+              />
+            }
           </Grid>
         </Grid>
       </div>
