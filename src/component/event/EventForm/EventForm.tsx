@@ -15,7 +15,6 @@ interface FormValue {
   category: string
 }
 
-
 const state: IEvent | FormValue = {
   title: '',
   city: '',
@@ -34,7 +33,7 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
 
   React.useEffect(
     () => {
-      if (props.event !== null) {
+      if (props.event && props.event !== null) {
         const { title, city, description, category } = props.event
         update({ title, city, description, category } as FormValue)
       } else {

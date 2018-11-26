@@ -85,7 +85,6 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
       <div className='row'>
         <Grid container item xs={12}>
           <Grid container item xs={8} justify='center'>
-            <h3>这是 hot load</h3>
             <EventList 
               handleToggleSelect={this.handleToggleSelect} 
               events={this.state.events}
@@ -93,7 +92,6 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
             />
           </Grid>
           <Grid container item xs={4} direction='column' alignItems='center'>
-            <h4>right is hot fast</h4>
             <Button color='primary' variant='contained' onClick={this.handleToggleForm}>
               create form
             </Button>

@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 import Button, { ButtonProps } from '@material-ui/core/Button'
-import {  NavLink  } from 'react-router-dom'
+import {  NavLink, Link  } from 'react-router-dom'
 
 const Logo = styled.div`
   width: 55px;
@@ -35,21 +35,26 @@ class NavBar extends React.Component<any, any>  {
         <Grid container className='row'>
           {/* logo */}
           <Grid container item alignItems='center' style={{ width: 'max-content' }}>
+          <NavButton  component={ ({innerRef, ...props}) => <Link {...props} to='/'  /> } variant='text' color='secondary'>
             <Logo>
               <img src='./assets/logo.png' alt='logo' />
             </Logo>
             <Typography color='inherit' variant='h6' style={{ textTransform: 'uppercase' }}>
               Revent
             </Typography>
+            </NavButton>
           </Grid>
 
           {/* navLink */}
           <Grid container item style={{ flex: 1, marginLeft: '0.5rem' }}>
-            <NavButton component={({innerRef, ...props}) => <NavLink to= '/' activeClassName='active' {...props} />}   variant='text' color='secondary'>
+            <NavButton component={({innerRef, ...props}) => <NavLink to= '/events' activeClassName='active' {...props} />}   variant='text' color='secondary'>
               Event
             </NavButton>
             <NavButton  component={ ({innerRef, ...props}) => <NavLink {...props} to='/create'  activeStyle={{ backgroundColor: '#f4f4f4', color: '#2BB9AD' }}  /> } variant='text' color='secondary'>
               Create Event
+            </NavButton>
+            <NavButton  component={ ({innerRef, ...props}) => <NavLink {...props} to='/people'  activeStyle={{ backgroundColor: '#f4f4f4', color: '#2BB9AD' }}  /> } variant='text' color='secondary'>
+            People
             </NavButton>
           </Grid>
 
