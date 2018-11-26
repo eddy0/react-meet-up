@@ -5,11 +5,16 @@ import  Button  from '@material-ui/core/Button'
 // export interface SignedOutMenuProps {
 // }
 
-export default class SignedOutMenu extends React.Component<{}, any> {
+
+interface Iprops {
+  login():void,
+}
+
+export default class SignedOutMenu extends React.Component<Iprops, any> {
   public render() {
     return (
       <Grid container item justify='flex-end' alignItems='center' style={{ width: 'max-content' }}>
-        <Button variant='outlined' color='secondary'>
+        <Button variant='outlined' color='secondary' onClick={this.props.login}>
           login
         </Button>
         <Button variant='text' color='secondary' style={{ margin: '0 0.5rem' }}>

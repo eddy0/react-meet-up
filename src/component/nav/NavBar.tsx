@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Button, { ButtonProps } from '@material-ui/core/Button'
 import {  NavLink, Link  } from 'react-router-dom'
 import SignedOutMenu from './SignedOutMenu';
+import  SignedInMenu from './SignedInMenu';
 
 const Logo = styled.div`
   width: 55px;
@@ -29,7 +30,28 @@ const NavButton:React.SFC<ButtonProps> = styled(Button)`
   }
 `
 
-class NavBar extends React.Component<any, any>  {
+interface IState {
+  login: boolean
+  
+}
+
+class NavBar extends React.Component<any, IState>  {
+  state:IState={
+    login: true
+  }
+
+  handleLogin = () => {
+    this.setState({
+      login: true
+    })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      login: false
+    })
+  }
+
   render() {
     return (
       <AppBar color='primary' position='sticky'>
@@ -58,9 +80,11 @@ class NavBar extends React.Component<any, any>  {
             People
             </NavButton>
           </Grid>
-
           {/* login status */}
-          <SignedOutMenu />
+          {
+            this.state.login?  <SignedInMenu logout={this.handleLogout} /> : <SignedOutMenu login={this.handleLogin} />
+          }
+         
           
         </Grid>
       </AppBar>
