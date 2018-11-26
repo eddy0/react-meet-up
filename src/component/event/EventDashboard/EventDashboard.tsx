@@ -19,7 +19,7 @@ class EventDashboard extends React.Component<{}, IEventDashboardState> {
   }
 
   componentDidMount() {
-    this.setState((prevState: IEventDashboardState) => {
+     this.setState((prevState: IEventDashboardState) => {
       return {
         ...prevState,
         events: events,

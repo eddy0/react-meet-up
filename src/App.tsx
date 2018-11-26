@@ -33,13 +33,13 @@ class App extends React.Component<any, any> {
           <>
             <NavBar />
             <Switch>
-              <Route exact to='/' component={HomePage} />
-              <Route  to='/events' component={EventDashboard} />
-              <Route exact={true} to='/event/:id' component={EventDetailedPage} />
-              <Route exact={true} to='/people' component={PeopleDashboard} />
-              <Route exact={true} to='/profile/:id' component={UserDetailedPage} />
-              <Route exact={true} to='/settings' component={SettingsDashboard} />
-              <Route exact={true} to='/createEvent' component={EventForm} />
+              <Route exact={true} path='/'  component={HomePage} />
+              <Route exact={true}  path='/events' component={EventDashboard} />
+              <Route exact={true} path='/event/:id' component={EventDetailedPage} />
+              <Route exact={true} path='/people' component={PeopleDashboard} />
+              <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
+              <Route exact={true} path='/settings' component={SettingsDashboard} />
+              <Route exact={true} path='/createEvent' component={EventForm} />
             </Switch>
           </>
         </Router>
