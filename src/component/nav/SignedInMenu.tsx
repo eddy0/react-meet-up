@@ -31,7 +31,7 @@ interface Iprops {
   logout(): void
 }
 
-export default class SignedInMenu extends React.Component<Iprops, IState> {
+class SignedInMenu extends React.Component< Iprops, IState> {
   state: IState = {
     anchorEl: null,
   }
@@ -54,7 +54,7 @@ export default class SignedInMenu extends React.Component<Iprops, IState> {
         <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
           {menus &&
             menus.map((menu) => {
-              return <MenuComponent menu={menu} handleClose={this.handleClose} />
+              return <MenuComponent key={menu} menu={menu} handleClose={this.handleClose} />
             })}
           <MenuItem onClick={this.props.logout}>
             Logout          
@@ -64,3 +64,5 @@ export default class SignedInMenu extends React.Component<Iprops, IState> {
     )
   }
 }
+
+export default SignedInMenu

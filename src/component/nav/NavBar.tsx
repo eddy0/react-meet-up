@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 import Button, { ButtonProps } from '@material-ui/core/Button'
-import {  NavLink, Link  } from 'react-router-dom'
+import {  NavLink, Link, withRouter, RouteComponentProps  } from 'react-router-dom'
 import SignedOutMenu from './SignedOutMenu';
 import  SignedInMenu from './SignedInMenu';
 
@@ -35,7 +35,7 @@ interface IState {
   
 }
 
-class NavBar extends React.Component<any, IState>  {
+class NavBar extends React.Component<RouteComponentProps<{}> & any, IState>  {
   state:IState={
     login: true
   }
@@ -50,6 +50,8 @@ class NavBar extends React.Component<any, IState>  {
     this.setState({
       login: false
     })
+    this.props.history.push('/')
+    
   }
 
   render() {
@@ -92,4 +94,4 @@ class NavBar extends React.Component<any, IState>  {
   }
 }
 
-export default (NavBar)
+export default withRouter(NavBar)
