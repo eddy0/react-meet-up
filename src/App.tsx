@@ -1,6 +1,6 @@
 import * as React from 'react'
 import EventDashboard from './component/event/EventDashboard/EventDashboard'
-import NavBar from './component/NavBar/NavBar'
+import NavBar from './component/nav/NavBar'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import createMuiTheme, { Theme } from '@material-ui/core/styles/createMuiTheme'
 import { MuiThemeProvider } from '@material-ui/core'
@@ -10,6 +10,7 @@ import UserDetailedPage from './component/user/UserDetailed/UserDetailedPage'
 import EventForm from './component/event/EventForm/EventForm'
 import SettingsDashboard from './component/user/settings/SettingsDashboard'
 import HomePage from './component/home/HomePage'
+import NotFound from './component/NotFound'
 
 const theme: Theme = createMuiTheme({
   typography: {
@@ -31,15 +32,27 @@ class App extends React.Component<any, any> {
       <MuiThemeProvider theme={theme}>
         <Router>
           <>
-            <NavBar />
             <Switch>
-              <Route exact={true} path='/'  component={HomePage} />
-              <Route exact={true}  path='/events' component={EventDashboard} />
-              <Route exact={true} path='/event/:id' component={EventDetailedPage} />
-              <Route exact={true} path='/people' component={PeopleDashboard} />
-              <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
-              <Route exact={true} path='/settings' component={SettingsDashboard} />
-              <Route exact={true} path='/createEvent' component={EventForm} />
+              <Route exact={true} path='/' component={HomePage} />
+              <Route
+                render={() => {
+                  return (
+                    <>
+                      <NavBar />
+                      <Switch>
+                        <Route exact={true} path='/events' component={EventDashboard} />
+                        <Route exact={true} path='/event/:id' component={EventDetailedPage} />
+                        <Route exact={true} path='/people' component={PeopleDashboard} />
+                        <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
+                        <Route exact={true} path='/settings' component={SettingsDashboard} />
+                        <Route exact={true} path='/create' component={EventForm} />
+                        <Route exact={true} path='/create' component={EventForm} />
+                        <Route component={NotFound} />
+                      </Switch>
+                    </>
+                  )
+                }}
+              />
             </Switch>
           </>
         </Router>

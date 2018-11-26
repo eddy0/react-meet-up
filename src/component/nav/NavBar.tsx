@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 import Button, { ButtonProps } from '@material-ui/core/Button'
 import {  NavLink, Link  } from 'react-router-dom'
+import SignedOutMenu from './SignedOutMenu';
 
 const Logo = styled.div`
   width: 55px;
@@ -59,14 +60,8 @@ class NavBar extends React.Component<any, any>  {
           </Grid>
 
           {/* login status */}
-          <Grid container item justify='flex-end' alignItems='center' style={{ width: 'max-content' }}>
-            <Button variant='outlined' color='secondary'>
-              login
-            </Button>
-            <Button variant='text' color='secondary' style={{ margin: '0 0.5rem' }}>
-              logout
-            </Button>
-          </Grid>
+          <SignedOutMenu />
+          
         </Grid>
       </AppBar>
     )

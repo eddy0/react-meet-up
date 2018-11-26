@@ -19,3 +19,15 @@ body {
   max-width: 1140px;
   margin: 0 auto;
 }
+
+.mg_b--sm {
+  margin-bottom: 1rem !important;
+}
+
+.mg_t--sm {
+  margin-top: 1rem !important;
+}
+
+a {
+  text-decoration: none;
+}
