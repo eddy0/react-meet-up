@@ -10,7 +10,7 @@ import UserDetailedPage from './component/user/UserDetailed/UserDetailedPage'
 import EventForm from './component/event/EventForm/EventForm'
 import SettingsDashboard from './component/user/settings/SettingsDashboard'
 import HomePage from './component/home/HomePage'
-import NotFound from './component/NotFound'
+// import NotFound from './component/NotFound'
 
 const theme: Theme = createMuiTheme({
   typography: {
@@ -44,10 +44,10 @@ class App extends React.Component<any, any> {
                         <Route exact={true} path='/event/:id' component={EventDetailedPage} />
                         <Route exact={true} path='/people' component={PeopleDashboard} />
                         <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
-                        <Route exact={true} path='/settings' component={SettingsDashboard} />
+                        <Route path='/settings' component={SettingsDashboard} />
                         <Route exact={true} path='/create' component={EventForm} />
                         <Route exact={true} path='/create' component={EventForm} />
-                        <Route component={NotFound} />
+                        {/* <Route component={NotFound} /> */}
                       </Switch>
                     </>
                   )

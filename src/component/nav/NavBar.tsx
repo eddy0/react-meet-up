@@ -35,9 +35,10 @@ interface IState {
   
 }
 
-class NavBar extends React.Component<RouteComponentProps<{}> & any, IState>  {
+
+class NavBar extends React.Component<RouteComponentProps<{}> & {}, IState>  {
   state:IState={
-    login: true
+    login: false
   }
 
   handleLogin = () => {
@@ -62,7 +63,7 @@ class NavBar extends React.Component<RouteComponentProps<{}> & any, IState>  {
           <Grid container item alignItems='center' style={{ width: 'max-content' }}>
           <NavButton  component={ ({innerRef, ...props}) => <Link {...props} to='/'  /> } variant='text' color='secondary'>
             <Logo>
-              <img src='./assets/logo.png' alt='logo' />
+              <img src='/assets/logo.png' alt='logo' />
             </Logo>
             <Typography color='inherit' variant='h6' style={{ textTransform: 'uppercase' }}>
               Revent
