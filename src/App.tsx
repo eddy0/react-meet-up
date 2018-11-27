@@ -11,6 +11,10 @@ import EventForm from './component/event/EventForm/EventForm'
 import SettingsDashboard from './component/user/settings/SettingsDashboard'
 import HomePage from './component/home/HomePage'
 // import NotFound from './component/NotFound'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducers from './reducers'
+import middleware from './middleware'
 
 const theme: Theme = createMuiTheme({
   typography: {
@@ -26,37 +30,41 @@ const theme: Theme = createMuiTheme({
   },
 })
 
+const store = createStore(reducers, middleware)
+
 class App extends React.Component<any, any> {
   public render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <Router>
-          <>
-            <Switch>
-              <Route exact={true} path='/' component={HomePage} />
-              <Route
-                render={() => {
-                  return (
-                    <>
-                      <NavBar />
-                      <Switch>
-                        <Route exact={true} path='/events' component={EventDashboard} />
-                        <Route exact={true} path='/event/:id' component={EventDetailedPage} />
-                        <Route exact={true} path='/people' component={PeopleDashboard} />
-                        <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
-                        <Route path='/settings' component={SettingsDashboard} />
-                        <Route exact={true} path='/create' component={EventForm} />
-                        <Route exact={true} path='/create' component={EventForm} />
-                        {/* <Route component={NotFound} /> */}
-                      </Switch>
-                    </>
-                  )
-                }}
-              />
-            </Switch>
-          </>
-        </Router>
-      </MuiThemeProvider>
+      <Provider store={store}>
+        <MuiThemeProvider theme={theme}>
+          <Router>
+            <>
+              <Switch>
+                <Route exact={true} path='/' component={HomePage} />
+                <Route
+                  render={() => {
+                    return (
+                      <>
+                        <NavBar />
+                        <Switch>
+                          <Route exact={true} path='/events' component={EventDashboard} />
+                          <Route exact={true} path='/event/:id' component={EventDetailedPage} />
+                          <Route exact={true} path='/people' component={PeopleDashboard} />
+                          <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
+                          <Route path='/settings' component={SettingsDashboard} />
+                          <Route exact={true} path='/create' component={EventForm} />
+                          <Route exact={true} path='/create' component={EventForm} />
+                          {/* <Route component={NotFound} /> */}
+                        </Switch>
+                      </>
+                    )
+                  }}
+                />
+              </Switch>
+            </>
+          </Router>
+        </MuiThemeProvider>
+      </Provider>
     )
   }
 }
