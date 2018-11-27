@@ -3,9 +3,9 @@ import {  Action } from 'redux'
 
 // action
 const INCREMENT = 'INCREMENT'
-type INCREMENT = typeof INCREMENT
+export type INCREMENT = typeof INCREMENT
 
-const actionIncrement = (data:number) => {
+export const actionIncrement = (data:number) => {
   return {
     type: INCREMENT,
     data,
