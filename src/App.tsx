@@ -11,10 +11,8 @@ import EventForm from './component/event/EventForm/EventForm'
 import SettingsDashboard from './component/user/settings/SettingsDashboard'
 import HomePage from './component/home/HomePage'
 // import NotFound from './component/NotFound'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import reducers from './reducers'
-import middleware from './middleware'
+import Test from './component/test';
+
 
 const theme: Theme = createMuiTheme({
   typography: {
@@ -30,12 +28,10 @@ const theme: Theme = createMuiTheme({
   },
 })
 
-const store = createStore(reducers, middleware)
 
 class App extends React.Component<any, any> {
   public render() {
     return (
-      <Provider store={store}>
         <MuiThemeProvider theme={theme}>
           <Router>
             <>
@@ -53,7 +49,7 @@ class App extends React.Component<any, any> {
                           <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
                           <Route path='/settings' component={SettingsDashboard} />
                           <Route exact={true} path='/create' component={EventForm} />
-                          <Route exact={true} path='/create' component={EventForm} />
+                          <Route exact={true} path='/test' component={Test} />
                           {/* <Route component={NotFound} /> */}
                         </Switch>
                       </>
@@ -64,7 +60,6 @@ class App extends React.Component<any, any> {
             </>
           </Router>
         </MuiThemeProvider>
-      </Provider>
     )
   }
 }
