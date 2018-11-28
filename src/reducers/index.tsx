@@ -1,18 +1,16 @@
 import {combineReducers} from 'redux';
-import {auth, State} from './auth';
-import LoadingReducer from './LoadingReducer';
-   
+import loadingReducer from './loadingReducer';
+import todoReducer from './todoReducer'
+import { Todo } from 'src/actions/model';
       
 export interface StoreState {
-  readonly auth: State,
-  readonly loading: boolean,
+   loading: boolean,
+   todos: Todo[]
 }    
 
-
-
 const reducers = combineReducers({
-  auth,
-  loading: LoadingReducer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ,
+  loading: loadingReducer,
+  todos: todoReducer,
 })
     
 

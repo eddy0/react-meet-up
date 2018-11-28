@@ -23,7 +23,7 @@ if (module['hot']) {
     setTimeout(render)
   })
 
-  module['hot'].accept('./reducers', () => {
+  module['hot'].accept('./reducers/index', () => {
     const newReducer = require('./reducers').default
     console.log('newReducer', newReducer)
     store.replaceReducer(newReducer)

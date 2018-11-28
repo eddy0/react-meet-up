@@ -1,17 +1,16 @@
-import { LoadingAction, LOADING_START, LOADING_END, LOADING_ERROR } from 'src/actions/loading';
-import { StoreState } from 'src/reducers';
+import {  LOADING_START, LOADING_END, LOADING_ERROR } from 'src/actions/loading'
 
-
-
-const loadingReducer = (state={false}, action<LoadingAction>) => {
-  switch(action.type) {
+const loadingReducer = (state: boolean = false, action: any): boolean => {
+  switch (action.type) {
     case LOADING_START:
       return true
     case LOADING_END:
       return false
     case LOADING_ERROR:
       return false
+    default:
+      return state
   }
 }
 
-export default LoadingReducer
+export default loadingReducer
