@@ -1,5 +1,5 @@
 import { createReducer } from './utils'
-import { ActionType, Todo,  Action } from './../actions/model';
+import { ActionType, Todo,  Action } from '../model/model';
 
 const handleAddTodo = (state:Todo[], action: Action<Todo>) => {
   return [...state, action.payload]

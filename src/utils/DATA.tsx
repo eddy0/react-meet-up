@@ -2,23 +2,7 @@ const generate= ():string => {
   return Math.random().toString(32).substring(2, 15) + Date.now().toString(32).substring(2, 15)
 }
 
-export interface IAttendee{
-  id: string,
-  name: string, 
-  photoURL: string, 
-}
 
-export interface IEvent{
-  id: string,
-  title: string | '', 
-  date: string | '',
-  category?: string, 
-  description?: string,
-  city?: string,
-  hostedBy?: string,
-  hostPhotoURL?: string, 
-  attendees?: IAttendee[], 
-}
 
 const events = [
   {

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { StoreState } from 'src/reducers';
 import { actionAddTodo, actionToggleTodo } from '../actions/todo'
-import { Todo } from './../actions/model';
+import { Todo } from '../model/model';
 
 interface ITestProps {
   todos: Todo[],
@@ -53,5 +53,10 @@ const mapStateToProps = ({todos}: StoreState) => {
   }
 }
 
+const mapDispatchToProps = {
+  actionAddTodo, 
+  actionToggleTodo,
+}
 
-export default connect(mapStateToProps, {actionAddTodo, actionToggleTodo})(Test)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Test)

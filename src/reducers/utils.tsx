@@ -1,4 +1,4 @@
-import { Action } from "src/actions/model";
+import { Action } from "src/model/model";
 
 
 const createReducer = (initialState:{}, map:{}) => {

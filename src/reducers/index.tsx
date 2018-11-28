@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import loadingReducer from './loadingReducer';
 import todoReducer from './todoReducer'
-import { Todo } from 'src/actions/model';
+import { Todo } from 'src/model/model';
       
 export interface StoreState {
    loading: boolean,

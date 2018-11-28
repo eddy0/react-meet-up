@@ -1,4 +1,4 @@
-import { ActionType, Todo, Action } from './model'
+import { ActionType, Todo, Action } from '../model/model'
 
 function actionAddTodo(todo: Todo): Action<Todo> {
   return {
