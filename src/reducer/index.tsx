@@ -1,16 +1,19 @@
 import {combineReducers} from 'redux';
 import loadingReducer from './loadingReducer';
 import todoReducer from './todoReducer'
-import { Todo } from 'src/model/model';
+import eventReducer from './eventReducer'
+import { Todo, IEvent } from 'src/model/model';
       
 export interface StoreState {
    loading: boolean,
-   todos: Todo[]
+   todos: Todo[],
+   events: IEvent[],
 }    
 
 const reducers = combineReducers({
   loading: loadingReducer,
   todos: todoReducer,
+  events: eventReducer,
 })
     
 

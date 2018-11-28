@@ -3,36 +3,32 @@ import { ActionType, Todo, Action } from '../model/model'
 function actionAddTodo(todo: Todo): Action<Todo> {
   return {
     type: ActionType.ADD_TODO,
-    payload: todo,
+    todo: todo,
   }
 }
 
-function actionDeleteTodo(id: string): Action<string>{
+function actionDeleteTodo(id: string) {
   return {
     type: ActionType.DELETE_TODO,
-    payload: id,
+    id: id,
   }
 }
 
-
-function actionToggleTodo(id: string): Action<string>{
+function actionToggleTodo(id: string) {
   return {
     type: ActionType.TOGGLE_TODO,
-    payload: id,
+    id: id,
   }
 }
 
-
-function handleActionDeleteTodo(id: string){
+function handleActionDeleteTodo(id: string) {
   return (dispatch: Function, getState: Function) => {
     dispatch(actionDeleteTodo(id))
   }
 }
 
-
-
 export { 
   actionAddTodo, 
-  handleActionDeleteTodo,
-  actionToggleTodo,
- }
+  handleActionDeleteTodo, 
+  actionToggleTodo, 
+}

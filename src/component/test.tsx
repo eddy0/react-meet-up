@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { StoreState } from 'src/reducers';
-import { actionAddTodo, actionToggleTodo } from '../actions/todo'
+import { StoreState } from '../reducer';
+import { actionAddTodo, actionToggleTodo } from '../action/todoAction'
 import { Todo } from '../model/model';
 
 interface ITestProps {
