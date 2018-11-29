@@ -1,25 +1,38 @@
 import { ActionType, IEvent, Action } from '../model/model'
 
+function handleActionFetchEvent(events: IEvent[]) {
+  return (dispatch: Function, getState: Function) => {
+    dispatch(actionFetchEvent(events))
+  }
+}
+
+const actionFetchEvent = (events:IEvent[]): Action<IEvent[]> => {
+  return {
+    type: ActionType.FETCH_EVENT,
+    payload: events
+  }
+}
+
 const actionCreateEvent = (event: IEvent):Action<IEvent> => {
   return {
     type: ActionType.ADD_TODO,
-    event: event,
+    payload: event,
   }
 }
 
 const actionUpdateEvent = (event: IEvent): Action<IEvent> => {
   return  {
     type: ActionType.UPDATE_EVENT,
-    event: event,
+    payload: event,
   }
 }
 
 const actionDeleteEvent = (id:string): Action<string> => {
   return {
     type: ActionType.DELETE_EVENT,
-    id: id
+    payload: id
   }
 }
 
 
-export { actionCreateEvent, actionUpdateEvent, actionDeleteEvent}
+export {handleActionFetchEvent, actionFetchEvent, actionCreateEvent, actionUpdateEvent, actionDeleteEvent}

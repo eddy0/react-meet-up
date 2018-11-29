@@ -1,10 +1,11 @@
+import { IEvent } from 'src/model/model';
+
 const generate= ():string => {
   return Math.random().toString(32).substring(2, 15) + Date.now().toString(32).substring(2, 15)
 }
 
 
-
-const events = [
+const events:IEvent[] = [
   {
     id: '1',
     title: 'Trip to Tower of London',
@@ -55,4 +56,13 @@ const events = [
   },
 ]
 
-export { events, generate }
+const fetchEvent = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(events)
+    }, 1000)
+  })
+}
+
+
+export { fetchEvent, generate }
