@@ -18,16 +18,20 @@ const render = (): void => {
 }
 
 if (module['hot']) {
+  module['hot'].accept('./reducer/index', () => {
+    const newReducer = require('./reducer').default
+    console.log('newReducer', newReducer)
+    store.replaceReducer(newReducer)
+    console.log('reducer')
+    render()
+  })
+
   module['hot'].accept('./App', () => {
     console.log('hot load')
     setTimeout(render)
   })
 
-  module['hot'].accept('./reducers/index', () => {
-    const newReducer = require('./reducers').default
-    console.log('newReducer', newReducer)
-    store.replaceReducer(newReducer)
-  })
+ 
 }
 
 render()

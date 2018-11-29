@@ -1,8 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-
+import {  IAttendee } from './../../../model/model'
 import { Avatar, Button, Tooltip } from '@material-ui/core'
-import { IAttendee } from '../../../utils/DATA'
 
 const AttendeeList = styled.div`
   display: flex;

@@ -2,8 +2,8 @@ import * as React from 'react'
 import { TextField } from '@material-ui/core'
 import { useState } from 'react'
 import Button from '@material-ui/core/Button'
-import { generate, IEvent } from 'src/utils/DATA'
-import { IAttendee } from './../../../utils/DATA'
+import { generate  } from 'src/utils/DATA'
+import { IAttendee, IEvent } from './../../../model/model';
 
 interface FormValue {
   id?: string

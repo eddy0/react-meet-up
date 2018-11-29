@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { CalendarToday, Timer } from '@material-ui/icons'
 import EventAttendee from './EventListAttendee'
 import EventListHeader from './EventListHeader'
-import { IEvent } from '../../../utils/DATA';
+import {  IEvent } from './../../../model/model'
 import { CardProps } from '@material-ui/core/Card';
 
 const CardBox:React.SFC<CardProps> = styled(Card)`

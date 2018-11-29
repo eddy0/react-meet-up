@@ -2,7 +2,7 @@ import { createReducer } from "../reducer/utils";
 import { ActionType, IEvent, Action } from '../model/model';
 
 const fetchEventReducer = (state: IEvent[], action: Action<IEvent[]>) => {
-  return [...state, ...action.payload]
+  return [...action.payload]
 }
 
 const createEventReducer = (state: IEvent[], action: Action<IEvent>) => {

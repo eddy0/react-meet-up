@@ -3,21 +3,21 @@ import { ActionType, Todo, Action } from '../model/model'
 function actionAddTodo(todo: Todo): Action<Todo> {
   return {
     type: ActionType.ADD_TODO,
-    todo: todo,
+    payload: todo,
   }
 }
 
 function actionDeleteTodo(id: string) {
   return {
     type: ActionType.DELETE_TODO,
-    id: id,
+    payload: id,
   }
 }
 
 function actionToggleTodo(id: string) {
   return {
     type: ActionType.TOGGLE_TODO,
-    id: id,
+    payload: id,
   }
 }
 

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Avatar, Grid, Typography } from '@material-ui/core'
-import { IEvent } from '../../../utils/DATA'
-
+import {  IEvent } from '../../../model/model'
 interface HeaderProps {
   event: IEvent
 }

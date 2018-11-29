@@ -1,8 +1,11 @@
 import { ActionType, IEvent, Action } from '../model/model'
+import { fetchEvent } from 'src/utils/DATA';
 
-function handleActionFetchEvent(events: IEvent[]) {
+function handleActionFetchEvent() {
   return (dispatch: Function, getState: Function) => {
-    dispatch(actionFetchEvent(events))
+    fetchEvent().then((events:IEvent[]) => {
+      dispatch(actionFetchEvent(events))
+    })
   }
 }
 // 这个函数返回的是 Action 类型, 其中的 payload 是 Ievent 类型的数组
