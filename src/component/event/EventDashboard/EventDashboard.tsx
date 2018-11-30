@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button'
 import { IEvent } from 'src/model/model'
 import { connect } from 'react-redux'
 import { StoreState } from './../../../reducer/index'
-import { handleActionFetchEvent } from './../../../action/eventAction'
-import { CircularProgress } from '@material-ui/core'
+import { handleActionFetchEvent } from './../../../action/index'
+import { actionDeleteEvent, actionCreateEvent } from './../../../action/eventAction'
 
 interface IEventDashboardState {
   isOpen: boolean
@@ -16,8 +16,9 @@ interface IEventDashboardState {
 }
 
 interface IEventDashboardProps {
-  handleActionFetchEvent: () => void
-  events: IEvent[]
+  fetchEvent: () => void
+  createEvent: (form:IEvent) => void
+  events: IEvent[],
 }
 
 class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboardState> {
@@ -28,7 +29,7 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
   }
 
   componentDidMount() {
-    this.props.handleActionFetchEvent()
+    this.props.fetchEvent()
   }
 
   handleToggleForm = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -40,13 +41,14 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
   }
 
   createEvent = (form: IEvent) => {
-    console.log(form)
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        events: prevState.events.concat(form),
-      }
-    })
+    this.props.createEvent(form)
+    // console.log(form)
+    // this.setState((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     events: prevState.events.concat(form),
+    //   }
+    // })
   }
 
   handleToggleSelect = (form: IEvent): void => {
@@ -86,13 +88,6 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
 
   render() {
     const event = this.props.events
-    if (event.length <= 0) {
-      return (
-        <div style={{position: 'fixed', left: '50%', top: '50%'}}>
-          <CircularProgress size={80} />
-        </div>
-      )
-    }
     return (
       <div className='row'>
         <Grid container item xs={12}>
@@ -103,7 +98,6 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
             <Button color='primary' variant='contained' onClick={this.handleToggleForm}>
               create form
             </Button>
-
             {this.state.isOpen && <EventForm event={this.state.selected} createEvent={this.createEvent} editEvent={this.handleEditEvent} />}
           </Grid>
         </Grid>
@@ -118,7 +112,14 @@ const mapStateToProps = (state: StoreState) => {
   }
 }
 
+const mapDispatchToProps = {
+  fetchEvent: handleActionFetchEvent,
+  createEvent: actionCreateEvent,
+  deleteEvent:actionDeleteEvent
+
+}
+
 export default connect(
   mapStateToProps,
-  { handleActionFetchEvent }
+  mapDispatchToProps,
 )(EventDashboard)

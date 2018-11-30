@@ -22,7 +22,7 @@
   "optimization": {
     "removeAvailableModules": false,
     "removeEmptyChunks": false,
-    "splitChunks": false
+    // "splitChunks": false
   },
   "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]
 }

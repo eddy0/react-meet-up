@@ -19,22 +19,22 @@ interface actionLoadingError  {
   type: LOADING_ERROR
 }
 
-const handleLoadingStart = () => {
+const actionLoadingStart = () => {
   return {
     type: LOADING_START,
     loading: true,
   }
 }
 
-const handleLoadingEnd = () => {
+const actionLoadingEnd = () => {
   return {
-    type: LOADING_START,
+    type: LOADING_END,
     loading: true,
   }
 }
-const handleLoadingError = () => {
+const actionLoadingError = () => {
   return {
-    type: LOADING_START,
+    type: LOADING_END,
     loading: false,
   }
 }
@@ -46,7 +46,7 @@ export {
   LOADING_START,
   LOADING_END,
   LOADING_ERROR,
-  handleLoadingStart,
-  handleLoadingEnd,
-  handleLoadingError,
+  actionLoadingStart,
+  actionLoadingEnd,
+  actionLoadingError,
 }

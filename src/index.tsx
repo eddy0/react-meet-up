@@ -17,21 +17,21 @@ const render = (): void => {
   ReactDOM.render(Root, root)
 }
 
-if (module['hot']) {
-  module['hot'].accept('./reducer/index', () => {
-    const newReducer = require('./reducer').default
-    console.log('newReducer', newReducer)
-    store.replaceReducer(newReducer)
-    console.log('reducer')
-    render()
-  })
+// if ((module as any)) {
 
-  module['hot'].accept('./App', () => {
-    console.log('hot load')
-    setTimeout(render)
-  })
+//   // (module as any).hot.accept('./reducer/index', () => {
+//   //   const newReducer = require('./reducer').default
+//   //   console.log('newReducer', newReducer)
+//   //   store.replaceReducer(newReducer)
+//   // })
+
+//   (module as any).hot.accept('./App', () => {
+//     console.log('hot load')
+//     console.log(module);
+//     setTimeout(render)
+//   })
 
  
-}
+// }
 
 render()

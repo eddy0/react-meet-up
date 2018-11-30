@@ -6,6 +6,7 @@ import EventAttendee from './EventListAttendee'
 import EventListHeader from './EventListHeader'
 import {  IEvent } from './../../../model/model'
 import { CardProps } from '@material-ui/core/Card';
+import { Link } from 'react-router-dom';
 
 const CardBox:React.SFC<CardProps> = styled(Card)`
   && {
@@ -76,9 +77,11 @@ class EventListItem extends React.Component<IPropsEventListItem> {
             {event.description} 
           </Grid>
           <Grid item style={{ justifySelf: 'flex-end', alignSelf: 'flex-end' }}>
+            <Link to={`/event/${event.id}`}>  
             <Button variant='contained' color='primary'  onClick={() => handleToggleSelect(this.props.event)}>
               view
             </Button>
+            </Link>
       
             <Button color='secondary' variant='contained' onClick={() => deleteEvent(event.id)}>
               delete Event

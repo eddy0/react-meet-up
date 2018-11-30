@@ -11,8 +11,8 @@ import EventForm from './component/event/EventForm/EventForm'
 import SettingsDashboard from './component/user/settings/SettingsDashboard'
 import HomePage from './component/home/HomePage'
 // import NotFound from './component/NotFound'
-import Test from './component/test';
-
+import Test from './component/test'
+import Loading from './component/loading/Loading'
 
 const theme: Theme = createMuiTheme({
   typography: {
@@ -28,20 +28,21 @@ const theme: Theme = createMuiTheme({
   },
 })
 
-
 class App extends React.Component<any, any> {
   public render() {
     return (
-        <MuiThemeProvider theme={theme}>
-          <Router>
-            <>
-              <Switch>
-                <Route exact={true} path='/' component={HomePage} />
-                <Route
-                  render={() => {
-                    return (
-                      <>
-                        <NavBar />
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <>
+            <Switch>
+              <Route exact={true} path='/' component={HomePage} />
+              <Route
+                render={() => {
+                  return (
+                    <>
+                      <NavBar />
+                      <Loading />
+                      <div style={{paddingTop: '30px'}}>
                         <Switch>
                           <Route exact={true} path='/events' component={EventDashboard} />
                           <Route exact={true} path='/event/:id' component={EventDetailedPage} />
@@ -52,14 +53,15 @@ class App extends React.Component<any, any> {
                           <Route exact={true} path='/test' component={Test} />
                           {/* <Route component={NotFound} /> */}
                         </Switch>
-                      </>
-                    )
-                  }}
-                />
-              </Switch>
-            </>
-          </Router>
-        </MuiThemeProvider>
+                      </div>
+                    </>
+                  )
+                }}
+              />
+            </Switch>
+          </>
+        </Router>
+      </MuiThemeProvider>
     )
   }
 }
