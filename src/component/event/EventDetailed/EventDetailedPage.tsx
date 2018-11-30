@@ -4,8 +4,15 @@ import EventDetailedHeader from './EventDetailedHeader';
 import EventDetailedInfo from './EventDetailedInfo';
 import EventDetailedChat from './EventDetailedChat';
 import EventDetailedSidebar from './EventDetailedSidebar';
+import { connect } from 'react-redux';
+import { StoreState } from './../../../reducer/index';
+import { IEvent } from 'src/model/model';
+import { RouteComponentProps } from 'react-router-dom';
 
-interface EventDetailedPageProps {}
+interface EventDetailedPageProps extends RouteComponentProps<{id: string}>{
+
+}
+
 
 const EventDetailedPage: React.SFC<EventDetailedPageProps> = (props) => {
   return (
@@ -25,4 +32,16 @@ const EventDetailedPage: React.SFC<EventDetailedPageProps> = (props) => {
   )
 }
 
-export default EventDetailedPage
+
+type OwnProps = RouteComponentProps<{id: string}>;
+
+const mapStateToProps = (state:StoreState, props: OwnProps) => {
+  const id = props.match.params.id
+  let event:IEvent = state.events.filter((event:IEvent) => event.id === id)[0]
+  return {
+    event: event
+  }
+}
+
+export default connect(mapStateToProps)(EventDetailedPage)
+
