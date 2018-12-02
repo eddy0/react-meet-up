@@ -8,13 +8,13 @@ export interface IEvent {
   id: string
   title: string | ''
   date: string | ''
-  category?: string
+  category: string
   description?: string
   city?: string
   hostedBy?: string
   hostPhotoURL?: string
   venue?:string,
-  attendees?: IAttendee[]
+  attendees: IAttendee[] | [],
 }
 
 export interface Todo {

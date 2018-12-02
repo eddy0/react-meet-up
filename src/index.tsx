@@ -30,8 +30,6 @@ const render = (): void => {
 //     console.log(module);
 //     setTimeout(render)
 //   })
-
- 
 // }
 
 render()
