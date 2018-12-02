@@ -116,7 +116,6 @@ const mapDispatchToProps = {
   fetchEvent: handleActionFetchEvent,
   createEvent: actionCreateEvent,
   deleteEvent:actionDeleteEvent
-
 }
 
 export default connect(
