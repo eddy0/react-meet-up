@@ -29,7 +29,9 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
   }
 
   componentDidMount() {
-    this.props.fetchEvent()
+    if (this.state.events.length < 1) {
+      this.props.fetchEvent()
+    }
   }
 
   handleToggleForm = (e: React.MouseEvent<HTMLButtonElement>): void => {

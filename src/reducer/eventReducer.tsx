@@ -16,7 +16,7 @@ const deleteEventReducer = (state: IEvent[], action: Action<string>) => {
 const updateEventReducer = (state: IEvent[], action: Action<IEvent>) => {
   return state.map((e) => {
     if (e.id === action.payload.id) {
-      return event
+      return action.payload
     }
     return e
   })
@@ -26,5 +26,5 @@ export default createReducer([], {
   [ActionType.FETCH_EVENT]:fetchEventReducer,
   [ActionType.CREATE_EVENT]: createEventReducer,
   [ActionType.DELETE_EVENT]: deleteEventReducer,
-  [ActionType.DELETE_EVENT]: updateEventReducer,
+  [ActionType.UPDATE_EVENT]: updateEventReducer,
 })

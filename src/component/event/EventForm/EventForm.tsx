@@ -7,6 +7,7 @@ import { IAttendee, IEvent } from './../../../model/model';
 import { connect } from 'react-redux'
 import { StoreState } from '../../../reducer'
 import { RouteComponentProps } from 'react-router-dom';
+import { actionCreateEvent, actionUpdateEvent } from '../../../action/eventAction'
 
 
 interface FormValue {
@@ -78,13 +79,14 @@ const EventForm: React.SFC<Iprops> = (props) => {
     if (props.event !== null) {
       f = {...props.event, ...form}
       props.editEvent(f)
+      props.history.goBack()
     } else {
       f = createNewEvent(form)
       props.createEvent(f)
+      props.history.push('/events')
     }
-    update(state)
   }
-  console.log(form)
+  
   return (
     <form autoComplete="off" onSubmit={ handleSubmit } style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
           className={ 'row' }>
@@ -112,4 +114,10 @@ const mapStateToProps = (state: StoreState, props: Iprops) => {
   }
 }
 
-export default connect(mapStateToProps)(EventForm)
+const mapActionsToProps = {
+  createEvent: actionCreateEvent,
+  editEvent: actionUpdateEvent,
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(EventForm)
