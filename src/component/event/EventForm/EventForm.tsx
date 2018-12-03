@@ -84,16 +84,15 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
   }
   
   return (
-    
-    <form autoComplete='off' onSubmit={handleSubmit} style={{display: flex, flexDirection: 'column', margin: '0 auto'}}
-          className={'row'}>
-      <TextField id='title' name='title' label='title' value={form.title} onChange={handleChange}/>
-      <TextField id='city' name='city' label='city' value={form.city} onChange={handleChange}/>
-      <TextField id='description' name='description' label='description' value={form.description}
-                 onChange={handleChange}/>
-      <TextField id='category' name='category' label='category' value={form.category} onChange={handleChange}/>
+    <form autoComplete="off" onSubmit={ handleSubmit } style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
+          className={ 'row' }>
+      <TextField id='title' name='title' label='title' value={ form.title } onChange={ handleChange }/>
+      <TextField id='city' name='city' label='city' value={ form.city } onChange={ handleChange }/>
+      <TextField id='description' name='description' label='description' value={ form.description }
+                 onChange={ handleChange }/>
+      <TextField id='category' name='category' label='category' value={ form.category } onChange={ handleChange }/>
       <Button type='submit' color='secondary' variant='contained'>
-        {props.event === null ? 'create Event' : 'update Event'}
+        { props.event === null ? 'create Event' : 'update Event' }
       </Button>
     </form>
   )
