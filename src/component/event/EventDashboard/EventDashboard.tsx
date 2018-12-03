@@ -10,7 +10,6 @@ import { handleActionFetchEvent } from './../../../action/index'
 import { actionDeleteEvent, actionCreateEvent } from './../../../action/eventAction'
 
 interface IEventDashboardState {
-  isOpen: boolean
   events: IEvent[]
   selected: IEvent | null
 }
@@ -23,7 +22,6 @@ interface IEventDashboardProps {
 
 class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboardState> {
   state: IEventDashboardState = {
-    isOpen: false,
     events: this.props.events || [],
     selected: null,
   }
@@ -34,50 +32,6 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
     }
   }
 
-  handleToggleForm = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    e.preventDefault()
-    this.setState({
-      isOpen: true,
-      selected: null,
-    })
-  }
-
-  createEvent = (form: IEvent) => {
-    this.props.createEvent(form)
-    // console.log(form)
-    // this.setState((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     events: prevState.events.concat(form),
-    //   }
-    // })
-  }
-
-  handleToggleSelect = (form: IEvent): void => {
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        isOpen: true,
-        selected: form,
-      }
-    })
-  }
-
-  handleEditEvent = (form: IEvent) => {
-    console.log(form)
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        events: prevState.events.map((event) => {
-          if (event.id === form.id) {
-            return form
-          }
-          return event
-        }),
-        selected: null,
-      }
-    })
-  }
 
   deleteEvent = (id: string) => {
     this.setState((prevState) => {
@@ -94,13 +48,12 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
       <div className='row'>
         <Grid container item xs={12}>
           <Grid container item xs={8} justify='center'>
-            <EventList handleToggleSelect={this.handleToggleSelect} events={event} deleteEvent={this.deleteEvent} />
+            <EventList  events={event} deleteEvent={this.deleteEvent} />
           </Grid>
           <Grid container item xs={4} direction='column' alignItems='center'>
-            <Button color='primary' variant='contained' onClick={this.handleToggleForm}>
+            <Button color='primary' variant='contained' >
               create form
             </Button>
-            {/*{this.state.isOpen && <EventForm event={this.state.selected} createEvent={this.createEvent} editEvent={this.handleEditEvent} />}*/}
           </Grid>
         </Grid>
       </div>
