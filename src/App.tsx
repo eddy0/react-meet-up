@@ -45,7 +45,7 @@ class App extends React.Component<any, any> {
                       <div style={{paddingTop: '30px'}}>
                         <Switch>
                           <Route exact={true} path='/events' component={EventDashboard} />
-                          <Route exact={true} path='/event/manage' component={EventForm} />
+                          <Route exact={true} path='/event/manage/:id' component={EventForm} />
                           <Route exact={true} path='/event/:id' component={EventDetailedPage} />
                           <Route exact={true} path='/people' component={PeopleDashboard} />
                           <Route exact={true} path='/profile/:id' component={UserDetailedPage} />

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Grid from '@material-ui/core/Grid'
 import EventList from '../EventList/EventList'
-import EventForm from './../EventForm/EventForm'
+// import EventForm from './../EventForm/EventForm'
 import Button from '@material-ui/core/Button'
 import { IEvent } from 'src/model/model'
 import { connect } from 'react-redux'
@@ -98,7 +98,7 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
             <Button color='primary' variant='contained' onClick={this.handleToggleForm}>
               create form
             </Button>
-            {this.state.isOpen && <EventForm event={this.state.selected} createEvent={this.createEvent} editEvent={this.handleEditEvent} />}
+            {/*{this.state.isOpen && <EventForm event={this.state.selected} createEvent={this.createEvent} editEvent={this.handleEditEvent} />}*/}
           </Grid>
         </Grid>
       </div>

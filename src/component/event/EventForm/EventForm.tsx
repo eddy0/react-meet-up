@@ -4,6 +4,9 @@ import { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { generate } from 'src/utils/DATA'
 import { IAttendee, IEvent } from './../../../model/model';
+import { connect } from 'react-redux'
+import { StoreState } from '../../../reducer'
+import { RouteComponentProps } from 'react-router-dom';
 
 
 interface FormValue {
@@ -23,7 +26,7 @@ const state: IEvent | FormValue = {
   category: '',
 }
 
-interface Iprops {
+interface Iprops extends RouteComponentProps<{ id: string }> {
   event: IEvent | null
   
   createEvent(form: IEvent): void
@@ -31,12 +34,12 @@ interface Iprops {
   editEvent(form: IEvent): void
 }
 
-const EventForm: React.SFC<Iprops> = (props: Iprops) => {
+const EventForm: React.SFC<Iprops> = (props) => {
   const [form, update] = useState(state)
   
   React.useEffect(
     () => {
-      if (props.event && props.event !== null) {
+      if (props.event) {
         const {title, city, description, category} = props.event
         update({title, city, description, category} as FormValue)
       } else {
@@ -69,7 +72,6 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
     return f
   }
   
-  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     let f: IEvent
@@ -82,7 +84,7 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
     }
     update(state)
   }
-  
+  console.log(form)
   return (
     <form autoComplete="off" onSubmit={ handleSubmit } style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
           className={ 'row' }>
@@ -98,4 +100,16 @@ const EventForm: React.SFC<Iprops> = (props: Iprops) => {
   )
 }
 
-export default EventForm
+
+const mapStateToProps = (state: StoreState, props: Iprops) => {
+  const id = props.match.params.id
+  let event = null
+  if (id && state.events.length > 0) {
+    event = state.events.filter((event) => event.id === id)[0]
+  }
+  return {
+    event,
+  }
+}
+
+export default connect(mapStateToProps)(EventForm)

@@ -32,7 +32,7 @@ const EventDetailedHeader: React.SFC<EventDetailedHeaderProps> = ({event}) => {
         <Button size="small">cancel reservation</Button>
         <Button size="small" variant='contained' color='primary'>join the event</Button>
         <Button size="small" variant='contained' color='secondary' style={{marginLeft: 'auto'}}>
-          <Link to='/event/manage' color='inherit'>
+          <Link to={`/event/manage/${event.id}`} color='inherit'>
             Manage Event
           </Link>
         </Button>
