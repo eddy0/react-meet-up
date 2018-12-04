@@ -92,7 +92,7 @@ const EventForm: React.SFC<InjectedFormProps & Iprops> = (props) => {
   return (
     <form autoComplete="off" onSubmit={ handleSubmit } style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
           className={ 'row' }>
-      <Field name='title' type='text' label='title' component={TextInput} />
+      <Field name='title' type='text'  component={(withRef, props) => <TextInput {...props} {...withRef} fullWidth={true} variant='standard' />} />
        {/*<TextInput id='title' variant='standard' name='title' label='title' value={ form.title } onChange={ handleChange } />*/}
       <TextField id='title' name='title' label='title' value={ form.title } onChange={ handleChange }/>
       <TextField id='city' name='city' label='city' value={ form.city } onChange={ handleChange }/>

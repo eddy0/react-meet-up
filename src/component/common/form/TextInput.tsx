@@ -1,31 +1,25 @@
 import * as React from 'react'
 import { TextField } from '@material-ui/core'
 import { WrappedFieldProps } from 'redux-form'
-// import { InputHTMLAttributes } from 'react'
-// import { TextFieldProps } from '@material-ui/core/TextField'
+import {  TextFieldProps } from '@material-ui/core/TextField'
 
-interface ITextInputProps extends WrappedFieldProps  {
-  label: string,
-  type:string,
-  width?: string,
-}
 
-const TextInput: React.SFC<ITextInputProps> = ({
+type TextInputType = TextFieldProps & WrappedFieldProps
+
+const TextInput: React.SFC<TextInputType> = (props) => {
+  const {
   input,
-  label,
   type,
   meta: {touched, error},
-  ...custom
-}) => {
+  ...rest
+} = props
   return (
     <TextField
       type={type}
-      error={touched && !!error}
-      label={ label }
+      error={touched && error}
       { ...input }
-      { ...custom }
+      { ...rest }
     />
-  
   )
 }
 
