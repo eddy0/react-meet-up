@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { StoreState } from '../../../reducer'
 import { RouteComponentProps } from 'react-router-dom';
 import { actionCreateEvent, actionUpdateEvent } from '../../../action/eventAction'
-import TextInput from '../../common/form/TextInput'
+// import TextInput from '../../common/form/TextInput'
 
 
 interface FormValue {
@@ -91,7 +91,7 @@ const EventForm: React.SFC<Iprops> = (props) => {
   return (
     <form autoComplete="off" onSubmit={ handleSubmit } style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
           className={ 'row' }>
-      <TextInput id='title' name='title' label='title' value={ form.title } onChange={ handleChange } />
+      {/* <TextInput id='title' name='title' label='title' value={ form.title } onChange={ handleChange } /> */}
       <TextField id='title' name='title' label='title' value={ form.title } onChange={ handleChange }/>
       <TextField id='city' name='city' label='city' value={ form.city } onChange={ handleChange }/>
       <TextField id='description' name='description' label='description' value={ form.description }
@@ -120,6 +120,5 @@ const mapActionsToProps = {
   createEvent: actionCreateEvent,
   editEvent: actionUpdateEvent,
 }
-
 
 export default connect(mapStateToProps, mapActionsToProps)(EventForm)

@@ -13,7 +13,8 @@ import HomePage from './component/home/HomePage'
 // import NotFound from './component/NotFound'
 // import Test from './component/test'
 import Loading from './component/loading/Loading'
-import TextInput from './component/common/form/TextInput'
+// import TextInput from './component/common/form/TextInput'
+import FormikForm from './component/event/EventForm/FormikForm';
 
 const theme: Theme = createMuiTheme({
   typography: {
@@ -52,7 +53,7 @@ class App extends React.Component<any, any> {
                           <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
                           <Route path='/settings' component={SettingsDashboard} />
                           <Route exact={true} path='/create' component={EventForm} />
-                          <Route exact={true} path='/test' component={TextInput} />
+                          <Route exact={true} path='/test' component={FormikForm} />
                           {/* <Route component={NotFound} /> */}
                         </Switch>
                       </div>
