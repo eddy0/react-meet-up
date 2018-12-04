@@ -9,7 +9,7 @@ import { StoreState } from '../../../reducer'
 import { RouteComponentProps } from 'react-router-dom';
 import { actionCreateEvent, actionUpdateEvent } from '../../../action/eventAction'
 import TextInput from '../../common/form/TextInput'
-import { Field } from 'redux-form'
+import { Field, reduxForm, InjectedFormProps } from 'redux-form'
 
 
 interface FormValue {
@@ -37,7 +37,7 @@ interface Iprops extends RouteComponentProps<{ id: string }> {
   editEvent(form: IEvent): void
 }
 
-const EventForm: React.SFC<Iprops> = (props) => {
+const EventForm: React.SFC<InjectedFormProps & Iprops> = (props) => {
   const [form, update] = useState(state)
   
   React.useEffect(
@@ -92,7 +92,7 @@ const EventForm: React.SFC<Iprops> = (props) => {
   return (
     <form autoComplete="off" onSubmit={ handleSubmit } style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
           className={ 'row' }>
-      <Field  name='title' type='text' label='title' component={TextInput} />
+      <Field name='title' type='text' label='title' component={TextInput} />
        {/*<TextInput id='title' variant='standard' name='title' label='title' value={ form.title } onChange={ handleChange } />*/}
       <TextField id='title' name='title' label='title' value={ form.title } onChange={ handleChange }/>
       <TextField id='city' name='city' label='city' value={ form.city } onChange={ handleChange }/>
@@ -123,4 +123,4 @@ const mapActionsToProps = {
   editEvent: actionUpdateEvent,
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(EventForm)
+export default connect(mapStateToProps, mapActionsToProps)(reduxForm({form:'event'})(EventForm))
