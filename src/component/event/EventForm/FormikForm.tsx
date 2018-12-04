@@ -2,7 +2,7 @@ import * as React from 'react'
 import { IAttendee, IEvent } from './../../../model/model'
 import { RouteComponentProps } from 'react-router-dom'
 import { Formik} from 'formik'
-import TextInput from 'src/component/common/form/TextInput';
+// import TextInput from 'src/component/common/form/TextInput';
 
 interface FormValue {
   id?: string
@@ -42,7 +42,7 @@ const FormikForm: React.SFC<Iprops> = (props) => {
     >
       {(props) => (
         <form autoComplete='off' style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }} className={'row'}>
-          <TextInput {...props} />
+          {/*<TextInput {...props} />*/}
         </form>
       )}
     </Formik>

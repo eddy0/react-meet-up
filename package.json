@@ -10,6 +10,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "3.1.0",
     "redux": "^4.0.1",
+    "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -27,6 +28,7 @@
     "@types/react-dom": "^16.0.9",
     "@types/react-redux": "^6.0.10",
     "@types/react-router-dom": "^4.3.1",
+    "@types/redux-form": "^7.4.12",
     "@types/styled-components": "^4.1.1",
     "@types/webpack-env": "^1.13.6",
     "styled-components": "^4.1.1",
