@@ -11,8 +11,9 @@ import EventForm from './component/event/EventForm/EventForm'
 import SettingsDashboard from './component/user/settings/SettingsDashboard'
 import HomePage from './component/home/HomePage'
 // import NotFound from './component/NotFound'
-import Test from './component/test'
+// import Test from './component/test'
 import Loading from './component/loading/Loading'
+import TextInput from './component/common/form/TextInput'
 
 const theme: Theme = createMuiTheme({
   typography: {
@@ -51,7 +52,7 @@ class App extends React.Component<any, any> {
                           <Route exact={true} path='/profile/:id' component={UserDetailedPage} />
                           <Route path='/settings' component={SettingsDashboard} />
                           <Route exact={true} path='/create' component={EventForm} />
-                          <Route exact={true} path='/test' component={Test} />
+                          <Route exact={true} path='/test' component={TextInput} />
                           {/* <Route component={NotFound} /> */}
                         </Switch>
                       </div>
