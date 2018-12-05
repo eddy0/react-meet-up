@@ -10,7 +10,6 @@ const TextInput: React.SFC<IFormProps> = (props) => {
   meta: {touched, error},
   ...rest
 } = props
-  console.log('check value',rest, input)
   return (
     <TextField
       type={type}

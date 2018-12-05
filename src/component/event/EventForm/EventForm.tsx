@@ -71,9 +71,9 @@ interface Iprops extends RouteComponentProps<{ id: string }> {
 }
 
 
-const EventForm: React.SFC<InjectedFormProps & Iprops> = (props) => {
+class EventForm extends React.Component<InjectedFormProps & Iprops> {
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  formSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     // let f: IEvent
     // if (props.event !== null) {
@@ -86,10 +86,11 @@ const EventForm: React.SFC<InjectedFormProps & Iprops> = (props) => {
     //   props.history.push('/events')
     // }
   }
-  
+  render() {
+      const event = this.props.event
   return (
     <form autoComplete="off"
-          onSubmit={ handleSubmit }
+          onSubmit={ this.props.handleSubmit(this.formSubmit) }
           style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
           className="row"
     >
@@ -129,10 +130,11 @@ const EventForm: React.SFC<InjectedFormProps & Iprops> = (props) => {
         }
       </Field>
       <Button type="submit" color="secondary" variant="contained">
-        { props.event === null ? 'create Event' : 'update Event' }
+        { event !== null ?  'update Event': 'create Event' }
       </Button>
     </form>
   )
+  }
 }
 
 
