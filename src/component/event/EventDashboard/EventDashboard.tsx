@@ -3,11 +3,11 @@ import Grid from '@material-ui/core/Grid'
 import EventList from '../EventList/EventList'
 // import EventForm from './../EventForm/EventForm'
 import Button from '@material-ui/core/Button'
-import { IEvent } from 'src/model/model'
+import { IEvent } from '../../../model/model'
 import { connect } from 'react-redux'
-import { StoreState } from './../../../reducer/index'
-import { handleActionFetchEvent } from './../../../action/index'
-import { actionDeleteEvent, actionCreateEvent } from './../../../action/eventAction'
+import { StoreState } from '../../../reducer'
+import { handleActionFetchEvent } from '../../../action'
+import { actionDeleteEvent, actionCreateEvent } from '../../../action/eventAction'
 
 interface IEventDashboardState {
   events: IEvent[]
@@ -52,7 +52,7 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
           </Grid>
           <Grid container item xs={4} direction='column' alignItems='center'>
             <Button color='primary' variant='contained' >
-              create form
+              create xxxsdfs
             </Button>
           </Grid>
         </Grid>
@@ -67,7 +67,7 @@ const mapStateToProps = (state: StoreState) => {
   }
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps:{} = {
   fetchEvent: handleActionFetchEvent,
   createEvent: actionCreateEvent,
   deleteEvent:actionDeleteEvent

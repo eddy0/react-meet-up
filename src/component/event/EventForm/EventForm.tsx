@@ -1,16 +1,17 @@
 import * as React from 'react'
 import Button from '@material-ui/core/Button'
 // import { generate } from 'src/utils/DATA'
-import { IEvent } from './../../../model/model';
-import { connect } from 'react-redux'
-import { StoreState } from '../../../reducer'
-import { RouteComponentProps } from 'react-router-dom';
-import { actionCreateEvent, actionUpdateEvent } from '../../../action/eventAction'
+import {IEvent} from '../../../model/model'
+import {connect} from 'react-redux'
+import {StoreState} from '../../../reducer'
+import {RouteComponentProps} from 'react-router-dom'
+import {actionCreateEvent, actionUpdateEvent} from '../../../action/eventAction'
 import TextInput from '../../common/form/TextInput'
-import { Field, reduxForm, InjectedFormProps } from 'redux-form'
+import {Field, reduxForm, InjectedFormProps} from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
 import MenuItem from '@material-ui/core/MenuItem/MenuItem'
+import DateInput from '../../common/form/DateInput'
 
 const currencies = [
   {
@@ -29,7 +30,7 @@ const currencies = [
     value: 'JPY',
     label: '¥',
   },
-];
+]
 
 // const SelectMenu: React.SFC<any> = () => {
 //   return (
@@ -64,15 +65,15 @@ const currencies = [
 
 interface Iprops extends RouteComponentProps<{ id: string }> {
   event: IEvent | null
-  
+
   createEvent(form: IEvent): void
-  
+
   editEvent(form: IEvent): void
 }
 
 
-class EventForm extends React.Component<InjectedFormProps & Iprops> {
-  
+class EventForm extends React.Component<InjectedFormProps<{}, Iprops> & Iprops> {
+
   formSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     // let f: IEvent
@@ -86,54 +87,56 @@ class EventForm extends React.Component<InjectedFormProps & Iprops> {
     //   props.history.push('/events')
     // }
   }
+
   render() {
-      const event = this.props.event
-  return (
-    <form autoComplete="off"
-          onSubmit={ this.props.handleSubmit(this.formSubmit) }
-          style={ {display: 'flex', flexDirection: 'column', margin: '0 auto'} }
-          className="row"
-    >
-      <Field name="title"
-             type="text"
-             component={ (withRef, props) => <TextInput { ...props } { ...withRef } label="title" /> }
-      />
-      <Field name="city"
-             type="text"
-             component={ (withRef, props) => <TextInput { ...props } { ...withRef }  label="city" /> }
-      />
-      <Field name="description"
-             type="text"
-             component={ (withRef, props) => <TextInput  { ...props } { ...withRef } label="description" /> }
-      />
-      <Field name="category"
-             type="text"
-             component={ (withRef, props) => <TextInput { ...props } { ...withRef } label="category" /> }
-      />
-      <Field name="category"
-             type="text"
-             component={ (withRef, props) => <TextInput { ...props } { ...withRef }  label="category" /> }
-      />
-      <Field name="category"
-             component={ (withRef, props) => <TextArea { ...props } { ...withRef } rows="4" label="category" /> }
-      />
-      
-      <Field name="select"
-             component={ (withRef, props) => <SelectInput { ...props } { ...withRef } fullWidth={ false } label="select" /> }
+    const event = this.props.event
+    return (
+      <form autoComplete="off"
+            onSubmit={this.props.handleSubmit(() => this.formSubmit)}
+            style={{display: 'flex', flexDirection: 'column', margin: '0 auto'}}
+            className="row"
       >
-        {
-          currencies.map(option => (
-            <MenuItem key={ option.value } value={ option.value }>
-              { option.label }
-            </MenuItem>
-          ))
-        }
-      </Field>
-      <Button type="submit" color="secondary" variant="contained">
-        { event !== null ?  'update Event': 'create Event' }
-      </Button>
-    </form>
-  )
+        <Field name="title"
+               type="text"
+
+        />
+        <Field name="city"
+               type="text"
+               component={(ref, props) => <TextInput {...props} {...ref} label="city"/>}
+        />
+        <Field name="description"
+               type="text"
+               component={(ref, props) => <TextInput  {...props} {...ref} label="description"/>}
+        />
+        <Field name="category"
+               type="text"
+               component={(ref, props) => <TextArea {...props} {...ref} rows={4} label="category"/>}
+        />
+        <Field name="category"
+               type="text"
+               component={(ref, props) => <TextInput {...props} {...ref} label="category"/>}
+        />
+        <Field name="date"
+               type="date"
+               component={(ref, props) => <DateInput {...props} {...ref} label="date"/>}
+        />
+
+        <Field name="select"
+               component={(ref, props) => <SelectInput {...props} {...ref} fullWidth={false} label="select"/>}
+        >
+          {
+            currencies.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))
+          }
+        </Field>
+        <Button type="submit" color="secondary" variant="contained">
+          {event !== null ? 'update Event' : 'create Event'}
+        </Button>
+      </form>
+    )
   }
 }
 
@@ -149,9 +152,9 @@ const mapStateToProps = (state: StoreState, props: Iprops) => {
   }
 }
 
-const mapActionsToProps = {
+const mapActionsToProps:{} = {
   createEvent: actionCreateEvent,
   editEvent: actionUpdateEvent,
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(reduxForm({enableReinitialize:true, form: 'eventForm'})(EventForm))
+export default connect(mapStateToProps, mapActionsToProps)(reduxForm<{}, Iprops>({form: 'form'})(EventForm))

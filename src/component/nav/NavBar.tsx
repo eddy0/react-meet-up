@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
-import styled from 'styled-components'
+import styled  from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 import Button, { ButtonProps } from '@material-ui/core/Button'
 import {  NavLink, Link, withRouter, RouteComponentProps  } from 'react-router-dom'
@@ -20,21 +20,21 @@ const Logo = styled.div`
   }
 `
 
-const NavButton:React.SFC<ButtonProps> = styled(Button)`
+
+const NavButton = styled(Button as React.ComponentType<ButtonProps>)`
   && {
     border-radius: 0;
   }
   &.active {
     background-color: #f4f4f4;
     color: #2bb9ad;
-  }
-`
+  }  
+` as React.SFC<ButtonProps>
 
 interface IState {
   login: boolean
   
 }
-
 
 class NavBar extends React.Component<RouteComponentProps<{}> & {}, IState>  {
   state:IState={
@@ -61,7 +61,8 @@ class NavBar extends React.Component<RouteComponentProps<{}> & {}, IState>  {
         <Grid container className='row'>
           {/* logo */}
           <Grid container item alignItems='center' style={{ width: 'max-content' }}>
-          <NavButton  component={ ({innerRef, ...props}) => <Link {...props} to='/'  /> } variant='text' color='secondary'>
+            <Link to='/'>
+          <NavButton  variant='text' color='secondary'>
             <Logo>
               <img src='/assets/logo.png' alt='logo' />
             </Logo>
@@ -69,6 +70,7 @@ class NavBar extends React.Component<RouteComponentProps<{}> & {}, IState>  {
               Revent
             </Typography>
             </NavButton>
+            </Link>
           </Grid>
 
           {/* navLink */}
@@ -87,8 +89,6 @@ class NavBar extends React.Component<RouteComponentProps<{}> & {}, IState>  {
           {
             this.state.login?  <SignedInMenu logout={this.handleLogout} /> : <SignedOutMenu login={this.handleLogin} />
           }
-         
-          
         </Grid>
       </AppBar>
     )

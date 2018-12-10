@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Card, Divider, Typography } from '@material-ui/core'
 import { InfoOutlined, CalendarToday, LocationOn } from '@material-ui/icons'
 import styled from 'styled-components'
-import { IEvent } from 'src/model/model';
+import { IEvent } from '../../../model/model';
 
 const CardInfo = styled.div`
   display: flex;

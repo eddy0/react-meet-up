@@ -7,7 +7,8 @@ import { IEvent } from '../model/model'
 function handleActionFetchEvent() {
   return (dispatch: Function, getState: Function) => {
     dispatch(actionLoadingStart())
-    fetchEvent().then((events:IEvent[]) => {
+    fetchEvent()
+      .then((events:any) => {
       dispatch(actionFetchEvent(events))
       dispatch(actionLoadingEnd())
     })

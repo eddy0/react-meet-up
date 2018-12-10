@@ -1,37 +1,43 @@
 {
-  "name": "web",
+  "name": "ts",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "formik": "^1.3.2",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
-    "react-redux": "^5.1.1",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.12",
+    "@types/react": "^16.7.13",
+    "@types/react-dom": "^16.0.11",
+    "@types/redux-form": "^7.4.12",
+    "@types/styled-components": "^4.1.3",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-redux": "5.1.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "3.1.0",
-    "redux": "^4.0.1",
+    "react-scripts": "2.1.1",
     "redux-form": "^7.4.2",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.1.2",
+    "typescript": "^3.2.1"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "@material-ui/core": "^3.5.1",
+    "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
-    "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.10",
-    "@types/react": "^16.7.6",
-    "@types/react-dom": "^16.0.9",
     "@types/react-redux": "^6.0.10",
-    "@types/react-router-dom": "^4.3.1",
-    "@types/redux-form": "^7.4.12",
-    "@types/styled-components": "^4.1.1",
-    "@types/webpack-env": "^1.13.6",
-    "styled-components": "^4.1.1",
-    "typescript": "^3.1.6"
+    "@types/react-router-dom": "^4.3.1"
   }
 }

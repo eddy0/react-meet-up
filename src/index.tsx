@@ -17,19 +17,17 @@ const render = (): void => {
   ReactDOM.render(Root, root)
 }
 
-// if ((module as any)) {
+if ((module as any)) {
+  // (module as any).hot.accept('./reducer/index', () => {
+  //   const newReducer = require('./reducer').default
+  //   console.log('newReducer', newReducer)
+  //   store.replaceReducer(newReducer)
+  // })
 
-//   // (module as any).hot.accept('./reducer/index', () => {
-//   //   const newReducer = require('./reducer').default
-//   //   console.log('newReducer', newReducer)
-//   //   store.replaceReducer(newReducer)
-//   // })
-
-//   (module as any).hot.accept('./App', () => {
-//     console.log('hot load')
-//     console.log(module);
-//     setTimeout(render)
-//   })
-// }
+  (module as any).hot.accept('./App', () => {
+    console.log(module)
+    render()
+  })
+}
 
 render()

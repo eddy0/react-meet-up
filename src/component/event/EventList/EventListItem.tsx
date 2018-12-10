@@ -4,16 +4,18 @@ import styled from 'styled-components'
 import { CalendarToday, Timer } from '@material-ui/icons'
 import EventAttendee from './EventListAttendee'
 import EventListHeader from './EventListHeader'
-import {  IEvent } from './../../../model/model'
-import { CardProps } from '@material-ui/core/Card';
+import {  IEvent } from '../../../model/model'
 import { Link } from 'react-router-dom';
+import {CardProps} from '@material-ui/core/Card'
 
-const CardBox:React.SFC<CardProps> = styled(Card)`
+
+const CardBox= styled(Card)`
   && {
     width: 90%;
     margin: 1rem 0;
-  }
-`
+  } 
+` as React.SFC<CardProps>
+
 const CardInfo = styled.div`
   display: flex;
   padding: 0.5rem 1rem;

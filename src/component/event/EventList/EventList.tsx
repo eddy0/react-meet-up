@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Grid } from '@material-ui/core'
 import EventListItem from './EventListItem'
-import {  IEvent } from './../../../model/model'
+import {  IEvent } from '../../../model/model'
 
 
 interface Props {

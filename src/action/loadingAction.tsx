@@ -7,15 +7,15 @@ type LOADING_END = typeof LOADING_END
 const LOADING_ERROR = 'LOADING_ERROR'
 type LOADING_ERROR = typeof LOADING_ERROR
 
-interface actionLoadingStart  {
-    type: LOADING_START
+interface actionLoadingStart {
+  type: LOADING_START
 }
 
 interface actionLoadingEnd {
   type: LOADING_END
 }
 
-interface actionLoadingError  {
+interface actionLoadingError {
   type: LOADING_ERROR
 }
 
@@ -42,7 +42,6 @@ const actionLoadingError = () => {
 type LoadingAction = actionLoadingStart | actionLoadingEnd | actionLoadingError
 
 export {
-  LoadingAction,
   LOADING_START,
   LOADING_END,
   LOADING_ERROR,
