@@ -3,7 +3,7 @@ import { TextField } from '@material-ui/core'
 import { IFormProps } from './types'
 
 
-const TextArea: React.SFC<IFormProps> = (props) => {
+const TextArea = (props:IFormProps) => {
   const {
     rows,
     input,

@@ -3,7 +3,7 @@ import { TextField } from '@material-ui/core'
 import { IFormProps } from './types'
 
 
-const DateInput: React.SFC<IFormProps> = (props) => {
+const DateInput = (props:IFormProps) => {
   const {
     input,
     type,

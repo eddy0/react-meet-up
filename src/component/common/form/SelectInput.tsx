@@ -3,7 +3,7 @@ import { TextField } from '@material-ui/core'
 import { IFormProps } from './types'
 
 
-const SelectInput: React.SFC<IFormProps> = (props) => {
+const SelectInput  = (props:IFormProps ) => {
   const {
     children,
     input,

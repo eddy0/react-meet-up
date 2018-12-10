@@ -2,8 +2,7 @@ import * as React from 'react'
 import { TextField } from '@material-ui/core'
 import { IFormProps } from './types'
 
-
-const TextInput: React.SFC<IFormProps> = (props) => {
+const TextInput= (props: IFormProps) => {
   const {
   input,
   type,

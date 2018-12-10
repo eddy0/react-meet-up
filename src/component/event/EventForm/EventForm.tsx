@@ -12,6 +12,7 @@ import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
 import MenuItem from '@material-ui/core/MenuItem/MenuItem'
 import DateInput from '../../common/form/DateInput'
+import { IFormProps } from '../../common/form/types';
 
 const currencies = [
   {
@@ -98,31 +99,34 @@ class EventForm extends React.Component<InjectedFormProps<{}, Iprops> & Iprops> 
       >
         <Field name="title"
                type="text"
-
+               label='title'
+               component={TextInput}
         />
         <Field name="city"
                type="text"
-               component={(ref, props) => <TextInput {...props} {...ref} label="city"/>}
+               label='city'
+               component={TextInput}
         />
         <Field name="description"
                type="text"
-               component={(ref, props) => <TextInput  {...props} {...ref} label="description"/>}
+               label="description"
+               component={TextInput}
         />
         <Field name="category"
                type="text"
-               component={(ref, props) => <TextArea {...props} {...ref} rows={4} label="category"/>}
-        />
-        <Field name="category"
-               type="text"
-               component={(ref, props) => <TextInput {...props} {...ref} label="category"/>}
+               rows={4} label="category"
+               component={TextArea}
         />
         <Field name="date"
                type="date"
-               component={(ref, props) => <DateInput {...props} {...ref} label="date"/>}
+               label="date"
+               component={DateInput}
         />
 
         <Field name="select"
-               component={(ref, props) => <SelectInput {...props} {...ref} fullWidth={false} label="select"/>}
+        fullWidth={false} 
+        label="select"
+        component={SelectInput}
         >
           {
             currencies.map(option => (

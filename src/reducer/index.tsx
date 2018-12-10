@@ -3,6 +3,7 @@ import loadingReducer from './loadingReducer';
 import todoReducer from './todoReducer'
 import eventReducer from './eventReducer'
 import {IEvent, Todo} from '../model/model';
+import {reducer as formReducer} from 'redux-form'
 
 export interface StoreState {
    loading: boolean,
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   loading: loadingReducer,
   todos: todoReducer,
   events: eventReducer,
+  form: formReducer,
 })
     
 

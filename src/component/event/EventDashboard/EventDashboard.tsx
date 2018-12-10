@@ -52,7 +52,7 @@ class EventDashboard extends React.Component<IEventDashboardProps, IEventDashboa
           </Grid>
           <Grid container item xs={4} direction='column' alignItems='center'>
             <Button color='primary' variant='contained' >
-              create xxxsdfs
+              create  a form 
             </Button>
           </Grid>
         </Grid>
