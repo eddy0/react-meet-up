@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import {  IAttendee } from './../../../model/model'
-import { Avatar, Button, Tooltip } from '@material-ui/core'
+import { Avatar,  Tooltip, Fab } from '@material-ui/core'
 
 const AttendeeList = styled.div`
   display: flex;
@@ -28,9 +28,9 @@ export default class EventAttendee extends React.Component<IEventAttendeeProps> 
         {attendees.map((attendee) => {
           return (
             <Tooltip title={attendee.name} key={attendee.id}>
-              <Button variant='fab' mini>
+              <Fab variant='round' >
                 <Avatar src={attendee.photoURL} alt={attendee.name} />
-              </Button>
+              </Fab>
             </Tooltip>
           )
         })}

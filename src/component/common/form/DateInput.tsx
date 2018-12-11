@@ -1,27 +1,30 @@
 import * as React from 'react'
-import { TextField } from '@material-ui/core'
-import { IFormProps } from './types'
+import DatePicker from 'antd/lib/date-picker';
+import { DatePickerProps} from "antd/lib/date-picker/interface";
+import {WrappedFieldProps} from "redux-form";
 
 
-const DateInput = (props:IFormProps) => {
+type DateProps = DatePickerProps & WrappedFieldProps
+
+function onChange(date:string, dateString: string) {
+  console.log(date, dateString);
+}
+
+const DateInput = (props:DateProps) => {
   const {
-    input,
-    type,
-    meta: {touched, error},
+    input:{value,...other},
     ...rest
   } = props
-  return (
-    <TextField
-      error={ touched && error }
-      { ...input }
-      { ...rest }
-      type= {type}
-      defaultValue="2017-05-24"
-      InputLabelProps={ {
-        shrink: true,
-      } }
-    />
-  )
+
+    return (
+            <DatePicker
+                onChange={onChange}
+                value={value}
+                {...other}
+                {...rest}
+                format={'MM/DD/YYYY'}
+            />
+    );
 }
 
 
