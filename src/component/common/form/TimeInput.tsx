@@ -20,7 +20,7 @@ const PickDiv = styled(DatePicker)`
 type DateProps = DatePickerProps & WrappedFieldProps
 
 
-const DateInput = (props: DateProps) => {
+const TimeInput = (props: DateProps) => {
   let {
     input: {value, onChange, ...restInput},
     meta: {error, touched},
@@ -29,7 +29,7 @@ const DateInput = (props: DateProps) => {
   const dateFormat = 'MM-DD-YYYY'
   value = value ? moment(value, dateFormat) : moment()
   return (
-    <FormControl error={ error && touched } fullWidth={ true }  >
+    <FormControl error={ error && touched } fullWidth={ true } style={{borderBottom: '1px solid'}} >
       <FormLabel>date</FormLabel>
       <PickDiv
         className="input"
@@ -44,4 +44,4 @@ const DateInput = (props: DateProps) => {
 }
 
 
-export default DateInput
+export default TimeInput
