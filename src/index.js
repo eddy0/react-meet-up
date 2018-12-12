@@ -1,6 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
+import App from './app/layout/App'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const Root = document.getElementById('root')
+
+const render = () => {
+  ReactDOM.render(<App/>, Root)
+}
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    render()
+  })
+}
+
+render()
