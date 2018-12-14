@@ -6,13 +6,13 @@ import App from './app/layout/App'
 const Root = document.getElementById('root')
 
 const render = () => {
-  ReactDOM.render(<App/>, Root)
+    ReactDOM.render(<App/>, Root)
 }
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    render()
-  })
+    module.hot.accept('./app/layout/App', () => {
+        render()
+    })
 }
 
 render()
