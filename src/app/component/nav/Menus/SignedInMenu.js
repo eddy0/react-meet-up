@@ -4,8 +4,7 @@ class SignedInMenu extends Component {
   render() {
     return (
       <div>
-        signed in
-
+        signed in button
       </div>
     )
   }
