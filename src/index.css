@@ -23,7 +23,20 @@ body {
     font-size: 1.6rem;
 }
 
+.row {
+  max-width: 1140px;
+  margin:  0 auto;
+}
 
+.mg__bt--sm {
+  margin-bottom: 1rem;
+}
 
+.mg-right--sm {
+  margin-right: 1rem;
+}
 
+.header .logo {
+  margin-right: 1rem;
+}
 

@@ -1,18 +1,34 @@
 import React, { Component } from 'react'
-import { Avatar, Button, Col, Row } from 'antd'
+import { Avatar, Button, Col, Row, Menu, Layout } from 'antd'
 
 class NavBar extends Component {
+
+
   render() {
     return (
-      <Row style={{padding: '2rem', backgroundColor:'#f0f0f0'}} color='primary' align='middle' >
-        <Col xs={6}>
-          <Avatar src='/assets/images/user.png' />
-        </Col>
-        <Col>
-          <Button htmlType={'button'} >login in </Button>
-          <Button htmlType={'button'} >sign up </Button>
-        </Col>
-      </Row>
+      <Layout.Header className='header'>
+        <Row type='flex' className='row' justify='middle'>
+          <Col className='logo mg__right--sm'>
+            <Avatar src='/assets/images/logo.png' alt='logo'/>
+            <span>Logo</span>
+          </Col>
+          <Col style={{flex: 1}}>
+              <Menu
+                theme="dark"
+                mode="horizontal"
+                defaultSelectedKeys={['events']}
+              >
+                <Menu.Item key="events">Events</Menu.Item>
+                <Menu.Item key="people">People</Menu.Item>
+                <Menu.Item key="create"> Create Event</Menu.Item>
+              </Menu>
+          </Col>
+          <Col>
+          <Button htmlType={'button'} type='primary'>login</Button>
+          <Button htmlType={'button'} type='danger'>sign up </Button>
+          </Col>
+        </Row>
+      </Layout.Header>
     )
   }
 }
