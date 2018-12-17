@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Avatar, Button, Col, Row, Menu, Layout } from 'antd'
+import { Link } from 'react-router-dom'
 
 class NavBar extends Component {
 
@@ -13,19 +14,29 @@ class NavBar extends Component {
             <span>Logo</span>
           </Col>
           <Col style={{flex: 1}}>
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={['events']}
-              >
-                <Menu.Item key="events">Events</Menu.Item>
-                <Menu.Item key="people">People</Menu.Item>
-                <Menu.Item key="create"> Create Event</Menu.Item>
-              </Menu>
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={['events']}
+            >
+              <Menu.Item key="events">
+                <Link to='/events'>
+                  Events
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="people">
+                People
+              </Menu.Item>
+              <Menu.Item key="create">
+                <Link to='/create'>
+                  Create Event
+                </Link>
+              </Menu.Item>
+            </Menu>
           </Col>
           <Col>
-          <Button htmlType={'button'} type='primary'>login</Button>
-          <Button htmlType={'button'} type='danger'>sign up </Button>
+            <Button htmlType={'button'} type='primary'>login</Button>
+            <Button htmlType={'button'} type='danger'>sign up </Button>
           </Col>
         </Row>
       </Layout.Header>
