@@ -54,13 +54,22 @@ const events = [
   },
 ]
 
-const fetchEvent = () => {
-  return new Promise((res, rej) => {
-      setTimeout(() => {
-        res(events)
-      }, 1000)
-    }
-  )}
+// const fetchEvent = () => {
+//   return new Promise((res, rej) => {
+//       setTimeout(() => {
+//         res(events)
+//       }, 1000)
+//     }
+//   )}
 
+const fetchEvent = () => {
+  let url = 'https://dafb91a3-bf4e-42d8-a216-784c851a1dae.mock.pstmn.io'
+  return fetch(url)
+    .then((data) => data.json())
+    .then(res => {
+      console.log(res)
+      return res.data
+    })
+}
 
   export { fetchEvent, generate }

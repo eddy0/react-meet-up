@@ -23,7 +23,7 @@ class App extends Component {
             <NavBar/>
             <Switch>
               <Redirect exact={true} from='/' to='/events'/>
-              <Route exact={true} to='/events' component={EventForm}/>
+              <Route exact={true} to='/events' component={EventDashboard}/>
               <Route exact={true} to='/create' component={EventForm}/>
               <Route component={NotFound}/>
             </Switch>
