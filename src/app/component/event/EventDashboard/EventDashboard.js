@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Button, Col, Row } from 'antd'
 import EventList from './EventList'
 import { handleFetchEvent } from '../../../../action/eventAction'
 import { connect } from 'react-redux'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+
 
 class EventDashboard extends Component {
 
@@ -15,18 +17,22 @@ class EventDashboard extends Component {
   render() {
     const events = this.props.events
     return (
-      <Row type='flex' className='row'>
-        <Col xs={16}>
-          {
-            events &&
-            <EventList events={events}/>
-          }
-        </Col>
-        <Col xs={8}>
-          side bar
-          <Button htmlType='button'>create event</Button>
-        </Col>
-      </Row>
+      <div className='row'>
+        <Grid container item xs={12}>
+          <Grid container item xs={8} justify='center'>
+            {
+              events &&
+
+              <EventList events={events}/>
+            }
+          </Grid>
+          <Grid container item xs={4} direction='column' alignItems='center'>
+            <Button color='primary' variant='contained'>
+              create form
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
     )
   }
 }

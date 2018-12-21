@@ -3,10 +3,11 @@ import { Avatar, Button, Card, Divider, Row } from 'antd'
 import EventAttendees from './EventAttendees'
 import { Link } from 'react-router-dom'
 
+
 function EventListItem(props) {
   const event = props.event
   return (
-    <Card className='mg__bt--sm'>
+    <Card className='mg__bottom--md' style={{boxShadow: '0 5px 15px rgba(0,0,0,0.3)', borderRadius: 5}}>
       <Row>
         <Avatar src={event.hostPhotoURL || 'assets/images/user.png'}/>
         <span>{event.title}</span>

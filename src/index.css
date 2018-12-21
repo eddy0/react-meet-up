@@ -28,16 +28,19 @@ body {
   margin:  0 auto;
 }
 
-.mg__bt--sm {
-  margin-bottom: 1rem;
+.mg__bottom--sm {
+  margin-bottom: 1rem !important;
+}
+.mg__bottom--md {
+  margin-bottom: 3rem !important;
 }
 
 .mg-right--sm {
-  margin-right: 1rem;
+  margin-right: 1rem !important;
 }
 
 .header .logo {
-  margin-right: 1rem;
+  margin-right: 1rem !important;
 }
 
 .loading {
