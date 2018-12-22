@@ -1,12 +1,30 @@
 import React from 'react'
-import { Spin } from 'antd'
 import { connect } from 'react-redux'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import styled from 'styled-components'
+
+
+const Mask = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ccc;
+  z-index: 999;
+`
+
 
 function LoadingComponent(props) {
+  const {loading} = props.loading
+  if (loading === false) {
+    return <div />
+  }
+
   return (
-    <div className='loading'>
-      <Spin size='large' spinning={props.loading}/>
-    </div>
+    <Mask>
+      <div style={{position: 'fixed', left: '50%', top: '50%'}}>
+        <CircularProgress size={80}/>
+      </div>
+    </Mask>
   )
 }
 
