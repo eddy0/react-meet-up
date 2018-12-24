@@ -22,7 +22,6 @@ class EventDashboard extends Component {
           <Grid container item xs={8} justify='center'>
             {
               events &&
-
               <EventList events={events}/>
             }
           </Grid>

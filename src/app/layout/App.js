@@ -10,6 +10,7 @@ import middleware from '../middleware'
 import { Provider } from 'react-redux'
 import EventForm from '../component/event/EventForm/EventForm'
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core'
+import EventDetailedPage from '../component/event/EventDetailed/EventDetailedPage'
 
 const store = createStore(reducer, middleware)
 
@@ -39,6 +40,7 @@ class App extends Component {
               <Switch>
                 <Redirect exact={true} from='/' to='/events'/>
                 <Route exact={true} path='/events' component={EventDashboard}/>
+                <Route exact={true} path='/event/:id' component={EventDetailedPage}/>
                 <Route exact={true} path='/create' component={EventForm}/>
                 <Route component={NotFound}/>
               </Switch>

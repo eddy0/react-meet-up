@@ -4,6 +4,7 @@ import { actionLoadingEnd, actionLoadingStart } from './loadingAction'
 const FETCH_EVENT = 'FETCH_EVENT'
 const CREATE_EVENT = 'CREATE_EVENT'
 const DELETE_EVENT = 'DELETE_EVENT'
+const UPDATE_EVENT = 'UPDATE_EVENT'
 
 
 const actionFetchEvent = (events) => {
@@ -28,6 +29,13 @@ const actionDeleteEvent = (id) => {
   }
 }
 
+const actionUpdateEvent = (event) => {
+  return {
+    type: UPDATE_EVENT,
+    event: event
+  }
+}
+
 
 const handleFetchEvent = () => {
   return (dispatch) => {
@@ -39,9 +47,14 @@ const handleFetchEvent = () => {
   }
 }
 
+
+
 export {
   CREATE_EVENT,
   FETCH_EVENT,
   DELETE_EVENT,
   handleFetchEvent,
+  actionCreateEvent,
+  actionDeleteEvent,
+  actionUpdateEvent,
 }
