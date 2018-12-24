@@ -62,7 +62,7 @@ class NavBar extends Component {
           </Grid>
 
           {/* navLink */}
-          <Grid container item style={{flex: 1, marginLeft: '0.5rem'}}>
+          <Grid container item style={{flex: 1, marginLeft: '0.5rem'}} alignItems='center' >
             <NavLink to='/events' activeClassName='active'>
               <NavButton variant='text' color='secondary'>
                 Event
@@ -74,18 +74,18 @@ class NavBar extends Component {
                 Create Event
               </NavButton>
             </NavLink>
+
             <NavLink to='/people' activeStyle={{backgroundColor: '#f4f4f4', color: '#2BB9AD'}}>
               <NavButton variant='text' color='secondary'>
                 People
               </NavButton>
             </NavLink>
+
           </Grid>
           {
             // login status
             this.state.login ? <SignedInMenu logout={this.handleLogout}/> : <SignedOutMenu login={this.handleLogin}/>
           }
-
-
         </Grid>
       </AppBar>
     )

@@ -34,7 +34,7 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <>
-              <LoadingComponent loading={false}/>
+              {/*<LoadingComponent />*/}
               <NavBar/>
               <Switch>
                 <Redirect exact={true} from='/' to='/events'/>
