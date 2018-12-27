@@ -1,13 +1,13 @@
 import * as React from 'react'
 import Button from '@material-ui/core/Button'
 // import { generate } from 'src/utils/DATA'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import TextInput from '../../common/form/TextInput'
-import { Field, reduxForm } from 'redux-form'
+import {Field, reduxForm} from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
-import MenuItem from '@material-ui/core/MenuItem/MenuItem'
-import { actionCreateEvent, actionUpdateEvent } from '../../../../action/eventAction'
+import MenuItem from '@material-ui/core/MenuItem'
+import {actionCreateEvent, actionUpdateEvent} from '../../../../action/eventAction'
 
 const currencies = [
   {
@@ -60,31 +60,26 @@ class EventForm extends React.Component {
         />
         <Field name="city"
                type="text"
-               label='city'
+               label="city"
                component={TextInput}
         />
-        < Field name='description'
-                type='text'
-                label='description'
+        < Field name="description"
+                type="text"
+                label="description"
                 component={TextInput}
         />
-        <Field name='category'
-               type='text'
-               label='category'
-               component={TextInput}
+
+        < Field name="category"
+                rows="4"
+                label="category"
+                component={TextArea}
         />
-        <Field name='category'
-               type='text'
-               label='category'
-               component={TextInput}
-        />
-        < Field name='category'
-                rows='4'
-                label='category'
-                component={<TextArea/>}
+        < Field name="hosted"
+                label="Hosted By"
+                component={TextInput}
         />
 
-        < Field name='select'
+        < Field name="select"
                 fullWidth={false}
                 label="select"
                 component={SelectInput}
@@ -97,7 +92,7 @@ class EventForm extends React.Component {
             ))
           }
         </Field>
-        <Button type='submit' color='secondary' variant='contained'>
+        <Button type="submit" color="secondary" variant="contained">
           {event !== null ? 'update Event' : 'create Event'}
         </Button>
       </form>
