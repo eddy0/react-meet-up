@@ -58,9 +58,17 @@ class EventForm extends React.Component {
                label="title"
                component={TextInput}
         />
+        <p>
+          event data
+        </p>
         <Field name="city"
                type="text"
                label="city"
+               component={TextInput}
+        />
+        <Field name="venue"
+               type="text"
+               label="venue"
                component={TextInput}
         />
         < Field name="description"

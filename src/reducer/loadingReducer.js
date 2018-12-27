@@ -1,4 +1,4 @@
-import { LOADING_END, LOADING_START } from '../../action/loadingAction'
+import { LOADING_END, LOADING_START } from '../action/loadingAction'
 
 
 const loadingReducer = (state=false, action) => {

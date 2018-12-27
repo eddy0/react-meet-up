@@ -1,5 +1,5 @@
 import createReducer from './utils'
-import { CREATE_EVENT, DELETE_EVENT, FETCH_EVENT } from '../../action/eventAction'
+import { CREATE_EVENT, DELETE_EVENT, FETCH_EVENT } from '../action/eventAction'
 
 const fetchEventReducer = (state, action) => {
   return [...action.events]
