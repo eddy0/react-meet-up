@@ -1,20 +1,12 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
+import { Form, Label } from 'semantic-ui-react'
 
-function TextInput(props) {
-  const {
-    input,
-    type,
-    meta: {touched, error},
-    ...rest
-  } = props
+const TextInput = ({input, width, type, placeholder, meta: {touched, error}}) => {
   return (
-    <TextField
-      type={type}
-      error={touched && error}
-      {...input}
-      {...rest}
-    />
+    <Form.Field error={touched && !!error} width={width}>
+      <input {...input} placeholder={placeholder} type={type}/>
+      {touched && error && <Label basic color='red'>{error}</Label>}
+    </Form.Field>
   )
 }
 

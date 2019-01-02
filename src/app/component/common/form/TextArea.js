@@ -1,26 +1,17 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
+import { Form, Label } from 'semantic-ui-react'
 
-function TextArea(props) {
-  const {
-    input,
-    type,
-    row,
-    meta: {touched, error},
-    ...rest
-  } = props
+
+const TextArea = ({input, rows, width, type, placeholder, meta: {touched, error}}) => {
   return (
-    <TextField
-      type={type}
-      multiline
-      rowsMax={row}
-      error={touched && error}
-      {...input}
-      {...rest}
-    />
+    <Form.Field error={touched && !!error} width={width}>
+      <textarea {...input}
+                placeholder={placeholder}
+                rows={rows}/>
+      {touched && error && <Label basic color='red'>{error}</Label>}
+    </Form.Field>
   )
 }
-
 
 
 export default TextArea

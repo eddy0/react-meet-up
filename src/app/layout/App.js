@@ -20,7 +20,7 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <>
-              {/*<LoadingComponent />*/}
+              <LoadingComponent />
               <NavBar />
               <Switch>
                 <Redirect exact={true} from="/" to="/events" />

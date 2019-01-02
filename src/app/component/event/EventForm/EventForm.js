@@ -1,14 +1,12 @@
 import * as React from 'react'
-import Button from '@material-ui/core/Button'
 // import { generate } from 'src/utils/DATA'
 import {connect} from 'react-redux'
 import TextInput from '../../common/form/TextInput'
 import {Field, reduxForm} from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
-import MenuItem from '@material-ui/core/MenuItem'
 import {actionCreateEvent, actionUpdateEvent} from '../../../../action/eventAction'
-import { Form, Grid, Header, Segment } from 'semantic-ui-react'
+import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'
 
 
 const category = [
