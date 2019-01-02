@@ -1,16 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import styled from 'styled-components'
+import { Dimmer, Loader } from 'semantic-ui-react'
 
-
-const Mask = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ccc;
-  z-index: 999;
-`
 
 
 function LoadingComponent(props) {
@@ -20,14 +11,11 @@ function LoadingComponent(props) {
   }
 
   return (
-    <Mask>
-      <div style={{position: 'fixed', left: '50%', top: '50%'}}>
-        <CircularProgress size={80}/>
-      </div>
-    </Mask>
+     <Dimmer active={true}>
+      <Loader content='Loading...'/>
+    </Dimmer>
   )
 }
-
 
 const mapStateToProps = (state) => {
   return {

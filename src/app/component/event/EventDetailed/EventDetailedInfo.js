@@ -1,38 +1,47 @@
 import * as React from 'react'
-import { Card, Divider, Typography } from '@material-ui/core'
-import { InfoOutlined, CalendarToday, LocationOn } from '@material-ui/icons'
-import styled from 'styled-components'
-
-const CardInfo = styled.div`
-  display: flex;
-  padding: 1rem;
-  position: relative;
-  align-items: center;
-  & svg {
-    margin-right: 1rem;
-  }
-`
-
+import { Button, Grid, Icon, Segment } from 'semantic-ui-react'
+import format from 'date-fns/format'
 
 const EventDetailedInfo = ({event}) => {
+  let eventDate
+  if (event.date) {
+    eventDate = event.date
+  }
   return (
-    <Card className='mg_t--sm'>
-      <CardInfo>
-        <InfoOutlined />
-        <Typography variant='body1'> {event.description} </Typography>
-      </CardInfo>
-      <Divider />
-      <CardInfo>
-        <CalendarToday />
-        <Typography variant='body1'>{event.date}</Typography>
-      </CardInfo>
-      <Divider />
-
-      <CardInfo>
-        <LocationOn />
-        <Typography variant='body1'> {event.venue ? event.venue : 'address is not provided'} </Typography>
-      </CardInfo>
-    </Card>
+    <Segment.Group>
+      <Segment attached="top">
+        <Grid>
+          <Grid.Column width={1}>
+            <Icon size="large" color="teal" name="info"/>
+          </Grid.Column>
+          <Grid.Column width={15}>
+            <p>{event.description}</p>
+          </Grid.Column>
+        </Grid>
+      </Segment>
+      <Segment attached>
+        <Grid verticalAlign="middle">
+          <Grid.Column width={1}>
+            <Icon name="calendar" size="large" color="teal"/>
+          </Grid.Column>
+          <Grid.Column width={15}>
+            <span>{format(eventDate, 'dddd Do MMM')} at {format(eventDate, 'h:mm A')}</span>
+          </Grid.Column>
+        </Grid>
+      </Segment>
+      <Segment attached>
+        <Grid verticalAlign="middle">
+          <Grid.Column width={1}>
+            <Icon name="marker" size="large" color="teal"/>
+          </Grid.Column>
+          <Grid.Column width={11}>
+            <span>{event.venue}</span>
+          </Grid.Column>
+          <Grid.Column width={4}>
+          </Grid.Column>
+        </Grid>
+      </Segment>
+    </Segment.Group>
   )
 }
 

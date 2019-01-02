@@ -1,13 +1,12 @@
 import * as React from 'react'
-import { Card, CardHeader } from '@material-ui/core'
+import { Header } from 'semantic-ui-react'
 
 
 const EventDetailedChat = (props) => {
   return (
-    <Card className='mg_t--sm'>
-      <CardHeader title='chat about this event'/>
-
-    </Card>
+    <div className='mg_t--sm'>
+      <Header title='chat about this event'/>
+    </div>
   )
 }
 

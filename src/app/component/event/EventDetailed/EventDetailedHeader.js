@@ -1,39 +1,79 @@
 import * as React from 'react'
-import { Card, CardHeader, CardActions, Button, Typography } from '@material-ui/core'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Button, Header, Image, Item, Label, Segment } from 'semantic-ui-react'
+import format from 'date-fns/format'
 
+const eventImageStyle = {
+  filter: 'brightness(30%)'
+}
 
-const HeaderMessage = styled.div`
-  position: absolute;
-  left: 5%;
-  bottom: 5%;
-  color: #fff;
-`
-
+const eventImageTextStyle = {
+  position: 'absolute',
+  bottom: '5%',
+  left: '5%',
+  width: '100%',
+  height: 'auto',
+  color: 'white'
+}
 
 const EventDetailedHeader = ({event}) => {
   return (
-    <Card style={ {width: '100%'} }>
-      <CardHeader title='Header'/>
-      <div style={ {width: '100%', position: 'relative'} }>
-        <img style={ {filter: 'brightness(30%'} } src={ `/assets/categoryImages/${ event.category }.jpg` } alt='culture'/>
-        <HeaderMessage>
-          <Typography color='inherit' variant='h5'>{ event.title }</Typography>
-          <Typography color='inherit' variant='body1'>{ event.date }</Typography>
-          <Typography color='inherit' variant='caption'>hosted By { event.hostedBy }</Typography>
-        </HeaderMessage>
-      </div>
-      <CardActions style={ {padding: '0.5rem'} }>
-        <Button size="small">cancel reservation</Button>
-        <Button size="small" variant='contained' color='primary'>join the event</Button>
-        <Link to={ `/event/manage/${ event.id }` } color='inherit' style={ {marginLeft: 'auto'} }>
-          <Button size="small" variant='contained' color='secondary'>
-            Manage Event
-          </Button>
-        </Link>
-      </CardActions>
-    </Card>
+    <Segment.Group>
+      <Segment basic attached="top" style={{padding: '0'}}>
+        <Image
+          src={`/assets/categoryImages/${event.category}.jpg`}
+          fluid
+          style={eventImageStyle}
+        />
+        <Segment basic style={eventImageTextStyle}>
+          <Item.Group>
+            <Item>
+              <Item.Content>
+                <Header
+                  size="huge"
+                  content={event.title}
+                  style={{color: 'white'}}
+                />
+                <p>{format(event.eventDate, 'dddd Do MMMM')}</p>
+                <p>
+                  Hosted by <strong>{event.hostedBy}</strong>
+                </p>
+              </Item.Content>
+            </Item>
+          </Item.Group>
+        </Segment>
+      </Segment>
+
+      {/*<Segment attached="bottom">*/}
+      {/*{!isHost && (*/}
+      {/*<div>*/}
+      {/*{isGoing && !event.cancelled &&*/}
+      {/*<Button onClick={() => cancelGoingToEvent(event)}>Cancel My Place</Button>}*/}
+
+      {/*{!isGoing && authenticated && !event.cancelled &&*/}
+      {/*<Button loading={loading} onClick={() => goingToEvent(event)} color="teal">JOIN THIS EVENT</Button>}*/}
+
+      {/*{!authenticated && !event.cancelled &&*/}
+      {/*<Button loading={loading} onClick={() => openModal('UnauthModal')} color="teal">JOIN THIS EVENT</Button>}*/}
+
+      {/*{event.cancelled && !isHost &&*/}
+      {/*<Label size='large' color='red' content='This event has been cancelled'/>}*/}
+      {/*</div>*/}
+      {/*)}*/}
+
+      {/*{isHost && (*/}
+      {/*<Button*/}
+      {/*as={Link}*/}
+      {/*to={`/manage/${event.id}`}*/}
+      {/*color="orange"*/}
+      {/*>*/}
+      {/*Manage Event*/}
+      {/*</Button>*/}
+      {/*)}*/}
+
+      {/*</Segment>*/}
+
+    </Segment.Group>
   )
 }
 export default EventDetailedHeader

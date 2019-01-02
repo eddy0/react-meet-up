@@ -25,9 +25,9 @@ class App extends Component {
               <Switch>
                 <Redirect exact={true} from="/" to="/events" />
                 <Route exact={true} path="/events" component={EventDashboard} />
-                {/*<Route exact={true} path="/event/:id" component={EventDetailedPage} />*/}
-                {/*<Route exact={true} path="/create" component={EventForm} />*/}
-                {/*<Route component={NotFound} />*/}
+                <Route exact={true} path="/event/:id" component={EventDetailedPage} />
+                <Route exact={true} path="/create" component={EventForm} />
+                <Route component={NotFound} />
               </Switch>
             </>
           </Router>

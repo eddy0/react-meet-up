@@ -1,44 +1,45 @@
-import * as React from 'react'
-import { Paper, Typography, Avatar, Chip, Divider, Tooltip } from '@material-ui/core'
-import styled from 'styled-components'
+import React from 'react';
+import { Segment, List, Label, Item } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 
-const SideBar = styled(Paper)`
-  padding: 1rem;
-  margin: 0 auto;
-  width: 100%;
-`
-
-const ChipArea = styled.div`
-  & div {
-    margin: 5px;
-    flex-wrap: wrap;
-  }
-`
-
-
-const EventDetailedSidebar = ({attendees}) => {
+const EventDetailedSidebar = ({ attendees }) => {
   return (
-    <SideBar>
-      <Typography gutterBottom={true} align={'center'} variant='h5'>
-        {
-          attendees.length > 1
-            ? `${attendees.length} people is going`
-            : `${attendees.length} person is going`
-        }
-      </Typography>
-      <Divider/>
-      <ChipArea>
-        {attendees.map((attendee) => {
-          return (
-            <Tooltip title={attendee.name} key={attendee.id}>
-              <Chip label='Basic Chip' variant='outlined'
-                    avatar={<Avatar src={attendee.photoURL}>{attendee.name}</Avatar>}/>
-            </Tooltip>
-          )
-        })}
-      </ChipArea>
-    </SideBar>
-  )
-}
+    <div>
+      <Segment
+        textAlign="center"
+        style={{ border: 'none' }}
+        attached="top"
+        secondary
+        inverted
+        color="teal"
+      >
+        {attendees && attendees.length} {attendees && attendees.length === 1 ? 'Person' : 'People'} Going
+      </Segment>
+      <Segment attached>
+        <List relaxed divided>
+          {attendees &&
+            attendees.map(attendee => (
+              <Item key={attendee.id} style={{ position: 'relative' }}>
+                {attendee.host &&
+                <Label
+                  style={{ position: 'absolute' }}
+                  color="orange"
+                  ribbon="right"
+                >
+                  Host
+                </Label>}
+                <Item.Image size="tiny" src={attendee.photoURL}/>
+                <Item.Content verticalAlign="middle">
+                  <Item.Header as="h3">
+                    <Link to={`/profile/${attendee.id}`}>{attendee.displayName}</Link>
+                  </Item.Header>
+                </Item.Content>
+              </Item>
+            ))}
+        </List>
+      </Segment>
+    </div>
+  );
+};
 
-export default EventDetailedSidebar
+export default EventDetailedSidebar;

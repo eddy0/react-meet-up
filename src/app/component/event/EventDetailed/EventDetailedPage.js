@@ -1,11 +1,11 @@
 import  React from 'react'
-import { Grid, Divider  } from '@material-ui/core'
 import EventDetailedHeader from './EventDetailedHeader';
 import EventDetailedInfo from './EventDetailedInfo';
 import EventDetailedChat from './EventDetailedChat';
 import EventDetailedSidebar from './EventDetailedSidebar';
 import { connect } from 'react-redux';
 import {  Redirect } from 'react-router-dom';
+import { Grid } from 'semantic-ui-react'
 
 
 
@@ -15,19 +15,16 @@ const EventDetailedPage= (props) => {
   }
   const event = props.event
   return (
-    <div className='row'>
-      <Grid container={true} style={{justifyContent: 'space-between'}}>
-        <Grid item xs={7}>
+      <Grid>
+      <Grid.Column width={10}>
           <EventDetailedHeader event={event} />
-          <Divider />
           <EventDetailedInfo event={event} />
           <EventDetailedChat />
-        </Grid>
-        <Grid item xs={4}>
+      </Grid.Column>
+        <Grid.Column width={4}>
           <EventDetailedSidebar attendees={event.attendees} />
-        </Grid>
+        </Grid.Column>
       </Grid>
-    </div>
   )
 }
 

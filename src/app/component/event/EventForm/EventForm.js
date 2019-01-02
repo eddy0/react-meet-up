@@ -8,26 +8,17 @@ import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
 import MenuItem from '@material-ui/core/MenuItem'
 import {actionCreateEvent, actionUpdateEvent} from '../../../../action/eventAction'
+import { Form, Grid, Header, Segment } from 'semantic-ui-react'
 
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-]
 
+const category = [
+  { key: 'drinks', text: 'Drinks', value: 'drinks' },
+  { key: 'culture', text: 'Culture', value: 'culture' },
+  { key: 'film', text: 'Film', value: 'film' },
+  { key: 'food', text: 'Food', value: 'food' },
+  { key: 'music', text: 'Music', value: 'music' },
+  { key: 'travel', text: 'Travel', value: 'travel' }
+];
 
 class EventForm extends React.Component {
 
@@ -47,63 +38,55 @@ class EventForm extends React.Component {
 
   render() {
     const event = this.props.event
+    const {loading, invalid, submitting, pristine} = this.props
     return (
-      <form autoComplete="off"
-            onSubmit={this.props.handleSubmit(this.formSubmit)}
-            style={{display: 'flex', flexDirection: 'column', margin: '0 auto'}}
-            className="row"
-      >
-        <Field name="title"
-               type="text"
-               label="title"
-               component={TextInput}
-        />
-        <p>
-          event data
-        </p>
-        <Field name="city"
-               type="text"
-               label="city"
-               component={TextInput}
-        />
-        <Field name="venue"
-               type="text"
-               label="venue"
-               component={TextInput}
-        />
-        < Field name="description"
+      <Grid>
+        <Grid.Column width={10}>
+          <Segment>
+            <Header sub color="teal" content="Event Details" />
+            <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+              <Field
+                name="title"
                 type="text"
-                label="description"
                 component={TextInput}
-        />
-
-        < Field name="category"
-                rows="4"
-                label="category"
-                component={TextArea}
-        />
-        < Field name="hosted"
-                label="Hosted By"
-                component={TextInput}
-        />
-
-        < Field name="select"
-                fullWidth={false}
-                label="select"
+                placeholder="Give your event a name"
+              />
+              <Field
+                name="category"
+                type="text"
                 component={SelectInput}
-        >
-          {
-            currencies.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))
-          }
-        </Field>
-        <Button type="submit" color="secondary" variant="contained">
-          {event !== null ? 'update Event' : 'create Event'}
-        </Button>
-      </form>
+                options={category}
+                placeholder="What is your event about"
+              />
+              <Field
+                name="description"
+                type="text"
+                component={TextArea}
+                rows={3}
+                placeholder="Tell us about your event"
+              />
+              <Header sub color="teal" content="Event Location details" />
+              <Button
+                loading={loading}
+                disabled={invalid || submitting || pristine}
+                positive
+                type="submit"
+              >
+                Submit
+              </Button>
+              <Button disabled={loading} onClick={this.props.history.goBack} type="button">
+                Cancel
+              </Button>
+              {event.id &&
+              <Button
+                type='button'
+                floated='right'
+                content={ 'Cancel Event'}
+              />}
+            </Form>
+          </Segment>
+        </Grid.Column>
+      </Grid>
     )
   }
 }
