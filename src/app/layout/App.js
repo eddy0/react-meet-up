@@ -9,29 +9,14 @@ import LoadingComponent from './LoadingComponent'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import EventForm from '../component/event/EventForm/EventForm'
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core'
 import EventDetailedPage from '../component/event/EventDetailed/EventDetailedPage'
 
 const store = createStore(reducer, middleware)
 
-const Theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-  palette: {
-    primary: {
-      main: '#6b9aaf',
-    },
-    secondary: {
-      main: '#e6f8fb',
-    },
-  },
-})
 
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider theme={Theme}>
         <Provider store={store}>
           <Router>
             <>
@@ -40,14 +25,13 @@ class App extends Component {
               <Switch>
                 <Redirect exact={true} from="/" to="/events" />
                 <Route exact={true} path="/events" component={EventDashboard} />
-                <Route exact={true} path="/event/:id" component={EventDetailedPage} />
-                <Route exact={true} path="/create" component={EventForm} />
-                <Route component={NotFound} />
+                {/*<Route exact={true} path="/event/:id" component={EventDetailedPage} />*/}
+                {/*<Route exact={true} path="/create" component={EventForm} />*/}
+                {/*<Route component={NotFound} />*/}
               </Switch>
             </>
           </Router>
         </Provider>
-      </MuiThemeProvider>
     )
   }
 }

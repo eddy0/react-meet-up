@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import EventList from './EventList'
 import { handleFetchEvent } from '../../../../action/eventAction'
 import { connect } from 'react-redux'
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
+import { Button, Grid } from 'semantic-ui-react'
 
+const {Column} = Grid
 
 class EventDashboard extends Component {
 
@@ -17,21 +17,19 @@ class EventDashboard extends Component {
   render() {
     const events = this.props.events
     return (
-      <div className='row'>
-        <Grid container item xs={12}>
-          <Grid container item xs={8} justify='center'>
+      <Grid>
+        <Column width={10}>
             {
               events &&
               <EventList events={events}/>
             }
-          </Grid>
-          <Grid container item xs={4} direction='column' alignItems='center'>
-            <Button color='primary' variant='contained'>
+        </Column>
+        <Column width={6}>
+            <button>
               create form
-            </Button>
-          </Grid>
-        </Grid>
-      </div>
+            </button>
+        </Column>
+      </Grid>
     )
   }
 }

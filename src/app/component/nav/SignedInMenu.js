@@ -1,70 +1,27 @@
 import React, { Component } from 'react'
-import { Grid, MenuItem, Button, Menu, Typography } from '@material-ui/core'
-import { Settings, PermContactCalendar, People, CalendarToday, PowerSettingsNew } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
+import { Dropdown, Image, Menu } from 'semantic-ui-react'
 
-
-const menus = [
-  {name: 'Events', path: '/events', icon: <CalendarToday/>},
-  {name: 'Profile', path: '/profile', icon: <People/>},
-  {name: 'Account', path: '/account', icon: <PermContactCalendar/>},
-  {name: 'Settings', path: '/settings', icon: <Settings/>},
-  {name: 'Logout', path: '/', icon: <PowerSettingsNew/>},
-]
-
-
-const MenuComponent = ({menu, action}) => {
-  if (menu.name === 'Logout') {
-    return (
-      <MenuItem onClick={action}>
-        {menu.icon}
-        <Typography variant='body1' color='inherit' style={{marginLeft: '5px'}}>
-          {menu.name}
-        </Typography>
-      </MenuItem>
-    )
-  }
-  return (
-    <Link to={menu.path} style={{color: 'inherit'}}>
-      <MenuItem onClick={action}>
-        {menu.icon}
-        <Typography variant='body1' color='inherit' style={{marginLeft: '5px'}}>
-          {menu.name}
-        </Typography>
-      </MenuItem>
-    </Link>
-  )
-}
 
 class SignedInMenu extends Component {
-  state = {
-    anchorEl: null,
-  }
-
-  handleClick = (event) => {
-    this.setState({anchorEl: event.target})
-  }
-
-  handleClose = () => {
-    this.setState({anchorEl: null})
-  }
+  state = {}
 
   render() {
-    let anchorEl = this.state.anchorEl
+    const {logout} = this.props
     return (
-      <Grid container item justify='flex-end' alignItems='center' style={{width: 'max-content'}}>
-        <Button color='inherit' aria-haspopup='true' onClick={this.handleClick}>
-          username
-        </Button>
-        <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
-          {menus &&
-          menus.map((menu) => {
-            return <MenuComponent key={menu.name} menu={menu}
-                                  action={menu.name === 'Logout' ? this.props.logout : this.handleClose}/>
-          })}
-          {/* <MenuItem onClick={this.props.logout}>Logout</MenuItem> */}
-        </Menu>
-      </Grid>
+      <Menu.Item position="right">
+        <Image avatar spaced="right" src={'/assets/user.png'}/>
+        <Dropdown pointing="top left" text={'name'}>
+          <Dropdown.Menu>
+            <Dropdown.Item text="Create Event" icon="plus"/>
+            <Dropdown.Item text="My Events" icon="calendar"/>
+            <Dropdown.Item text="My Network" icon="users"/>
+            <Dropdown.Item as={Link} to={`/profile/uid`} text="My Profile" icon="user"/>
+            <Dropdown.Item as={Link} to='/settings' text="Settings" icon="settings"/>
+            <Dropdown.Item onClick={logout} text="Sign Out" icon="power"/>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Menu.Item>
     )
   }
 }

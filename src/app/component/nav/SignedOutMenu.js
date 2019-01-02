@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
-import  Grid  from '@material-ui/core/Grid'
-import  Button  from '@material-ui/core/Button'
+import { Button, Menu } from 'semantic-ui-react'
 
 
 export default class SignedOutMenu extends React.Component {
   render() {
     return (
-      <Grid container item justify='flex-end' alignItems='center' style={{ width: 'max-content' }}>
-        <Button variant='outlined' color='secondary' onClick={this.props.login}>
-          login
-        </Button>
-        <Button variant='text' color='secondary' style={{ margin: '0 0.5rem' }}>
-          sign up
-        </Button>
-      </Grid>
+      <Menu.Item position='right'>
+        <Button basic inverted content='login' onClick={this.props.login} />
+        <Button basic inverted content='Sign up' style={{marginLeft: '0.5rem'}} />
+      </Menu.Item>
     )
   }
 }
