@@ -48,13 +48,34 @@ const handleFetchEvent = () => {
 }
 
 
+const handleCreateEvent = (event, cb) => {
+  return async (dispatch) => {
+    dispatch(actionLoadingStart())
+    await dispatch(actionCreateEvent(event))
+    dispatch(actionLoadingEnd())
+    cb()
+  }
+}
+
+
+const handleUpdateEvent = (event, cb) => {
+  return async (dispatch) => {
+    dispatch(actionLoadingStart())
+    await dispatch(actionUpdateEvent(event))
+    dispatch(actionLoadingEnd())
+    cb()
+  }
+}
 
 export {
   CREATE_EVENT,
   FETCH_EVENT,
   DELETE_EVENT,
+  UPDATE_EVENT,
   handleFetchEvent,
   actionCreateEvent,
   actionDeleteEvent,
   actionUpdateEvent,
+  handleCreateEvent,
+  handleUpdateEvent,
 }

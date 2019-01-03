@@ -17,6 +17,11 @@ const store = createStore(reducer, middleware)
 
 
 class App extends Component {
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
         <Provider store={store}>
@@ -30,6 +35,7 @@ class App extends Component {
                 <Route exact={true} path="/events" component={EventDashboard} />
                 <Route exact={true} path="/event/new" component={EventForm} />
                 <Route exact={true} path="/event/:id" component={EventDetailedPage} />
+                <Route exact={true} path="/manage/:id" component={EventForm} />
                 <Route exact={true} path="/profile/:id" component={PeopleDashboard} />
                 <Route path="/setting" component={SettingDashboard} />
                 <Route component={NotFound} />

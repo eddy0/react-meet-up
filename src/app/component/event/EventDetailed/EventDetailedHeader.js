@@ -17,6 +17,7 @@ const eventImageTextStyle = {
 }
 
 const EventDetailedHeader = ({event}) => {
+  console.log(event)
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{padding: '0'}}>
@@ -44,34 +45,17 @@ const EventDetailedHeader = ({event}) => {
         </Segment>
       </Segment>
 
-      {/*<Segment attached="bottom">*/}
-      {/*{!isHost && (*/}
-      {/*<div>*/}
-      {/*{isGoing && !event.cancelled &&*/}
-      {/*<Button onClick={() => cancelGoingToEvent(event)}>Cancel My Place</Button>}*/}
+      <Segment attached="bottom">
+        <Button
+          as={Link}
+          to={`/manage/${event.id}`}
+          color="orange"
+        >
+          Manage Event
+        </Button>
 
-      {/*{!isGoing && authenticated && !event.cancelled &&*/}
-      {/*<Button loading={loading} onClick={() => goingToEvent(event)} color="teal">JOIN THIS EVENT</Button>}*/}
 
-      {/*{!authenticated && !event.cancelled &&*/}
-      {/*<Button loading={loading} onClick={() => openModal('UnauthModal')} color="teal">JOIN THIS EVENT</Button>}*/}
-
-      {/*{event.cancelled && !isHost &&*/}
-      {/*<Label size='large' color='red' content='This event has been cancelled'/>}*/}
-      {/*</div>*/}
-      {/*)}*/}
-
-      {/*{isHost && (*/}
-      {/*<Button*/}
-      {/*as={Link}*/}
-      {/*to={`/manage/${event.id}`}*/}
-      {/*color="orange"*/}
-      {/*>*/}
-      {/*Manage Event*/}
-      {/*</Button>*/}
-      {/*)}*/}
-
-      {/*</Segment>*/}
+      </Segment>
 
     </Segment.Group>
   )

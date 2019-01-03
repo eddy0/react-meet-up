@@ -1,13 +1,13 @@
 import * as React from 'react'
-// import { generate } from 'src/utils/DATA'
 import { connect } from 'react-redux'
 import TextInput from '../../common/form/TextInput'
 import { Field, reduxForm } from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
-import { actionCreateEvent, actionUpdateEvent } from '../../../../action/eventAction'
+import { handleCreateEvent, handleUpdateEvent } from '../../../../action/eventAction'
 import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'
 import DateInput from '../../common/form/DateInput'
+import { generate } from '../../../../utils/DATA'
 
 
 const category = [
@@ -19,24 +19,50 @@ const category = [
   {key: 'travel', text: 'Travel', value: 'travel'}
 ]
 
+const createNewEvent = (e) => {
+  let event = {
+    id: generate(),
+    title: 'Trip to Tower of London',
+    hostedBy: 'Bob',
+    hostPhotoURL: 'https://randomuser.me/api/portraits/men/10.jpg',
+    attendees: [
+      {
+        id: 'a',
+        name: 'Bob',
+        photoURL: 'https://randomuser.me/api/portraits/men/30.jpg',
+      },
+      {
+        id: 'b',
+        name: 'Tom',
+        photoURL: 'https://randomuser.me/api/portraits/men/42.jpg',
+      },
+    ],
+  }
+  return Object.assign({}, event, e)
+}
+
 class EventForm extends React.Component {
 
   onFormSubmit = (form) => {
     console.log('form', form)
-    // let f: IEvent
-    // if (props.event !== null) {
-    //   f = {...props.event, ...form}
-    //   props.editEvent(f)
-    //   props.history.goBack()
-    // } else {
-    //   f = createNewEvent(form)
-    //   props.createEvent(f)
-    //   props.history.push('/events')
-    // }
+    let f
+    if (this.props.event !== null) {
+      f = {...this.props.event, ...form}
+      this.props.editEvent(f, () => {
+        this.props.history.goBack()
+      })
+    } else {
+      f = createNewEvent(form)
+      this.props.createEvent(f, () => {
+        this.props.history.push('/events')
+      })
+    }
   }
 
   render() {
-    const event = this.props.event
+    const event = this.props.initialValues
+    console.log(event)
+    const id = this.props.id
     const {loading, invalid, submitting, pristine} = this.props
     return (
       <Grid>
@@ -77,7 +103,9 @@ class EventForm extends React.Component {
                 positive
                 type="submit"
               >
-                Submit
+                {
+                  event.id === undefined ? 'Submit' : 'Update'
+                }
               </Button>
               <Button disabled={loading} onClick={this.props.history.goBack} type="button">
                 Cancel
@@ -105,12 +133,14 @@ const mapStateToProps = (state, props) => {
   }
   return {
     initialValues: event,
+    id: id,
+    event: event,
   }
 }
 
 const mapActionsToProps = {
-  createEvent: actionCreateEvent,
-  editEvent: actionUpdateEvent,
+  createEvent: handleCreateEvent,
+  editEvent: handleUpdateEvent,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(reduxForm({

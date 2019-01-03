@@ -9,7 +9,7 @@ const {Column} = Grid
 class EventDashboard extends Component {
 
   componentDidMount() {
-    if (this.props.events === null || Object.keys(this.props.events).length > 0) {
+    if (this.props.events === null || Object.keys(this.props.events).length === 0) {
       this.props.handleFetchEvent()
     }
   }
