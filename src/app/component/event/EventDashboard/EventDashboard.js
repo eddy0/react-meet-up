@@ -25,9 +25,9 @@ class EventDashboard extends Component {
             }
         </Column>
         <Column width={6}>
-            <button>
+            <Button>
               create form
-            </button>
+            </Button>
         </Column>
       </Grid>
     )

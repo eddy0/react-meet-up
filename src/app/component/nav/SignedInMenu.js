@@ -17,7 +17,7 @@ class SignedInMenu extends Component {
             <Dropdown.Item text="My Events" icon="calendar"/>
             <Dropdown.Item text="My Network" icon="users"/>
             <Dropdown.Item as={Link} to={`/profile/uid`} text="My Profile" icon="user"/>
-            <Dropdown.Item as={Link} to='/settings' text="Settings" icon="settings"/>
+            <Dropdown.Item as={Link} to='/setting' text="Setting" icon="settings"/>
             <Dropdown.Item onClick={logout} text="Sign Out" icon="power"/>
           </Dropdown.Menu>
         </Dropdown>

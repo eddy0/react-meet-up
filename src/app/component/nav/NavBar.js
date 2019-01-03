@@ -35,7 +35,7 @@ class NavBar extends Component {
           <Menu.Item>
             <Button
               as={Link}
-              to="/createEvent"
+              to="/event/new"
               floated="right"
               positive
               inverted

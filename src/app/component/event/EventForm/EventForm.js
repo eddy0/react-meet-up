@@ -1,27 +1,28 @@
 import * as React from 'react'
 // import { generate } from 'src/utils/DATA'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import TextInput from '../../common/form/TextInput'
-import {Field, reduxForm} from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
-import {actionCreateEvent, actionUpdateEvent} from '../../../../action/eventAction'
+import { actionCreateEvent, actionUpdateEvent } from '../../../../action/eventAction'
 import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'
+import DateInput from '../../common/form/DateInput'
 
 
 const category = [
-  { key: 'drinks', text: 'Drinks', value: 'drinks' },
-  { key: 'culture', text: 'Culture', value: 'culture' },
-  { key: 'film', text: 'Film', value: 'film' },
-  { key: 'food', text: 'Food', value: 'food' },
-  { key: 'music', text: 'Music', value: 'music' },
-  { key: 'travel', text: 'Travel', value: 'travel' }
-];
+  {key: 'drinks', text: 'Drinks', value: 'drinks'},
+  {key: 'culture', text: 'Culture', value: 'culture'},
+  {key: 'film', text: 'Film', value: 'film'},
+  {key: 'food', text: 'Food', value: 'food'},
+  {key: 'music', text: 'Music', value: 'music'},
+  {key: 'travel', text: 'Travel', value: 'travel'}
+]
 
 class EventForm extends React.Component {
 
-  formSubmit = (e) => {
-    e.preventDefault()
+  onFormSubmit = (form) => {
+    console.log('form', form)
     // let f: IEvent
     // if (props.event !== null) {
     //   f = {...props.event, ...form}
@@ -41,13 +42,13 @@ class EventForm extends React.Component {
       <Grid>
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color="teal" content="Event Details" />
+            <Header sub color="teal" content="Event Details"/>
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
                 name="title"
                 type="text"
                 component={TextInput}
-                placeholder="Give your event a name"
+                placeholder="Describe your event title"
               />
               <Field
                 name="category"
@@ -57,13 +58,19 @@ class EventForm extends React.Component {
                 placeholder="What is your event about"
               />
               <Field
+                name="date"
+                type="text"
+                component={DateInput}
+                placeholder="choose a date"
+              />
+              <Field
                 name="description"
                 type="text"
                 component={TextArea}
                 rows={3}
-                placeholder="Tell us about your event"
+                placeholder="Tell us more details about your event"
               />
-              <Header sub color="teal" content="Event Location details" />
+              <Header sub color="teal" content="Event Location details"/>
               <Button
                 loading={loading}
                 disabled={invalid || submitting || pristine}
@@ -75,11 +82,11 @@ class EventForm extends React.Component {
               <Button disabled={loading} onClick={this.props.history.goBack} type="button">
                 Cancel
               </Button>
-              {event.id &&
+              {event && event.id &&
               <Button
                 type='button'
                 floated='right'
-                content={ 'Cancel Event'}
+                content={'Cancel Event'}
               />}
             </Form>
           </Segment>

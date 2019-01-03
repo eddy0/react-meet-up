@@ -10,6 +10,8 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import EventForm from '../component/event/EventForm/EventForm'
 import EventDetailedPage from '../component/event/EventDetailed/EventDetailedPage'
+import SettingDashboard from '../component/user/Setting/SettingDashboard'
+import PeopleDashboard from '../component/user/PeopleDashboard/PeopleDashboard'
 
 const store = createStore(reducer, middleware)
 
@@ -22,13 +24,17 @@ class App extends Component {
             <>
               <LoadingComponent />
               <NavBar />
+              <div style={{paddingTop: 85}}>
               <Switch>
                 <Redirect exact={true} from="/" to="/events" />
                 <Route exact={true} path="/events" component={EventDashboard} />
+                <Route exact={true} path="/event/new" component={EventForm} />
                 <Route exact={true} path="/event/:id" component={EventDetailedPage} />
-                <Route exact={true} path="/create" component={EventForm} />
+                <Route exact={true} path="/profile/:id" component={PeopleDashboard} />
+                <Route path="/setting" component={SettingDashboard} />
                 <Route component={NotFound} />
               </Switch>
+              </div>
             </>
           </Router>
         </Provider>
