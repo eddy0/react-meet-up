@@ -8,6 +8,7 @@ import { handleCreateEvent, handleUpdateEvent } from '../../../../action/eventAc
 import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'
 import DateInput from '../../common/form/DateInput'
 import { generate } from '../../../../utils/DATA'
+import PlaceInput from '../../common/form/PlaceInput'
 
 
 const category = [
@@ -97,6 +98,20 @@ class EventForm extends React.Component {
                 placeholder="Tell us more details about your event"
               />
               <Header sub color="teal" content="Event Location details"/>
+               <Field
+                name="city"
+                type="text"
+                component={PlaceInput}
+                options={{ types: ['(cities)']}}
+                placeholder="Event city"
+                onSelect={this.handleCitySelect}
+              />
+              <Field
+                name="place"
+                type="text"
+                component={PlaceInput}
+                placeholder="add the place"
+              />
               <Button
                 loading={loading}
                 disabled={invalid || submitting || pristine}
