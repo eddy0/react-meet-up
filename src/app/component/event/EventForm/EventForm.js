@@ -1,14 +1,16 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import TextInput from '../../common/form/TextInput'
-import { Field, reduxForm } from 'redux-form'
+import {Field, reduxForm} from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
-import { handleCreateEvent, handleUpdateEvent } from '../../../../action/eventAction'
-import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'
+import {handleCreateEvent, handleUpdateEvent} from '../../../../action/eventAction'
+import {Form, Grid, Header, Segment, Button} from 'semantic-ui-react'
 import DateInput from '../../common/form/DateInput'
-import { generate } from '../../../../utils/DATA'
+import {generate} from '../../../../utils/DATA'
 import PlaceInput from '../../common/form/PlaceInput'
+import {geocodeByAddress, getLatLng} from 'react-places-autocomplete'
+import Script from 'react-load-script'
 
 
 const category = [
@@ -43,6 +45,14 @@ const createNewEvent = (e) => {
 }
 
 class EventForm extends React.Component {
+  state = {
+    cityLatLng: {},
+    venueLatLng: {},
+    scriptLoaded: false
+  }
+
+  handleScriptLoaded = () => this.setState({scriptLoaded: true})
+
 
   onFormSubmit = (form) => {
     console.log('form', form)
@@ -60,6 +70,27 @@ class EventForm extends React.Component {
     }
   }
 
+  handleCitySelect = (selectedCity) => {
+    geocodeByAddress(selectedCity).then(results => getLatLng(results[0])).then(latlng => {
+      this.setState({
+        cityLatLng: latlng
+      })
+    }).then(() => {
+      this.props.change('city', selectedCity)
+    })
+  }
+
+  handleVenueSelect = selectedVenue => {
+    geocodeByAddress(selectedVenue).then(results => getLatLng(results[0])).then(latlng => {
+      this.setState({
+        venueLatLng: latlng
+      })
+    }).then(() => {
+      this.props.change('venue', selectedVenue)
+    })
+  }
+
+
   render() {
     const event = this.props.initialValues
     console.log(event)
@@ -67,9 +98,13 @@ class EventForm extends React.Component {
     const {loading, invalid, submitting, pristine} = this.props
     return (
       <Grid>
+        <Script
+          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYVHNqmifVNgbn_Rzm1SLViGST1YOlfFg&libraries=places&language=en"
+          onLoad={this.handleScriptLoaded}
+        />
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color="teal" content="Event Details"/>
+            <Header sub color="teal" content="Event Details" />
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
                 name="title"
@@ -97,21 +132,29 @@ class EventForm extends React.Component {
                 rows={3}
                 placeholder="Tell us more details about your event"
               />
-              <Header sub color="teal" content="Event Location details"/>
-               <Field
+              <Header sub color="teal" content="Event Location details" />
+              <Field
                 name="city"
                 type="text"
                 component={PlaceInput}
-                options={{ types: ['(cities)']}}
+                options={{types: ['(cities)']}}
                 placeholder="Event city"
                 onSelect={this.handleCitySelect}
               />
-              <Field
-                name="place"
-                type="text"
-                component={PlaceInput}
-                placeholder="add the place"
-              />
+              {this.state.scriptLoaded && (
+                <Field
+                  name="venue"
+                  type="text"
+                  component={PlaceInput}
+                  options={{
+                    location: new window.google.maps.LatLng(this.state.cityLatLng),
+                    radius: 1000,
+                    types: ['establishment']
+                  }}
+                  placeholder="Event venue"
+                  onSelect={this.handleVenueSelect}
+                />
+              )}
               <Button
                 loading={loading}
                 disabled={invalid || submitting || pristine}
@@ -127,8 +170,8 @@ class EventForm extends React.Component {
               </Button>
               {event && event.id &&
               <Button
-                type='button'
-                floated='right'
+                type="button"
+                floated="right"
                 content={'Cancel Event'}
               />}
             </Form>
