@@ -136,25 +136,32 @@ class EventForm extends React.Component {
               <Field
                 name="city"
                 type="text"
-                component={PlaceInput}
+                component={TextInput}
                 options={{types: ['(cities)']}}
                 placeholder="Event city"
                 onSelect={this.handleCitySelect}
               />
-              {this.state.scriptLoaded && (
-                <Field
-                  name="venue"
-                  type="text"
-                  component={PlaceInput}
-                  options={{
-                    location: new window.google.maps.LatLng(this.state.cityLatLng),
-                    radius: 1000,
-                    types: ['establishment']
-                  }}
-                  placeholder="Event venue"
-                  onSelect={this.handleVenueSelect}
-                />
-              )}
+              <Field
+                name="venue"
+                type="text"
+                component={TextInput}
+                options={{types: ['(cities)']}}
+                placeholder="Event venue"
+              />
+              {/*{this.state.scriptLoaded && (*/}
+                {/*<Field*/}
+                  {/*name="venue"*/}
+                  {/*type="text"*/}
+                  {/*component={PlaceInput}*/}
+                  {/*options={{*/}
+                    {/*location: new window.google.maps.LatLng(this.state.cityLatLng),*/}
+                    {/*radius: 1000,*/}
+                    {/*types: ['establishment']*/}
+                  {/*}}*/}
+                  {/*placeholder="Event venue"*/}
+                  {/*onSelect={this.handleVenueSelect}*/}
+                {/*/>*/}
+              {/*)}*/}
               <Button
                 loading={loading}
                 disabled={invalid || submitting || pristine}
