@@ -19,7 +19,6 @@ const EventDetailedPage = (props) => {
       <Grid.Column width={10}>
         <EventDetailedHeader event={event} />
         <EventDetailedInfo event={event} />
-        <EventDetailedMap lat={34.1846772} lng={-118.4045909}  />
         <EventDetailedChat />
       </Grid.Column>
       <Grid.Column width={4}>
