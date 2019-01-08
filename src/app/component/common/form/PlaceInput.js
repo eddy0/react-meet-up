@@ -1,11 +1,10 @@
-import React, {Component} from 'react'
-import {Form, Label} from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Form, Label } from 'semantic-ui-react'
 import Script from 'react-load-script'
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete'
-import Flatpickr from './DateInput'
 
 const styles = {
   autocompleteContainer: {
@@ -37,47 +36,50 @@ class PlaceInput extends Component {
         />
         {this.state.scriptLoaded &&
         <PlacesAutocomplete
-          value={input.value}
-          inputProps={{...input, placeholder}}
+          value={input.value || ''}
           options={options}
           onSelect={onSelect}
-          styles={styles}
+          debounce={1000}
+          searchOptions={options}
           onChange={(address) => {
             input.onChange(address)
           }}
         >
-          {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-            <div>
-              <input
-                {...getInputProps({
-                  placeholder: 'Search Places ...',
-                  className: 'location-search-input',
-                })}
-              />
-              <div className="autocomplete-dropdown-container">
-                {loading && <div>Loading...</div>}
-                {suggestions.map(suggestion => {
-                  const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item'
-                  // inline style for demonstration purpose
-                  const style = suggestion.active
-                    ? {backgroundColor: '#fafafa', cursor: 'pointer'}
-                    : {backgroundColor: '#ffffff', cursor: 'pointer'}
-                  return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style,
-                      })}
-                    >
-                      <span>{suggestion.description}</span>
-                    </div>
-                  )
-                })}
+          {(props) => {
+            const {getInputProps, suggestions, getSuggestionItemProps, loading} = props
+            return (<div>
+                <input
+                  {...getInputProps({
+                    placeholder: placeholder,
+                    className: 'location-search-input',
+                  })}
+                />
+                <div className="autocomplete-dropdown-container" style={{position: 'absolute', width: '100%', boxSizing: 'border-box',borderRadius: '2px', boxShadow: '0 3px 5px rgba(0,0,0,0.3) ' }}>
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item'
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? {backgroundColor: '#f3f3f3', cursor: 'pointer', boxShadow: '0 3px 5px rgba(0,0,0,0.3)'}
+                      : {backgroundColor: '#ffffff', cursor: 'pointer'}
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                        })}
+                        style={Object.assign(style,{padding: '0.5rem'})}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          )}
+            )
+          }
+          }
         </PlacesAutocomplete>
         }
         {touched &&

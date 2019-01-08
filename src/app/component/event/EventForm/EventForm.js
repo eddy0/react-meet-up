@@ -1,15 +1,15 @@
 import * as React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import TextInput from '../../common/form/TextInput'
-import {Field, reduxForm} from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
-import {handleCreateEvent, handleUpdateEvent} from '../../../../action/eventAction'
-import {Form, Grid, Header, Segment, Button} from 'semantic-ui-react'
+import { handleCreateEvent, handleUpdateEvent } from '../../../../action/eventAction'
+import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'
 import DateInput from '../../common/form/DateInput'
-import {generate} from '../../../../utils/DATA'
+import { generate } from '../../../../utils/DATA'
 import PlaceInput from '../../common/form/PlaceInput'
-import {geocodeByAddress, getLatLng} from 'react-places-autocomplete'
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Script from 'react-load-script'
 
 
@@ -97,14 +97,14 @@ class EventForm extends React.Component {
     const id = this.props.id
     const {loading, invalid, submitting, pristine} = this.props
     return (
-      <Grid>
+      <Grid style={{margin: '0 auto', maxWidth: 1000}}>
         <Script
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYVHNqmifVNgbn_Rzm1SLViGST1YOlfFg&libraries=places&language=en"
           onLoad={this.handleScriptLoaded}
         />
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color="teal" content="Event Details" />
+            <Header sub color="teal" content="Event Details"/>
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
                 name="title"
@@ -119,12 +119,7 @@ class EventForm extends React.Component {
                 options={category}
                 placeholder="What is your event about"
               />
-              <Field
-                name="date"
-                type="text"
-                component={DateInput}
-                placeholder="choose a date"
-              />
+
               <Field
                 name="description"
                 type="text"
@@ -132,36 +127,36 @@ class EventForm extends React.Component {
                 rows={3}
                 placeholder="Tell us more details about your event"
               />
-              <Header sub color="teal" content="Event Location details" />
+              <Header sub color="teal" content="Event Location details"/>
               <Field
                 name="city"
                 type="text"
-                component={TextInput}
+                component={PlaceInput}
                 options={{types: ['(cities)']}}
                 placeholder="Event city"
                 onSelect={this.handleCitySelect}
               />
+              {this.state.scriptLoaded && (
+                <Field
+                  name="venue"
+                  type="text"
+                  component={PlaceInput}
+                  options={{
+                    // location: new window.google.maps.LatLng(this.state.cityLatLng),
+                    // radius: 1000,
+                    // types: ['establishment']
+                  }}
+                  placeholder="Event venue"
+                  onSelect={this.handleVenueSelect}
+                />
+              )}
               <Field
-                name="venue"
+                name="date"
                 type="text"
-                component={TextInput}
-                options={{types: ['(cities)']}}
-                placeholder="Event venue"
+                component={DateInput}
+                placeholder="choose a date and time"
               />
-              {/*{this.state.scriptLoaded && (*/}
-                {/*<Field*/}
-                  {/*name="venue"*/}
-                  {/*type="text"*/}
-                  {/*component={PlaceInput}*/}
-                  {/*options={{*/}
-                    {/*location: new window.google.maps.LatLng(this.state.cityLatLng),*/}
-                    {/*radius: 1000,*/}
-                    {/*types: ['establishment']*/}
-                  {/*}}*/}
-                  {/*placeholder="Event venue"*/}
-                  {/*onSelect={this.handleVenueSelect}*/}
-                {/*/>*/}
-              {/*)}*/}
+
               <Button
                 loading={loading}
                 disabled={invalid || submitting || pristine}
