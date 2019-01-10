@@ -12,7 +12,8 @@ import EventForm from '../component/event/EventForm/EventForm'
 import EventDetailedPage from '../component/event/EventDetailed/EventDetailedPage'
 import SettingDashboard from '../component/user/Setting/SettingDashboard'
 import PeopleDashboard from '../component/user/PeopleDashboard/PeopleDashboard'
-import PlaceInput from '../component/common/form/PlaceInput'
+import ModalHoc from '../component/common/modal/ModalHOC'
+import TestComponent from './TestComponent'
 
 const store = createStore(reducer, middleware)
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Router>
             <>
               <LoadingComponent />
+              <ModalHoc/>
               <NavBar />
               <div style={{paddingTop: 85}}>
               <Switch>
@@ -39,7 +41,7 @@ class App extends Component {
                 <Route exact={true} path="/manage/:id" component={EventForm} />
                 <Route exact={true} path="/profile/:id" component={PeopleDashboard} />
                 <Route path="/setting" component={SettingDashboard} />
-                <Route path="/test" component={PlaceInput} />
+                <Route path="/test" component={TestComponent} />
                 <Route component={NotFound} />
               </Switch>
               </div>
