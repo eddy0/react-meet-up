@@ -10,7 +10,7 @@ class ModalHoc extends Component {
   render() {
     const {currentModal} = this.props
     let renderComponent
-    if (currentModal) {
+    if (Object.keys(currentModal).length > 0) {
       const {modalType, modalProps} = currentModal
       const ModalComponent = modalMapper[modalType]
       renderComponent = <ModalComponent {...modalProps} />

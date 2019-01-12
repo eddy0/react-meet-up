@@ -2,9 +2,7 @@ import createReducer from './utils'
 import { MODAL_CLOSE, MODAL_OPEN } from '../action/modalAction'
 
 
-const initialState = null
-
-const openModal = (state, action) => {
+const openModal = (state={}, action) => {
   const {modalType, modalProps} = action.payload
   return {
     modalType,
@@ -12,12 +10,11 @@ const openModal = (state, action) => {
   }
 }
 
-const closeModal = (state, action) => {
-  const {modalType, modalProps} = action.payload
-  return null
+const closeModal = (state={}, action) => {
+  return {}
 }
 
-export default createReducer(initialState, {
+export default createReducer({}, {
   [MODAL_OPEN]: openModal,
   [MODAL_CLOSE]: closeModal,
 })
