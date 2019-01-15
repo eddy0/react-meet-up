@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import connect from 'react-redux/es/connect/connect'
 import TestModal from './TestModal'
+import LoginModal from './LoginModal'
+import RegisterModal from './RegisterModal'
 
 const modalMapper = {
-  TestModal: TestModal
+  TestModal: TestModal,
+  RegisterModal,
+  LoginModal,
 }
 
 class ModalHoc extends Component {
