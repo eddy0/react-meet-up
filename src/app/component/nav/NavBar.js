@@ -3,6 +3,8 @@ import { Link, NavLink, withRouter } from 'react-router-dom'
 import SignedInMenu from './SignedInMenu'
 import SignedOutMenu from './SignedOutMenu'
 import { Button, Container, Menu } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { actionOpenModal } from '../../../action/modalAction'
 
 class NavBar extends Component {
   state = {
@@ -10,9 +12,11 @@ class NavBar extends Component {
   }
 
   handleLogin = () => {
-    this.setState({
-      login: true
-    })
+    this.props.openModal('LoginModal')
+  }
+
+  handleRegister = () => {
+    this.props.openModal('RegisterModal')
   }
 
   handleLogout = () => {
@@ -45,7 +49,7 @@ class NavBar extends Component {
           {
             this.state.login
               ? <SignedInMenu  logout={this.handleLogout} />
-              : <SignedOutMenu login={this.handleLogin} />
+              : <SignedOutMenu login={this.handleLogin} register={this.handleRegister} />
           }
         </Container>
       </Menu>
@@ -53,4 +57,9 @@ class NavBar extends Component {
   }
 }
 
-export default withRouter(NavBar)
+
+const actions = {
+  openModal: actionOpenModal,
+}
+
+export default withRouter(connect(null, actions)(NavBar))

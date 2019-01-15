@@ -8,7 +8,7 @@ import TextInput from '../../../app/component/common/form/TextInput'
 
 const LoginForm = ({login, handleSubmit, error, socialLogin}) => {
   return (
-    <Form size="large" onSubmit={handleSubmit(login)}>
+    <Form size="large" >
       <Segment>
         <Field
           name="email"
@@ -34,6 +34,7 @@ const LoginForm = ({login, handleSubmit, error, socialLogin}) => {
 };
 
 const actions = {
+
 }
 
 export default connect(null, actions)(reduxForm({form: 'loginForm'})(LoginForm))

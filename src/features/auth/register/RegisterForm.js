@@ -8,7 +8,7 @@ import TextInput from '../../../app/component/common/form/TextInput'
 
 const RegisterForm = ({login, handleSubmit, error, socialLogin}) => {
   return (
-    <Form size="large" onSubmit={handleSubmit(login)}>
+    <Form size="large" >
       <Segment>
           <Field
           name="displayName"
