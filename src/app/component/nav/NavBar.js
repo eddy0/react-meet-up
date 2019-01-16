@@ -27,29 +27,37 @@ class NavBar extends Component {
   }
 
   render() {
+    const {auth} = this.props
+    const authenticated = auth.authentication
     return (
-     <Menu inverted fixed="top">
+      <Menu inverted fixed="top">
         <Container>
           <Menu.Item as={Link} to="/" header>
-            <img src="/assets/logo.png" alt="logo" />
+            <img src="/assets/logo.png" alt="logo"/>
             Re-vents
           </Menu.Item>
-          <Menu.Item as={NavLink} to="/events" name="Events" />
-          <Menu.Item as={NavLink} to="/people" name="People" />
-          <Menu.Item>
-            <Button
-              as={Link}
-              to="/event/new"
-              floated="right"
-              positive
-              inverted
-              content="Create Event"
-            />
-          </Menu.Item>
+          <Menu.Item as={NavLink} to="/events" name="Events"/>
           {
-            this.state.login
-              ? <SignedInMenu  logout={this.handleLogout} />
-              : <SignedOutMenu login={this.handleLogin} register={this.handleRegister} />
+            authenticated &&
+            <Menu.Item as={NavLink} to="/people" name="People"/>
+          }
+          {
+            authenticated &&
+            <Menu.Item>
+              <Button
+                as={Link}
+                to="/event/new"
+                floated="right"
+                positive
+                inverted
+                content="Create Event"
+              />
+            </Menu.Item>
+          }
+          {
+            authenticated
+              ? <SignedInMenu currentUser={auth.currentUser} logout={this.handleLogout}/>
+              : <SignedOutMenu login={this.handleLogin} register={this.handleRegister}/>
           }
         </Container>
       </Menu>
@@ -58,8 +66,14 @@ class NavBar extends Component {
 }
 
 
+const mapState = (state) => {
+  return {
+    auth: state.auth,
+  }
+}
+
 const actions = {
   openModal: actionOpenModal,
 }
 
-export default withRouter(connect(null, actions)(NavBar))
+export default withRouter(connect(mapState, actions)(NavBar))
