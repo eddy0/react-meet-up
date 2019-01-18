@@ -13,13 +13,10 @@ const actionOpenModal = (modalType, modalProps) => {
 }
 
 
-const actionCloseModal = (modalType, modalProps) => {
+const actionCloseModal = () => {
   return {
     type: MODAL_CLOSE,
-    payload: {
-      modalType,
-      modalProps,
-    }
+    payload: {}
   }
 }
 

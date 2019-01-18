@@ -3,7 +3,7 @@ import { Form, Segment, Button, Label, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import TextInput from '../../../app/component/common/form/TextInput'
-import { actionLogin } from '../../../action/authAction'
+import {  handleLogin } from '../../../action/authAction'
 
 
 const LoginForm = ({login, handleSubmit, error, socialLogin}) => {
@@ -35,7 +35,7 @@ const LoginForm = ({login, handleSubmit, error, socialLogin}) => {
 
 
 const actions = {
-  login: actionLogin
+  login: handleLogin,
 }
 
 export default connect(null, actions)(reduxForm({form: 'loginForm'})(LoginForm))

@@ -21,8 +21,8 @@ class ModalHoc extends Component {
     }
     return (
       <span>
-    {renderComponent}
-    </span>
+        {renderComponent}
+      </span>
     )
   }
 }
