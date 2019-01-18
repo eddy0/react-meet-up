@@ -7,11 +7,11 @@ class SignedInMenu extends Component {
   state = {}
 
   render() {
-    const {logout} = this.props
+    const {logout, currentUser} = this.props
     return (
       <Menu.Item position="right">
         <Image avatar spaced="right" src={'/assets/user.png'}/>
-        <Dropdown pointing="top left" text={'name'}>
+        <Dropdown pointing="top left" text={currentUser}>
           <Dropdown.Menu>
             <Dropdown.Item text="Create Event" icon="plus"/>
             <Dropdown.Item text="My Events" icon="calendar"/>

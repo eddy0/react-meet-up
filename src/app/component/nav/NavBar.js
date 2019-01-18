@@ -5,6 +5,7 @@ import SignedOutMenu from './SignedOutMenu'
 import { Button, Container, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { actionOpenModal } from '../../../action/modalAction'
+import { actionLogout } from '../../../action/authAction'
 
 class NavBar extends Component {
   state = {
@@ -20,9 +21,7 @@ class NavBar extends Component {
   }
 
   handleLogout = () => {
-    this.setState({
-      login: false
-    })
+    this.props.logout()
     this.props.history.push('/')
   }
 
@@ -74,6 +73,7 @@ const mapState = (state) => {
 
 const actions = {
   openModal: actionOpenModal,
+  logout: actionLogout,
 }
 
 export default withRouter(connect(mapState, actions)(NavBar))
