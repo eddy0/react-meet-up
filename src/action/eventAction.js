@@ -1,5 +1,7 @@
 import { fetchEvent } from '../utils/DATA'
 import { actionLoadingEnd, actionLoadingStart } from './loadingAction'
+import {toastr} from 'react-redux-toastr'
+
 
 const FETCH_EVENT = 'FETCH_EVENT'
 const CREATE_EVENT = 'CREATE_EVENT'
@@ -43,6 +45,7 @@ const handleFetchEvent = () => {
     fetchEvent().then((events) => {
       dispatch(actionFetchEvent(events))
       dispatch(actionLoadingEnd())
+      toastr.success('success', 'fetch event success')
     })
   }
 }

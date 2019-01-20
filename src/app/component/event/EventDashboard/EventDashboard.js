@@ -3,6 +3,7 @@ import EventList from './EventList'
 import { handleFetchEvent } from '../../../../action/eventAction'
 import { connect } from 'react-redux'
 import { Button, Grid } from 'semantic-ui-react'
+import EventActivity from '../EventActivity/EventActivity'
 
 const {Column} = Grid
 
@@ -25,9 +26,7 @@ class EventDashboard extends Component {
             }
         </Column>
         <Column width={6}>
-            <Button>
-              create form
-            </Button>
+           <EventActivity/>
         </Column>
       </Grid>
     )

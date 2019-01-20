@@ -34,7 +34,7 @@ class App extends Component {
             <>
               <LoadingComponent />
               <ModalHoc/>
-              <ReduxToastr positon='bottom-right' transititonIn='fadeIn' transitionOut='fadeOut' />
+              <ReduxToastr position='bottom-right' progressBar={true} />
               <NavBar />
               <div style={{paddingTop: 85}}>
               <Switch>
