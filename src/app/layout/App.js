@@ -14,6 +14,9 @@ import SettingDashboard from '../component/user/Setting/SettingDashboard'
 import PeopleDashboard from '../component/user/PeopleDashboard/PeopleDashboard'
 import ModalHoc from '../component/common/modal/ModalHOC'
 import TestComponent from './TestComponent'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
+import ReduxToastr from 'react-redux-toastr'
+
 
 const store = createStore(reducer, middleware)
 
@@ -31,6 +34,7 @@ class App extends Component {
             <>
               <LoadingComponent />
               <ModalHoc/>
+              <ReduxToastr positon='bottom-right' transititonIn='fadeIn' transitionOut='fadeOut' />
               <NavBar />
               <div style={{paddingTop: 85}}>
               <Switch>
