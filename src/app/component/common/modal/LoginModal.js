@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { actionCloseModal } from '../../../../action/modalAction'
-import LoginForm from '../../../../features/auth/login/LoginForm'
+import LoginForm from '../../../features/auth/login/LoginForm'
 
 
 class LoginModal extends Component {

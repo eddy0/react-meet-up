@@ -2,7 +2,7 @@ import { applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import {reduxFirestore, getFirestore} from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
-import firebase from 'firebase'
+import firebase from '../config/firebase'
 
 const rrfConfig = {
   useProfile: 'users',
@@ -18,7 +18,7 @@ const middlewareEnhancer = composeEnhancers(
     thunk.withExtraArgument({getFirebase, getFirestore}),
   ),
   reactReduxFirebase(firebase, rrfConfig),
-  reduxFirestore(firebase)
+  reduxFirestore(firebase, rrfConfig)
 )
 
 export default middlewareEnhancer

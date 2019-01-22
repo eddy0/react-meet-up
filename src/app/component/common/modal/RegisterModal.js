@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { actionCloseModal } from '../../../../action/modalAction'
-import RegisterForm from '../../../../features/auth/register/RegisterForm'
+import RegisterForm from '../../../features/auth/register/RegisterForm'
 
 
 class RegisterModal extends Component {

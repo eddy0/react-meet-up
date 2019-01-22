@@ -2,7 +2,7 @@ import React  from 'react'
 import { Form, Segment, Button, Label, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import TextInput from '../../../app/component/common/form/TextInput'
+import TextInput from '../../../component/common/form/TextInput'
 
 
 
