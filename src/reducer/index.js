@@ -5,6 +5,7 @@ import modalReducer from './modalReducer'
 import authReducer from './authReducer'
 import {reducer as formReducer } from 'redux-form'
 import {reducer as toastrReducer } from 'react-redux-toastr'
+import {firebaseReducer} from 'react-redux-firebase'
 
 const reducer = combineReducers({
   loading: loadingReducer,

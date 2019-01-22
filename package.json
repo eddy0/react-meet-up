@@ -5,6 +5,7 @@
   "dependencies": {
     "babel-plugin-import": "^1.11.0",
     "date-fns": "^1.30.1",
+    "firebase": "^5.8.0",
     "google-map-react": "^1.1.2",
     "react": "^16.6.3",
     "react-app-rewired": "^1.6.2",
@@ -13,10 +14,12 @@
     "react-load-script": "^0.0.6",
     "react-places-autocomplete": "^7.2.0",
     "react-redux": "^6.0.0",
+    "react-redux-firebase": "^2.2.6",
     "react-redux-toastr": "^7.4.6",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
+    "redux-firestore": "^0.6.3",
     "redux-form": "^8.0.4",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.84.0"
