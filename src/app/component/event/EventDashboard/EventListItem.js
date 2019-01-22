@@ -25,15 +25,15 @@ function EventListItem(props) {
         </Segment>
         <Segment>
           <span>
-            <Icon name="clock" /> {format(event.date, 'dddd Do MMMM')} at {format(event.date, 'HH:mm')}|
+            <Icon name="clock" /> {format(event.date.toDate(), 'dddd Do MMMM')} at {format(event.date.toDate(), 'HH:mm')}|
             <Icon name="marker" /> {event.venue}
           </span>
         </Segment>
         <Segment secondary>
           <List horizontal>
           {event.attendees &&
-            event.attendees.map((attendee) => (
-              <EventAttendees key={attendee.id} attendee={attendee}/>
+            Object.entries(event.attendees).map(([id, attendee]) => (
+              <EventAttendees key={id} attendee={attendee}/>
           ))}
           </List>
         </Segment>
