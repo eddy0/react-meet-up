@@ -1,5 +1,7 @@
 import { actionCloseModal } from './modalAction'
 
+const log = console.log.bind(console)
+
 const LOGIN_USER = 'LOGIN_USER'
 const SIGN_OUT_USER = 'SIGN_OUT_USER'
 
@@ -17,10 +19,13 @@ const actionLogout = () => {
   }
 }
 
-const handleLogin = (auth) => {
-  return (dispatch) => {
-    dispatch(actionLogin(auth))
+const handleLogin = (auth) => async (dispatch, getState, {getFirebase, getFireStore}) => {
+  const firebase = getFirebase()
+  try {
+    await firebase.auth().signInWithEmailAndPassword(auth.email, auth.password)
     dispatch(actionCloseModal())
+  } catch (e) {
+    log(e)
   }
 }
 

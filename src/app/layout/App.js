@@ -17,18 +17,8 @@ import TestComponent from './TestComponent'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import ReduxToastr from 'react-redux-toastr'
 
-import firebase from '../../config/firebase'
-import { createFirestoreInstance } from 'redux-firestore'
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
-
 const store = createStore(reducer, middleware)
 
-const rrfProps = {
-  firebase,
-  config: rrfConfig,
-  dispatch: store.dispatch,
-  createFirestoreInstance,
-}
 
 
 class App extends Component {
@@ -40,7 +30,6 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ReactReduxFirebaseProvider {...rrfProps}>
           <Router>
             <>
               <LoadingComponent/>
@@ -62,7 +51,6 @@ class App extends Component {
               </div>
             </>
           </Router>
-        </ReactReduxFirebaseProvider>
       </Provider>
     )
   }
