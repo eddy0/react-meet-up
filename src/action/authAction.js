@@ -1,6 +1,9 @@
 import { actionCloseModal } from './modalAction'
+import { errorMessage } from '../utils/utils'
+import log from '../utils/utils'
 
-const log = console.log.bind(console)
+
+
 
 const LOGIN_USER = 'LOGIN_USER'
 const SIGN_OUT_USER = 'SIGN_OUT_USER'
@@ -24,8 +27,38 @@ const handleLogin = (auth) => async (dispatch, getState, {getFirebase, getFireSt
   try {
     await firebase.auth().signInWithEmailAndPassword(auth.email, auth.password)
     dispatch(actionCloseModal())
-  } catch (e) {
-    log(e)
+  } catch (error) {
+    errorMessage(error.message)
+  }
+}
+
+const createUser = async (firebase, firestore, user) => {
+  // create user in auth
+  let u = await firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(user.email, user.password)
+  log(u)
+
+  // update profile
+  await u.user.updateProfile({
+    displayName: user.displayName
+  })
+
+  // create a new profile in firestore
+  let newUser = {
+    displayName: user.displayName,
+    createAt: firestore.FieldValue.serverTimestamp()
+  }
+
+  await firestore.set(`users/${u.user.uid}`, {...newUser})
+}
+
+const handleRegister = (user) => async (dispatch, getState, {getFirebase, getFirestore}) => {
+  const firebase = getFirebase()
+  const firestore = getFirestore()
+  try {
+    await createUser(firebase, firestore, user)
+    dispatch(actionCloseModal())
+  } catch (error) {
+    errorMessage(error.message)
   }
 }
 
@@ -35,4 +68,5 @@ export {
   actionLogin,
   actionLogout,
   handleLogin,
+  handleRegister,
 }
