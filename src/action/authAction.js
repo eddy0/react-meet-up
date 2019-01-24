@@ -62,6 +62,20 @@ const handleRegister = (user) => async (dispatch, getState, {getFirebase, getFir
   }
 }
 
+
+const socialLogin = (provider) => async (dispatch, getState, {getFirebase}) => {
+  const firebase = getFirebase()
+  try {
+    dispatch(actionCloseModal())
+    await firebase.login({
+      provider: provider,
+      type: 'popup'
+    })
+  } catch (error) {
+
+  }
+}
+
 export {
   LOGIN_USER,
   SIGN_OUT_USER,
@@ -69,4 +83,5 @@ export {
   actionLogout,
   handleLogin,
   handleRegister,
+  socialLogin,
 }
