@@ -1,7 +1,8 @@
 import { actionCloseModal } from './modalAction'
 import { errorMessage } from '../utils/utils'
+import {  reset } from 'redux-form'
 import log from '../utils/utils'
-
+import {toastr} from 'react-redux-toastr'
 
 const LOGIN_USER = 'LOGIN_USER'
 const SIGN_OUT_USER = 'SIGN_OUT_USER'
@@ -82,6 +83,22 @@ const socialLogin = (provider) => async (dispatch, getState, {getFirebase, getFi
   }
 }
 
+
+const updatePassword = (creds) => async (dispatch, getState, {getFirebase, getFirestore}) => {
+  const firebase = getFirebase()
+  const firestore = getFirestore()
+  const currentUser = firebase.auth().currentUser
+  log('currentUser', currentUser)
+  try {
+    await currentUser.updatePassword(creds.newPassword1)
+    await dispatch(reset('account'))
+    toastr.success('Success', 'your passward has been updated')
+  } catch (error) {
+    log(error)
+    errorMessage(error.message)
+  }
+}
+
 export {
   LOGIN_USER,
   SIGN_OUT_USER,
@@ -90,4 +107,5 @@ export {
   handleLogin,
   handleRegister,
   socialLogin,
+  updatePassword,
 }

@@ -1,4 +1,4 @@
-import { SubmissionError } from 'redux-form'
+import { SubmissionError, reset } from 'redux-form'
 
 const log = console.log.bind(console)
 
@@ -8,7 +8,12 @@ const errorMessage = (message) => {
   })
 }
 
+const resetForm = (name) => {
+  reset(name)
+}
+
 export {
   log as default,
   errorMessage,
+  resetForm,
 }
