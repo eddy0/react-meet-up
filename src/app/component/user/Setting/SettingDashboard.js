@@ -34,7 +34,7 @@ class SettingDashboard extends Component {
 
 const mapStateToProps = (state) => {
   let providerId
-  if (state.firebase.auth.providerData) {
+  if (state.firebase.auth.isLoaded) {
     providerId = state.firebase.auth.providerData[0].providerId
   }
   return {
