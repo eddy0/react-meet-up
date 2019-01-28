@@ -7,21 +7,21 @@ import AboutPage from './AboutPage'
 import PhotoPage from './PhotoPage'
 import AccountPage from './AccountPage'
 import { connect } from 'react-redux'
-import { updatePassword } from '../../../../action/authAction'
+import { updatePassword, updateProfile } from '../../../../action/authAction'
 
 
 class SettingDashboard extends Component {
   render() {
-    const {providerId, updatePassword} = this.props
+    const {providerId, updatePassword, updateProfile, user} = this.props
     return (
       <Grid>
         <Grid.Column width={12}>
           <Switch>
             <Redirect exact from='/setting' to='/setting/basic' />
-            <Route exact path='/setting/basic' component={BasicPage} />
+            <Route exact path='/setting/basic' render={() => <BasicPage initialValues={user} updateProfile={updateProfile} />} />
             <Route exact path='/setting/account' render={() => <AccountPage updatePassword={updatePassword} providerId={providerId}/>} />
-            <Route exact path='/setting/about' component={AboutPage} />
-            <Route exact path='/setting/photos' component={PhotoPage} />
+            <Route exact path='/setting/about' render={() => <AboutPage updateProfile={updateProfile} initialValues={user}  />} />
+            <Route exact path='/setting/photos' render={() => <PhotoPage />} />
           </Switch>
         </Grid.Column>
         <Grid.Column width={4}>
@@ -39,12 +39,13 @@ const mapStateToProps = (state) => {
   }
   return {
     providerId: providerId,
-    user: state.firebase.auth
+    user: state.firebase.profile
   }
 }
 
 const actions = {
   updatePassword: updatePassword,
+  updateProfile: updateProfile,
 
 }
 

@@ -5,7 +5,7 @@ import { getFirebase, reactReduxFirebase } from 'react-redux-firebase'
 import firebase from '../config/firebase'
 
 const rrfConfig = {
-  useProfile: 'users',
+  userProfile: 'users',
   attachAuthIsReady: true,
   useFirestoreForProfile: true,
   updateProfileOnLogin: false,

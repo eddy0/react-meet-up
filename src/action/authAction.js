@@ -99,6 +99,23 @@ const updatePassword = (creds) => async (dispatch, getState, {getFirebase, getFi
   }
 }
 
+
+const updateProfile = (profile) => async (dispatch, getState, {getFirebase, getFirestore}) => {
+  const firebase = getFirebase()
+  const {isLoaded, isEmpty, ...user} = profile
+  if (user.dateOfBirth) {
+    // user.dateOfBirth = new Date(user.dateOfBirth)
+    log(user.dateOfBirth)
+  }
+  try {
+    await firebase.updateProfile(user)
+    toastr.success('Success', 'profile updated')
+  } catch (error) {
+    errorMessage(error.message)
+  }
+}
+
+
 export {
   LOGIN_USER,
   SIGN_OUT_USER,
@@ -108,4 +125,5 @@ export {
   handleRegister,
   socialLogin,
   updatePassword,
+  updateProfile,
 }
