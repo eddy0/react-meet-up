@@ -3,8 +3,6 @@ import { errorMessage } from '../utils/utils'
 import log from '../utils/utils'
 
 
-
-
 const LOGIN_USER = 'LOGIN_USER'
 const SIGN_OUT_USER = 'SIGN_OUT_USER'
 
@@ -63,14 +61,22 @@ const handleRegister = (user) => async (dispatch, getState, {getFirebase, getFir
 }
 
 
-const socialLogin = (provider) => async (dispatch, getState, {getFirebase}) => {
+const socialLogin = (provider) => async (dispatch, getState, {getFirebase, getFirestore}) => {
   const firebase = getFirebase()
+  const firestore = getFirestore()
   try {
     dispatch(actionCloseModal())
-    await firebase.login({
+    let u = await firebase.login({
       provider: provider,
       type: 'popup'
     })
+    if (u.additionalUserInfo.isNewUser) {
+      await firestore.set(`users/${u.user.uid}`, {
+        displayName: u.profile.displayName,
+        photoURL: u.profile.avatarUrl,
+        createAt: firestore.FieldValue.serverTimestamp(),
+      })
+    }
   } catch (error) {
 
   }
