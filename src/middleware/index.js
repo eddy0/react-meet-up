@@ -8,6 +8,7 @@ const rrfConfig = {
   useProfile: 'users',
   attachAuthIsReady: true,
   useFirestoreForProfile: true,
+  updateProfileOnLogin: false,
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

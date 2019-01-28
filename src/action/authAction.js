@@ -72,13 +72,13 @@ const socialLogin = (provider) => async (dispatch, getState, {getFirebase, getFi
     })
     if (u.additionalUserInfo.isNewUser) {
       await firestore.set(`users/${u.user.uid}`, {
-        displayName: u.profile.displayName,
-        photoURL: u.profile.avatarUrl,
+        displayName: u.user.displayName,
+        photoURL: u.user.photoURL,
         createAt: firestore.FieldValue.serverTimestamp(),
       })
     }
   } catch (error) {
-
+    log(error)
   }
 }
 
