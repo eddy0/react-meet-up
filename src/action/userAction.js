@@ -1,14 +1,16 @@
 import { toastr } from 'react-redux-toastr'
 import { actionLoadingEnd, actionLoadingStart } from './loadingAction'
 import log from '../utils/utils'
+import { generate } from '../utils/DATA'
 
 const uploadPhoto = (file, fileName) => async (dispatch, getState, {getFirebase, getFirestore}) => {
   let firebase = getFirebase()
   let firestore = getFirestore()
+  let imageName = generate() + '_' + fileName
   const user = await firebase.auth().currentUser
   const path = `${user.uid}/user_images`
   const options = {
-    name: fileName
+    name: imageName
   }
   try {
     dispatch(actionLoadingStart())
@@ -16,7 +18,6 @@ const uploadPhoto = (file, fileName) => async (dispatch, getState, {getFirebase,
     let downloadURL = await uploadedFile.uploadTaskSnapshot.ref.getDownloadURL()
     let userDoc = await firestore.get(`users/${user.uid}`)
     if (!userDoc.data().photoURL) {
-      log('user',user, firebase)
       await firebase.updateProfile({
         photoURL: downloadURL
       })
@@ -30,7 +31,7 @@ const uploadPhoto = (file, fileName) => async (dispatch, getState, {getFirebase,
       doc: user.uid,
       subcollections: [{collection: 'photos'}]
     }, {
-      name: fileName,
+      name: imageName,
       url: downloadURL,
     })
   } catch (error) {
@@ -43,7 +44,6 @@ const uploadPhoto = (file, fileName) => async (dispatch, getState, {getFirebase,
 
 const updateProfilePhoto = (url) => async (dispatch, getState, {getFirebase, getFirestore}) => {
   let firebase = getFirebase()
-
   try {
     dispatch(actionLoadingStart())
     await firebase.updateProfile({
@@ -62,8 +62,8 @@ const deletePhoto = (photo) => async (dispatch, getState, {getFirebase, getFires
   try {
     const user = await firebase.auth().currentUser
 
-    await firebase.deleteFile(`${user.uid}/userImages/${photo.name}`)
-    console.log('user', user, `${user.uid}/userImages/${photo.name}`)
+    await firebase.deleteFile(`${user.uid}/user_images/${photo.name}`)
+    console.log('user', user, `${user.uid}/user_images/${photo.name}`)
     await firestore.delete({
       collection: 'users',
       doc: user.uid,

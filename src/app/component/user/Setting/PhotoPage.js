@@ -35,7 +35,6 @@ class PhotoPage extends Component {
         this.state.fileName
       )
       this.cancelCrop()
-      toastr.success('Success', 'Photo has been uploaded')
     } catch (error) {
       toastr.error('Oops', error.message)
     }
@@ -96,7 +95,6 @@ class PhotoPage extends Component {
 
   render() {
     const {photos, profile, loading} = this.props
-    log(this.state)
     let filteredPhotos
     if (photos) {
       filteredPhotos = photos.filter(photo => {
@@ -203,7 +201,7 @@ class PhotoPage extends Component {
             <Card key={photo.id}>
               <Image src={photo.url}/>
               <div className="ui two buttons">
-                <Button loading={loading} onClick={this.handleSetMainPhoto(photo)} basic color="green">
+                <Button loading={loading} onClick={this.handleSetMainPhoto(photo.url)} basic color="green">
                   Main
                 </Button>
                 <Button onClick={this.handlePhotoDelete(photo)} basic icon="trash" color="red"/>
