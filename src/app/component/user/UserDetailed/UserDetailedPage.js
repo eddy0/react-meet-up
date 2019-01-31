@@ -35,9 +35,9 @@ class UserDetailedPage extends Component {
     const loading = requesting[`users/${match.params.id}`]
     const isFollowing = !isEmpty(following)
 
-    if (loading) {
-      return <LoadingComponent inverted={true}/>
-    }
+    // if (loading) {
+    //   return <LoadingComponent inverted={true}/>
+    // }
 
     return (
       <Grid>
@@ -71,7 +71,7 @@ const mapState = (state, ownProps) => {
     profile,
     userUid,
     events: state.events,
-    eventsLoading: state.async.loading,
+    eventsLoading: state.loading,
     auth: state.firebase.auth,
     photos: state.firestore.ordered.photos,
     requesting: state.firestore.status.requesting,

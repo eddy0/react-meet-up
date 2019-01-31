@@ -12,6 +12,7 @@ import ModalHoc from '../component/common/modal/ModalHOC'
 import TestComponent from './TestComponent'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import ReduxToastr from 'react-redux-toastr'
+import UserDetailedPage from '../component/user/UserDetailed/UserDetailedPage'
 
 
 class App extends Component {
@@ -30,7 +31,7 @@ class App extends Component {
               <Route exact={true} path="/event/new" component={EventForm}/>
               <Route exact={true} path="/event/:id" component={EventDetailedPage}/>
               <Route exact={true} path="/manage/:id" component={EventForm}/>
-              <Route exact={true} path="/profile/:id" component={PeopleDashboard}/>
+              <Route exact={true} path="/profile/:id" component={UserDetailedPage}/>
               <Route path="/setting" component={SettingDashboard}/>
               <Route path="/test" component={TestComponent}/>
               <Route component={NotFound}/>

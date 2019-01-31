@@ -15,15 +15,15 @@ class PeopleDashboard extends Component {
           <Segment>
             <Header dividing content="People following me"/>
             <Card.Group itemsPerRow={8} stackable>
-              {followers && followers.map(follower => <PersonCard key={follower.id} user={follower}/>)}
               personal card
+              {followers && followers.map(follower => <PersonCard key={follower.id} user={follower}/>)}
             </Card.Group>
           </Segment>
           <Segment>
             <Header dividing content="People I'm following"/>
             <Card.Group itemsPerRow={8} stackable>
-              {followers && followings.map(following => <PersonCard key={following.id} user={following} />)}
               personal card
+              {followers && followings.map(following => <PersonCard key={following.id} user={following} />)}
             </Card.Group>
           </Segment>
         </Grid.Column>
