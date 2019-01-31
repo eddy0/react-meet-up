@@ -137,7 +137,7 @@ const followUser = userToFollow => async (dispatch, getState, { getFirestore }) 
   }
 };
 
-export const unfollowUser = userToUnfollow => async (dispatch, getState, { getFirestore }) => {
+const unfollowUser = userToUnfollow => async (dispatch, getState, { getFirestore }) => {
   const firestore = getFirestore();
   const user = firestore.auth().currentUser;
   try {
