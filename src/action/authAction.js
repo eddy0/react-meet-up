@@ -1,8 +1,8 @@
 import { actionCloseModal } from './modalAction'
 import { errorMessage } from '../utils/utils'
-import {  reset } from 'redux-form'
-import log from '../utils/utils'
-import {toastr} from 'react-redux-toastr'
+import { reset } from 'redux-form'
+import { log } from '../utils/utils'
+import { toastr } from 'react-redux-toastr'
 
 const LOGIN_USER = 'LOGIN_USER'
 const SIGN_OUT_USER = 'SIGN_OUT_USER'

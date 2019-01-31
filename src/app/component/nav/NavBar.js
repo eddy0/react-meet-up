@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { actionOpenModal } from '../../../action/modalAction'
 import { actionLogout } from '../../../action/authAction'
 import { withFirebase } from 'react-redux-firebase'
-import log from '../../../utils/utils'
+import { log } from '../../../utils/utils'
 
 class NavBar extends Component {
   state = {

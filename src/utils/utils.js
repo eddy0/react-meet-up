@@ -13,7 +13,7 @@ const resetForm = (name) => {
 }
 
 export {
-  log as default,
+  log,
   errorMessage,
   resetForm,
 }

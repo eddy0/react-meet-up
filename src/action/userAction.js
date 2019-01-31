@@ -115,41 +115,41 @@ const getUserEvents = (userId, activeTab) => async (dispatch, getState, {getFire
 }
 
 
-const followUser = userToFollow => async (dispatch, getState, { getFirestore }) => {
-  const firestore = getFirestore();
-  const user = firestore.auth().currentUser;
+const followUser = userToFollow => async (dispatch, getState, {getFirestore}) => {
+  const firestore = getFirestore()
+  const user = firestore.auth().currentUser
   const following = {
     photoURL: userToFollow.photoURL || '/assets/user.png',
     city: userToFollow.city || 'unknown city',
     displayName: userToFollow.displayName
-  };
+  }
   try {
     await firestore.set(
       {
         collection: 'users',
         doc: user.uid,
-        subcollections: [{ collection: 'following', doc: userToFollow.id }]
+        subcollections: [{collection: 'following', doc: userToFollow.id}]
       },
       following
-    );
+    )
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
-const unfollowUser = userToUnfollow => async (dispatch, getState, { getFirestore }) => {
-  const firestore = getFirestore();
-  const user = firestore.auth().currentUser;
+const unfollowUser = userToUnfollow => async (dispatch, getState, {getFirestore}) => {
+  const firestore = getFirestore()
+  const user = firestore.auth().currentUser
   try {
     await firestore.delete({
       collection: 'users',
       doc: user.uid,
-      subcollections: [{ collection: 'following', doc: userToUnfollow.id }]
-    });
+      subcollections: [{collection: 'following', doc: userToUnfollow.id}]
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
 
 export {
