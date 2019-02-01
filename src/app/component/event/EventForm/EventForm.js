@@ -4,13 +4,14 @@ import TextInput from '../../common/form/TextInput'
 import { Field, reduxForm } from 'redux-form'
 import TextArea from '../../common/form/TextArea'
 import SelectInput from '../../common/form/SelectInput'
-import { handleCreateEvent, handleUpdateEvent } from '../../../../action/eventAction'
+import { createEvent, handleUpdateEvent } from '../../../../action/eventAction'
 import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'
 import DateInput from '../../common/form/DateInput'
 import { generate } from '../../../../utils/DATA'
 import PlaceInput from '../../common/form/PlaceInput'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Script from 'react-load-script'
+import { log } from '../../../../utils/utils'
 
 
 const category = [
@@ -57,16 +58,16 @@ class EventForm extends React.Component {
   onFormSubmit = (form) => {
     console.log('form', form)
     let f
-    if (this.props.event !== null) {
+    if (this.props.event && Object.keys(this.props.event).length > 0) {
       f = {...this.props.event, ...form}
       this.props.editEvent(f, () => {
         this.props.history.goBack()
       })
     } else {
-      f = createNewEvent(form)
-      this.props.createEvent(f, () => {
-        this.props.history.push('/events')
-      })
+      // f = createNewEvent(form)
+      log('create new event')
+      this.props.createEvent(form)
+      this.props.history.push('/events')
     }
   }
 
@@ -199,7 +200,7 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapActionsToProps = {
-  createEvent: handleCreateEvent,
+  createEvent: createEvent,
   editEvent: handleUpdateEvent,
 }
 

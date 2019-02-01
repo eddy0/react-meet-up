@@ -1,33 +1,37 @@
-import React from 'react'
+import React, {Component} from 'react'
 import EventDetailedHeader from './EventDetailedHeader'
 import EventDetailedInfo from './EventDetailedInfo'
 import EventDetailedChat from './EventDetailedChat'
 import EventDetailedMap from './EventDetailedMap'
 import EventDetailedSidebar from './EventDetailedSidebar'
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import {Grid} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
+import { firebaseConnect, withFirestore } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 
-const EventDetailedPage = (props) => {
-  if (!props.event) {
-    return <Redirect to={'/events'} />
+class EventDetailedPage extends Component {
+  render() {
+
+    if (!this.props.event) {
+      return <Redirect to={'/events'}/>
+    }
+    const event = this.props.event
+    return (
+      <Grid>
+        <Grid.Column width={10}>
+          <EventDetailedHeader event={event}/>
+          <EventDetailedInfo event={event}/>
+          <EventDetailedChat/>
+        </Grid.Column>
+        <Grid.Column width={4}>
+          <EventDetailedSidebar attendees={event.attendees}/>
+        </Grid.Column>
+      </Grid>
+    )
   }
-  const event = props.event
-  return (
-    <Grid>
-      <Grid.Column width={10}>
-        <EventDetailedHeader event={event} />
-        <EventDetailedInfo event={event} />
-        <EventDetailedChat />
-      </Grid.Column>
-      <Grid.Column width={4}>
-        <EventDetailedSidebar attendees={event.attendees} />
-      </Grid.Column>
-    </Grid>
-  )
 }
-
 
 const mapStateToProps = (state, props) => {
   const id = props.match.params.id
@@ -37,4 +41,16 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-export default connect(mapStateToProps)(EventDetailedPage)
+const actions = {}
+
+const query = (props) => {
+  if (props.auth.isLoaded && !props.auth.isEmpty) {
+    return [`event_chat/${props.match.params.id}`]
+  }
+}
+
+export default compose(
+  withFirestore,
+  connect(mapStateToProps, actions),
+  firebaseConnect((props => query(props))),
+)(EventDetailedPage)

@@ -1,6 +1,7 @@
 import { fetchEvent } from '../utils/DATA'
 import { actionLoadingEnd, actionLoadingStart } from './loadingAction'
-import {toastr} from 'react-redux-toastr'
+import { toastr } from 'react-redux-toastr'
+import { log } from '../utils/utils'
 
 
 const FETCH_EVENT = 'FETCH_EVENT'
@@ -70,6 +71,50 @@ const handleUpdateEvent = (event, cb) => {
   }
 }
 
+const createNewEvent = (user, photoURL, event) => {
+  photoURL = photoURL || 'assets/user.png'
+  return {
+    ...event,
+    date: new Date(event.date),
+    hostUid: user.uid,
+    hostPhotoURL: photoURL,
+    createdAt: Date.now(),
+    hostedBy: user.displayName,
+    attendees: {
+      [user.uid]: {
+        going: true,
+        joinDate: Date.now(),
+        photoURL: photoURL,
+        host: true,
+        displayName: user.displayName,
+      }
+    }
+
+  }
+}
+
+const createEvent = (event) => async (dispatch, getState, {getFirebase, getFirestore}) => {
+  const firestore = getFirestore()
+  const firebase = getFirebase()
+  const currentUser = firebase.auth().currentUser
+  log(currentUser)
+  const photoURL = getState().firebase.profile.photoURL
+  const e = createNewEvent(currentUser, photoURL, event)
+  try {
+    let newEvent = await firestore.add(`events`, e)
+    toastr.success('success', 'event has been updated')
+    log(newEvent, currentUser)
+    await firestore.set(`event_attendee/${newEvent.id}_${currentUser.uid}`, {
+      eventId: newEvent.id,
+      userId: currentUser.uid,
+      eventDate: new Date(event.date),
+      host: true,
+    })
+  } catch (error) {
+    log(error)
+  }
+}
+
 export {
   CREATE_EVENT,
   FETCH_EVENT,
@@ -77,6 +122,7 @@ export {
   UPDATE_EVENT,
   handleFetchEvent,
   actionCreateEvent,
+  createEvent,
   actionDeleteEvent,
   actionUpdateEvent,
   handleCreateEvent,
