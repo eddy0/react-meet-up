@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import EventDetailedHeader from './EventDetailedHeader'
 import EventDetailedInfo from './EventDetailedInfo'
 import EventDetailedChat from './EventDetailedChat'
@@ -9,10 +9,32 @@ import { Redirect } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import { firebaseConnect, withFirestore } from 'react-redux-firebase'
 import { compose } from 'redux'
-
+import { log } from '../../../../utils/utils'
+import { toastr } from 'react-redux-toastr'
 
 class EventDetailedPage extends Component {
+
+  async componentDidMount() {
+    const {firestore, match} = this.props
+    let event = await firestore.get(`events/${match.params.id}`)
+    if (!event.exists) {
+      toastr.error('Not found', 'This is not the event you are looking for')
+      this.props.history.push('/error')
+    }
+    await firestore.setListener(`events/${match.params.id}`)
+    this.setState({
+      initialLoading: false
+    })
+  }
+
+  async componentWillUnmount() {
+    const {firestore, match} = this.props
+    await firestore.unsetListener(`events/${match.params.id}`)
+  }
+
+
   render() {
+    log(this.props)
 
     if (!this.props.event) {
       return <Redirect to={'/events'}/>
@@ -34,10 +56,15 @@ class EventDetailedPage extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  const id = props.match.params.id
-  let event = state.events.filter((event) => event.id === id)[0]
+  let event = {}
+  if (state.firestore.ordered.events && state.firestore.ordered.events[0]) {
+    event = state.firestore.ordered.events[0]
+  }
   return {
-    event: event
+    event: event,
+    requesting: state.firestore.status.requesting,
+    loading: state.loading,
+    auth: state.firebase.auth,
   }
 }
 

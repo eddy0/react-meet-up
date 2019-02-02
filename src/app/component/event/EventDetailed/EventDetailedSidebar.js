@@ -1,6 +1,7 @@
 import React from 'react';
 import { Segment, List, Label, Item } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'
+import { log } from '../../../../utils/utils'
 
 const EventDetailedSidebar = ({ attendees }) => {
   return (
@@ -18,7 +19,7 @@ const EventDetailedSidebar = ({ attendees }) => {
       <Segment attached>
         <List relaxed divided>
           {attendees &&
-            attendees.map(attendee => (
+            Object.keys(attendees).map(attendee => (
               <Item key={attendee.id} style={{ position: 'relative' }}>
                 {attendee.host &&
                 <Label
