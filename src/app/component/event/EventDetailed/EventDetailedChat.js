@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Segment, Header, Comment } from 'semantic-ui-react'
-import EventDetailedChatForm from './EventDetailedChatForm'
 import { Link } from 'react-router-dom'
 import distanceInWords from 'date-fns/distance_in_words'
+import EventDetailedChatForm from './EventDetailedChatForm'
 
 class EventDetailedChat extends Component {
   state = {
