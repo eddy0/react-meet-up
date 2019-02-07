@@ -9,10 +9,11 @@ import { Redirect } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import { firebaseConnect, withFirestore } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { log } from '../../../../utils/utils'
+import { log, objectToArray } from '../../../../utils/utils'
 import { toastr } from 'react-redux-toastr'
 
 class EventDetailedPage extends Component {
+
 
   async componentDidMount() {
     const {firestore, match} = this.props
@@ -27,6 +28,7 @@ class EventDetailedPage extends Component {
     })
   }
 
+
   async componentWillUnmount() {
     const {firestore, match} = this.props
     await firestore.unsetListener(`events/${match.params.id}`)
@@ -34,12 +36,14 @@ class EventDetailedPage extends Component {
 
 
   render() {
-    log(this.props)
+    // log(this.props)
 
     if (!this.props.event) {
       return <Redirect to={'/events'}/>
     }
     const event = this.props.event
+    const attendees = event && event.attendees && objectToArray(event.attendees)
+    log(attendees)
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -48,7 +52,7 @@ class EventDetailedPage extends Component {
           <EventDetailedChat/>
         </Grid.Column>
         <Grid.Column width={4}>
-          <EventDetailedSidebar attendees={event.attendees}/>
+          <EventDetailedSidebar attendees={attendees}/>
         </Grid.Column>
       </Grid>
     )
