@@ -63,11 +63,18 @@ const handleCreateEvent = (event, cb) => {
 
 
 const handleUpdateEvent = (event, cb) => {
-  return async (dispatch) => {
-    dispatch(actionLoadingStart())
-    await dispatch(actionUpdateEvent(event))
-    dispatch(actionLoadingEnd())
-    cb()
+  return async (dispatch, getState, {getFirestore}) => {
+    const firestore = getFirestore()
+    try {
+      dispatch(actionLoadingStart())
+      // await dispatch(actionUpdateEvent(event))
+      await firestore.update(`events/${event.id}`, event)
+      toastr.success('success', 'fetch event success')
+      dispatch(actionLoadingEnd())
+      cb()
+    } catch (error) {
+
+    }
   }
 }
 

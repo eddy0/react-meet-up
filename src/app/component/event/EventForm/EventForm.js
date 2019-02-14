@@ -12,6 +12,7 @@ import PlaceInput from '../../common/form/PlaceInput'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Script from 'react-load-script'
 import { log } from '../../../../utils/utils'
+import { withFirestore } from 'react-redux-firebase'
 
 
 const category = [
@@ -52,11 +53,24 @@ class EventForm extends React.Component {
     scriptLoaded: false
   }
 
+  async componentDidMount() {
+    const {firestore, match} = this.props
+    if (match.params.id) {
+      await firestore.setListener(`events/${match.params.id}`)
+    }
+  }
+
+  async componentWillUnmount() {
+    const {firestore, match} = this.props
+    if (match.params.id) {
+      await firestore.unsetListener(`events/${match.params.id}`)
+    }
+  }
+
   handleScriptLoaded = () => this.setState({scriptLoaded: true})
 
 
   onFormSubmit = (form) => {
-    console.log('form', form)
     let f
     if (this.props.event && Object.keys(this.props.event).length > 0) {
       f = {...this.props.event, ...form}
@@ -94,7 +108,7 @@ class EventForm extends React.Component {
 
   render() {
     const event = this.props.initialValues
-    console.log(event)
+    console.log(event, this.props)
     const id = this.props.id
     const {loading, invalid, submitting, pristine} = this.props
     return (
@@ -189,8 +203,8 @@ class EventForm extends React.Component {
 const mapStateToProps = (state, props) => {
   const id = props.match.params.id
   let event = {}
-  if (id && state.events.length > 0) {
-    event = state.events.filter((event) => event.id === id)[0]
+  if (id && state.firestore.ordered.events && state.firestore.ordered.events[0]) {
+    event = state.firestore.ordered.events[0]
   }
   return {
     initialValues: event,
@@ -204,7 +218,7 @@ const mapActionsToProps = {
   editEvent: handleUpdateEvent,
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(reduxForm({
-  enableReinitialize: true,
-  form: 'eventForm'
-})(EventForm))
+export default withFirestore(
+  connect(mapStateToProps, mapActionsToProps)(
+    reduxForm({enableReinitialize: true, form: 'eventForm'})(EventForm)
+  ))

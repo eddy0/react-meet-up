@@ -4,6 +4,9 @@ import 'flatpickr/dist/themes/material_green.css'
 import Flatpickr from 'react-flatpickr'
 
 const DateInput = ({input, type, placeholder, enableTime=true, meta: {touched, error}}) => {
+  if (input.value && typeof input.value === 'object') {
+    input.value = input.value.toDate()
+  }
   return (
     <Form.Field error={touched && !!error}>
       <Flatpickr data-enable-time={enableTime}
