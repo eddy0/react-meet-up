@@ -1,8 +1,8 @@
 import React from 'react'
-import {Segment, Icon} from 'semantic-ui-react'
+import { Segment, Icon } from 'semantic-ui-react'
 import GoogleMapReact from 'google-map-react'
 
-const Marker = () => <Icon name="marker" size="big" color="red" />
+const Marker = () => <Icon name="marker" size="big" color="red"/>
 
 const EventDetailedMap = ({lat, lng}) => {
   const center = [lat, lng]
@@ -15,7 +15,7 @@ const EventDetailedMap = ({lat, lng}) => {
           defaultCenter={center}
           defaultZoom={zoom}
         >
-          <Marker lat={lat} lng={lng} />
+          <Marker lat={lat} lng={lng}/>
         </GoogleMapReact>
       </div>
     </Segment>

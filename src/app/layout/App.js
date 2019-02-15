@@ -20,9 +20,9 @@ class App extends Component {
     return (
       <Router>
         <>
+          <ReduxToastr position='bottom-right' progressBar={true}/>
           <LoadingComponent/>
           <ModalHoc/>
-          <ReduxToastr position='bottom-right' progressBar={true}/>
           <NavBar/>
           <div style={{paddingTop: 85}}>
             <Switch>

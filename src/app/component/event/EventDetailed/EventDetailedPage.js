@@ -2,18 +2,17 @@ import React, { Component } from 'react'
 import EventDetailedHeader from './EventDetailedHeader'
 import EventDetailedInfo from './EventDetailedInfo'
 import EventDetailedChat from './EventDetailedChat'
-import EventDetailedMap from './EventDetailedMap'
 import EventDetailedSidebar from './EventDetailedSidebar'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import { firebaseConnect, withFirestore } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { log, objectToArray } from '../../../../utils/utils'
+import { objectToArray } from '../../../../utils/utils'
 import { toastr } from 'react-redux-toastr'
 
-class EventDetailedPage extends Component {
 
+class EventDetailedPage extends Component {
 
   async componentDidMount() {
     const {firestore, match} = this.props
@@ -36,14 +35,12 @@ class EventDetailedPage extends Component {
 
 
   render() {
-    // log(this.props)
-
     if (!this.props.event) {
       return <Redirect to={'/events'}/>
     }
     const event = this.props.event
     const attendees = event && event.attendees && objectToArray(event.attendees)
-    log(attendees)
+
     return (
       <Grid>
         <Grid.Column width={10}>

@@ -6,6 +6,8 @@ import { createStore } from 'redux'
 import middleware from './middleware'
 import reducer from './reducer'
 import { Provider } from 'react-redux'
+import 'antd/dist/antd.css'
+
 
 const store = createStore(reducer, middleware)
 

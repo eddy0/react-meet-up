@@ -9,11 +9,13 @@ class EventDetailedInfo extends React.Component {
     showMap: false
   }
 
+
   componentWillUnmount() {
     this.setState({
       showMap: false
     })
   }
+
 
   toggleMap = () => {
     this.setState((prevState) => {

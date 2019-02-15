@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { Button, Header, Image, Item, Label, Segment } from 'semantic-ui-react'
 import format from 'date-fns/format'
 
+
 const eventImageStyle = {
   filter: 'brightness(30%)'
 }
+
 
 const eventImageTextStyle = {
   position: 'absolute',
@@ -15,6 +17,7 @@ const eventImageTextStyle = {
   height: 'auto',
   color: 'white'
 }
+
 
 const EventDetailedHeader = ({event}) => {
   return (
@@ -43,7 +46,6 @@ const EventDetailedHeader = ({event}) => {
           </Item.Group>
         </Segment>
       </Segment>
-
       <Segment attached="bottom">
         <Button
           as={Link}
@@ -52,8 +54,6 @@ const EventDetailedHeader = ({event}) => {
         >
           Manage Event
         </Button>
-
-
       </Segment>
 
     </Segment.Group>

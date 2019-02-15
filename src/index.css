@@ -54,7 +54,8 @@ body {
   background-color: rgb(234, 234, 234) !important;
 }
 
-/*timepicker style*/
+/* timepicker style*/
+
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
   padding-left: 0;
   padding-right: 0;
@@ -113,7 +114,7 @@ body {
 
 /*end home page styles*/
 
-/* navbar styles */
+ /*navbar styles */
 
 .ui.menu .item img.logo {
   margin-right: 1.5em;

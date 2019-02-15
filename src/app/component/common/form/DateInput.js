@@ -1,25 +1,36 @@
-import React from 'react'
-import { Form, Label } from 'semantic-ui-react'
-import 'flatpickr/dist/themes/material_green.css'
-import Flatpickr from 'react-flatpickr'
+import React, { Component } from 'react'
+import { DatePicker } from 'antd'
+import { Form, Label, Icon } from 'semantic-ui-react'
+import moment from 'moment'
 
-const DateInput = ({input, type, placeholder, enableTime=true, meta: {touched, error}}) => {
-  if (input.value && typeof input.value === 'object') {
-    input.value = input.value.toDate()
+
+class DateInput extends Component {
+  render() {
+    let {input: {value, onChange, onBlur, ...restInput}, label, required, meta: {touched, error, warning}, ...rest} = this.props
+    if (value) {
+      value = moment(value)
+    }
+    return (
+      <Form.Field required={required}>
+        <label>{label}</label>
+        <DatePicker
+          value={value ? value : null}
+          onChange={onChange}
+          {...rest}
+        />
+        {
+          touched &&
+          ((error && <Label color='red' pointing='left'>{error}</Label>) ||
+            (warning && <Label color='orange' pointing='left'>{warning}</Label>))
+        }
+        {
+          touched && !error && !warning &&
+          <Icon name='check circle' color='green'/>
+        }
+      </Form.Field>
+    )
   }
-  return (
-    <Form.Field error={touched && !!error}>
-      <Flatpickr data-enable-time={enableTime}
-                 value={input.value || ''}
-                 onChange={(e, data) => {
-                   input.onChange(data)
-                 }}
-                 placeholder={placeholder}
-      />
-      {touched && error && <Label basic color='red'>{error}</Label>}
-    </Form.Field>
-  )
+
 }
 
 export default DateInput
-

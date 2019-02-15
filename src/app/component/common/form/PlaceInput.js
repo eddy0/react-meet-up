@@ -1,96 +1,85 @@
-import React, { Component } from 'react'
-import { Form, Label } from 'semantic-ui-react'
-import Script from 'react-load-script'
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete'
+import React, {Component, Fragment} from 'react'
+import {Form, Icon, Label} from 'semantic-ui-react'
 
-const styles = {
-  autocompleteContainer: {
-    zIndex: 1000
-  }
-}
 
 class PlaceInput extends Component {
-  state = {
-    scriptLoaded: false
-  }
+    componentWillMount() {
+        let url=`https://maps.googleapis.com/maps/api/js?key=AIzaSyAYVHNqmifVNgbn_Rzm1SLViGST1YOlfFg&libraries=places&language=en`
+        this.tag = document.createElement('script');
+        this.tag.src = url
+        this.tag.onload = this.initAutocomplete
+        document.body.appendChild(this.tag)
+    }
 
-  handleScriptLoaded = () => this.setState({scriptLoaded: true})
 
-  render() {
-    const {
-      input,
-      width,
-      onSelect,
-      placeholder,
-      options,
-      meta: {touched, error}
-    } = this.props
-    return (
-      <Form.Field error={touched && !!error} width={width}>
-        <Script
-          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYVHNqmifVNgbn_Rzm1SLViGST1YOlfFg&libraries=places&language=en"
-          onLoad={this.handleScriptLoaded}
-        />
-        {this.state.scriptLoaded &&
-        <PlacesAutocomplete
-          value={input.value || ''}
-          options={options}
-          onSelect={onSelect}
-          debounce={1000}
-          searchOptions={options}
-          onChange={(address) => {
-            input.onChange(address)
-          }}
-        >
-          {(props) => {
-            const {getInputProps, suggestions, getSuggestionItemProps, loading} = props
-            return (<div>
-                <input
-                  {...getInputProps({
-                    placeholder: placeholder,
-                    className: 'location-search-input',
-                  })}
-                />
-                <div className="autocomplete-dropdown-container" style={{position: 'absolute', width: '100%', boxSizing: 'border-box',borderRadius: '2px', boxShadow: '0 3px 5px rgba(0,0,0,0.3) ' }}>
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map(suggestion => {
-                    const className = suggestion.active
-                      ? 'suggestion-item--active'
-                      : 'suggestion-item'
-                    // inline style for demonstration purpose
-                    const style = suggestion.active
-                      ? {backgroundColor: '#f3f3f3', cursor: 'pointer', boxShadow: '0 3px 5px rgba(0,0,0,0.3)'}
-                      : {backgroundColor: '#ffffff', cursor: 'pointer'}
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                        })}
-                        style={Object.assign(style,{padding: '0.5rem'})}
-                      >
-                        <span>{suggestion.description}</span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )
-          }
-          }
-        </PlacesAutocomplete>
+    componentWillUnmount() {
+        document.body.removeChild(this.tag)
+        window.google.maps.event.clearListeners(this.autocomplete);
+    }
+
+
+    initAutocomplete = () => {
+        this.autocomplete = new window.google.maps.places.Autocomplete(
+            (this.input),
+            {types: ['geocode']})
+        this.autocomplete.addListener('place_changed', this.fillInAddress)
+    }
+
+
+    fillInAddress = () => {
+        var place = this.autocomplete.getPlace()
+        let address = place.formatted_address
+        let lat = place.geometry.location.lat()
+        let lng = place.geometry.location.lng()
+
+        this.props.input.onChange(address)
+
+        if (this.props.input.name === 'address' && this.props.input.value.length > 3) {
+            this.props.checkChange({lat: lat, lng: lng})
         }
-        {touched &&
-        error && (
-          <Label basic color="red">
-            {error}
-          </Label>
-        )}
-      </Form.Field>
-    )
-  }
+    }
+
+
+    geolocate = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                var geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                }
+                var circle = new window.google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy,
+                })
+                this.autocomplete.setBounds(circle.getBounds())
+            })
+        }
+    }
+
+    render() {
+        const {input, width, label, type, placeholder, meta: {touched, error, warning}} = this.props
+        return (
+            <Fragment>
+                <Form.Field error={touched && !!error} width={width}>
+                    <label>{label}</label>
+                    <input
+                        ref={(input) => this.input = input}
+                        {...input}
+                        placeholder={placeholder}
+                        type={type}
+                        onFocus={this.geolocate}
+                        autoComplete="off"
+                    />
+                    {
+                        touched &&
+                        ( (error && <Label color='red' pointing='left'>{error}</Label>) ||
+                            (warning && <Label color='orange' pointing='left'>{warning}</Label>))
+                    }
+                </Form.Field>
+            </Fragment>
+        )
+    }
 }
+
 
 export default PlaceInput

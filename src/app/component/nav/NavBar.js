@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, NavLink, withRouter } from 'react-router-dom'
 import SignedInMenu from './SignedInMenu'
 import SignedOutMenu from './SignedOutMenu'
-import { Button, Container, Menu } from 'semantic-ui-react'
+import { Button, Container, Image, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { actionOpenModal } from '../../../action/modalAction'
 import { actionLogout } from '../../../action/authAction'
@@ -31,10 +31,11 @@ class NavBar extends Component {
     const {auth, profile} = this.props
     const authenticated = auth.isLoaded && !auth.isEmpty
     return (
-      <Menu inverted fixed="top">
+      <Menu fixed='top' inverted borderless
+            style={{background: 'lightcoral', boxShadow: '0 0.5rem 1rem rgba(0,0,0,0.3)', borderRadius: 0}}>
         <Container>
           <Menu.Item as={Link} to="/" header>
-            <img src="/assets/logo.png" alt="logo"/>
+            <Image src="/assets/logo.png" alt="logo" size='mini'/>
             Re-vents
           </Menu.Item>
           <Menu.Item as={NavLink} to="/events" name="Events"/>

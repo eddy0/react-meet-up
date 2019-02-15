@@ -1,17 +1,25 @@
 import React from 'react'
-import { Form, Label } from 'semantic-ui-react'
+import {Form, Icon, Label} from 'semantic-ui-react'
 
 
-const TextArea = ({input, rows, width, type, placeholder, meta: {touched, error}}) => {
-  return (
-    <Form.Field error={touched && !!error} width={width}>
-      <textarea {...input}
-                placeholder={placeholder}
-                rows={rows}/>
-      {touched && error && <Label basic color='red'>{error}</Label>}
-    </Form.Field>
-  )
+export default function TextArea(props) {
+    const {input, rows, type, placeholder, label,  required, meta: { touched, error, warning }} = props
+
+    return (
+        <Form.Field required={required} error={touched && !!error}>
+            <label>{label}</label>
+            <textarea {...input} placeholder={placeholder} rows={rows} />
+            {
+                required && touched &&
+                ( (error && <Label color='red' pointing='left'>{error}</Label>) ||
+                    (warning && <Label color='orange' pointing='left'>{warning}</Label>))
+            }
+            {
+                required && touched && !error && !warning &&
+                <Icon name='check circle' color='green'/>
+            }
+        </Form.Field>
+    )
+
 }
 
-
-export default TextArea

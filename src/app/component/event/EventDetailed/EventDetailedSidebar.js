@@ -1,7 +1,7 @@
 import React from 'react';
 import { Segment, List, Label, Item } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'
-import { log } from '../../../../utils/utils'
+
 
 const EventDetailedSidebar = ({ attendees }) => {
   return (
