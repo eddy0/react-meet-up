@@ -118,28 +118,29 @@ class EventForm extends Component {
               <Field
                 name="date"
                 type='text'
+                showTime={true}
                 label="please enter the date of the event"
                 component={DateInput}
                 onFocus={e => e.preventDefault()}
                 onBlur={e => e.preventDefault()}
                 required={true}
               />
-              <Field
-                name="timeStart"
-                type="text"
-                label="Start time"
-                component={TimeInput}
-                placeholder="from"
-                required={true}
-              />
-              <Field
-                name="timeEnd"
-                type="text"
-                label="End time"
-                component={TimeInput}
-                placeholder="to"
-                required={true}
-              />
+              {/*<Field*/}
+                {/*name="timeStart"*/}
+                {/*type="text"*/}
+                {/*label="Start time"*/}
+                {/*component={TimeInput}*/}
+                {/*placeholder="from"*/}
+                {/*required={true}*/}
+              {/*/>*/}
+              {/*<Field*/}
+                {/*name="timeEnd"*/}
+                {/*type="text"*/}
+                {/*label="End time"*/}
+                {/*component={TimeInput}*/}
+                {/*placeholder="to"*/}
+                {/*required={true}*/}
+              {/*/>*/}
               <Header as='h4' dividing>
                 About Address
               </Header>

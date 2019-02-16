@@ -6,6 +6,10 @@ import format from 'date-fns/format'
 
 function EventListItem(props) {
   const event = props.event
+  if (event.date) {
+    console.log(event.date)
+    event.date = event.date.toDate()
+  }
   return (
     <Segment.Group>
         <Segment>
@@ -25,7 +29,7 @@ function EventListItem(props) {
         </Segment>
         <Segment>
           <span>
-            <Icon name="clock" /> {format(event.date.toDate(), 'dddd Do MMMM')} at {format(event.date.toDate(), 'HH:mm')}|
+            <Icon name="clock" /> {format(event.date, 'dddd Do MMMM')} at {format(event.date, 'HH:mm')}|
             <Icon name="marker" /> {event.venue}
           </span>
         </Segment>

@@ -7,7 +7,7 @@ import moment from 'moment'
 class DateInput extends Component {
   render() {
     let {input: {value, onChange, onBlur, ...restInput}, label, required, meta: {touched, error, warning}, ...rest} = this.props
-    if (value) {
+    if (value && typeof value === 'object') {
       value = moment(value)
     }
     return (
