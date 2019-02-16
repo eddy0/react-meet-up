@@ -7,6 +7,7 @@ import { toastr } from 'react-redux-toastr'
 const LOGIN_USER = 'LOGIN_USER'
 const SIGN_OUT_USER = 'SIGN_OUT_USER'
 
+
 const actionLogin = (auth) => {
   return {
     type: LOGIN_USER,
@@ -21,6 +22,7 @@ const actionLogout = () => {
   }
 }
 
+
 const handleLogin = (auth) => async (dispatch, getState, {getFirebase, getFireStore}) => {
   const firebase = getFirebase()
   try {
@@ -30,6 +32,7 @@ const handleLogin = (auth) => async (dispatch, getState, {getFirebase, getFireSt
     errorMessage(error.message)
   }
 }
+
 
 const createUser = async (firebase, firestore, user) => {
   // create user in auth
@@ -49,6 +52,7 @@ const createUser = async (firebase, firestore, user) => {
 
   await firestore.set(`users/${u.user.uid}`, {...newUser})
 }
+
 
 const handleRegister = (user) => async (dispatch, getState, {getFirebase, getFirestore}) => {
   const firebase = getFirebase()
