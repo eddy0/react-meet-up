@@ -44,18 +44,23 @@ class EventForm extends Component {
 
   async componentDidMount() {
     const {firestore, match} = this.props
-    await firestore.setListener(`events/${match.params.id}`)
+    if (match.params.id) {
+      await firestore.setListener(`events/${match.params.id}`)
+    }
   }
 
   async componentWillUnmount() {
     const {firestore, match} = this.props
-    await firestore.unsetListener(`events/${match.params.id}`)
+    if (match.params.id) {
+      await firestore.unsetListener(`events/${match.params.id}`)
+    }
   }
 
   handleScriptLoaded = () => this.setState({scriptLoaded: true})
 
 
   onFormSubmit = values => {
+    console.log('values', values)
     values.venueLatLng = this.state.venueLatLng
     if (this.props.initialValues.id) {
       if (Object.keys(values.venueLatLng).length === 0) {
@@ -126,20 +131,20 @@ class EventForm extends Component {
                 required={true}
               />
               {/*<Field*/}
-                {/*name="timeStart"*/}
-                {/*type="text"*/}
-                {/*label="Start time"*/}
-                {/*component={TimeInput}*/}
-                {/*placeholder="from"*/}
-                {/*required={true}*/}
+              {/*name="timeStart"*/}
+              {/*type="text"*/}
+              {/*label="Start time"*/}
+              {/*component={TimeInput}*/}
+              {/*placeholder="from"*/}
+              {/*required={true}*/}
               {/*/>*/}
               {/*<Field*/}
-                {/*name="timeEnd"*/}
-                {/*type="text"*/}
-                {/*label="End time"*/}
-                {/*component={TimeInput}*/}
-                {/*placeholder="to"*/}
-                {/*required={true}*/}
+              {/*name="timeEnd"*/}
+              {/*type="text"*/}
+              {/*label="End time"*/}
+              {/*component={TimeInput}*/}
+              {/*placeholder="to"*/}
+              {/*required={true}*/}
               {/*/>*/}
               <Header as='h4' dividing>
                 About Address
@@ -158,6 +163,7 @@ class EventForm extends Component {
                 checkChange={this.checkChange}
                 options={{types: ['(cities)']}}
                 placeholder="City event is taking place"
+                required={true}
               />
               <Button
                 loading={loading}
@@ -187,10 +193,10 @@ class EventForm extends Component {
 }
 
 
-const mapState = (state, ownProps) => {
+const mapState = (state, props) => {
   let event = {}
 
-  if (state.firestore.ordered.events && state.firestore.ordered.events[0]) {
+  if (props.match.params.id && state.firestore.ordered.events && state.firestore.ordered.events[0]) {
     event = state.firestore.ordered.events[0]
   }
 

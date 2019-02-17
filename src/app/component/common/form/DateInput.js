@@ -14,6 +14,7 @@ class DateInput extends Component {
       <Form.Field required={required}>
         <label>{label}</label>
         <DatePicker
+          showTime={true}
           value={value ? value : null}
           onChange={onChange}
           {...rest}

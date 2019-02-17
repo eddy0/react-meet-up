@@ -32,7 +32,7 @@ class NavBar extends Component {
     const authenticated = auth.isLoaded && !auth.isEmpty
     return (
       <Menu fixed='top' inverted borderless
-            style={{background: 'lightcoral', boxShadow: '0 0.5rem 1rem rgba(0,0,0,0.3)', borderRadius: 0}}>
+            style={{background: 'lightcoral', boxShadow: '0 0.5rem 1rem rgba(0,0,0,0.3)', borderRadius: 0, zIndex: 999}}>
         <Container>
           <Menu.Item as={Link} to="/" header>
             <Image src="/assets/logo.png" alt="logo" size='mini'/>
