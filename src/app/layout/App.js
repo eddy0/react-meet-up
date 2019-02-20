@@ -12,6 +12,7 @@ import TestComponent from './TestComponent'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import ReduxToastr from 'react-redux-toastr'
 import UserDetailedPage from '../component/user/UserDetailed/UserDetailedPage'
+import PeopleDashboard from '../component/user/PeopleDashboard/PeopleDashboard'
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
               <Route exact={true} path="/event/:id" component={EventDetailedPage}/>
               <Route exact={true} path="/manage/:id" component={EventForm}/>
               <Route exact={true} path="/profile/:id" component={UserDetailedPage}/>
+              <Route exact={true} path="/people" component={PeopleDashboard}/>
               <Route path="/setting" component={SettingDashboard}/>
               <Route path="/test" component={TestComponent}/>
               <Route component={NotFound}/>
