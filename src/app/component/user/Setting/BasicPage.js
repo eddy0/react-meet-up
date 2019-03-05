@@ -17,11 +17,13 @@ class BasicPage extends Component {
             width={8}
             name="displayName"
             type="text"
+            label='Name:'
             component={TextInput}
             placeholder="Known As"
           />
           <Form.Group inline>
-            <label>Gender: </label>
+            <label>Gender:</label>
+            <div>
             <Field
               name="gender"
               type="radio"
@@ -36,19 +38,21 @@ class BasicPage extends Component {
               label="Female"
               component={RadioInput}
             />
+            </div>
           </Form.Group>
           <Field
             width={8}
             name="dateOfBirth"
             component={DateInput}
             enableTime={false}
+            label='Date of Birth'
             placeholder="Date of Birth"
           />
           <Field
             name="city"
             placeholder="Home Town"
             options={{types: ['(cities)']}}
-            label="Female"
+            label="City"
             component={PlaceInput}
             width={8}
           />

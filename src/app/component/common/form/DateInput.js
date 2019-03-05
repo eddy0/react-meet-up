@@ -10,6 +10,10 @@ class DateInput extends Component {
     if (value && typeof value === 'object') {
       value = moment(value)
     }
+    if (value && typeof value === 'string') {
+      value = moment(new Date(value))
+    }
+
     return (
       <Form.Field required={required}>
         <label>{label}</label>
