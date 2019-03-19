@@ -35,7 +35,6 @@ class DateInput extends Component {
       </Form.Field>
     )
   }
-
 }
 
 export default DateInput
