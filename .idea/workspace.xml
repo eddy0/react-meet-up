@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:npm_and_yarn" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/layout/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventDashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventListItem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventlistAttendee.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/nav/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1lvjq82B0XFPnxpCR6JvejP8NYx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/app/layout" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="" />
+      <created>1608484647935</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608484647935</updated>
+      <workItem from="1608484649208" duration="378000" />
+      <workItem from="1608485039640" duration="2082000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1379" height="271" key="GridCell.Tab.0.bottom" timestamp="1608484753791">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1379" height="271" key="GridCell.Tab.0.bottom/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753791" />
+    <state width="1379" height="271" key="GridCell.Tab.0.center" timestamp="1608484753790">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1379" height="271" key="GridCell.Tab.0.center/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753790" />
+    <state width="1379" height="271" key="GridCell.Tab.0.left" timestamp="1608484753790">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1379" height="271" key="GridCell.Tab.0.left/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753790" />
+    <state width="1379" height="271" key="GridCell.Tab.0.right" timestamp="1608484753791">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1379" height="271" key="GridCell.Tab.0.right/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753791" />
+    <state x="469" y="139" key="SettingsEditor" timestamp="1608485027145">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="469" y="139" key="SettingsEditor/0.23.2048.1129@0.23.2048.1129" timestamp="1608485027145" />
+    <state x="923" y="273" width="672" height="678" key="search.everywhere.popup" timestamp="1608486727161">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="923" y="273" width="672" height="678" key="search.everywhere.popup/0.23.2048.1129@0.23.2048.1129" timestamp="1608486727161" />
+  </component>
+</project>
