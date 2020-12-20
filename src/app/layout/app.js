@@ -4,7 +4,7 @@ import NavBar from '../../feature/nav/NavBar'
 import { Container } from 'semantic-ui-react'
 import { Route } from 'react-router-dom'
 import HomePage from '../../feature/home/HomePage'
-import EventDetailPage from '../../feature/events/eventDetails/EventDetailPage'
+import EventDetailPage from '../../feature/events/eventDetail/EventDetailPage'
 import EventForm from '../../feature/events/eventForm/EventForm'
 
 function App() {

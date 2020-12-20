@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Icon, Item, List, Segment } from 'semantic-ui-react'
 import EventlistAttendee from './EventlistAttendee'
+import { Link } from 'react-router-dom'
 
 function EventListItem({event, setFormOpen}) {
   const {id, title, date, category, description, city, venue, hostedBy, hostPhotoURL, attendees,} = event
@@ -34,7 +35,7 @@ function EventListItem({event, setFormOpen}) {
       </Segment>
       <Segment clearing>
         <div>{description}</div>
-        <Button color={'teal'} floated={'right'} onClick={() => setFormOpen(true)}> View</Button>
+        <Button color={'teal'} floated={'right'} as={Link} to={`/events/${id}`}> View</Button>
       </Segment>
     </Segment.Group>
   )
