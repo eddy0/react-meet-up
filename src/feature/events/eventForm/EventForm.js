@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Form, Header, Segment } from 'semantic-ui-react'
 
-const EventForm = () => {
+const EventForm = ({setFormOpen, setEvents}) => {
+  const initialValue = {
+    title: '',
+    category: '',
+    description: '',
+    city: '',
+    venue: '',
+    data: '',
+  }
+
+  const [values, setValues] = useState(initialValue)
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target
+    setValues({...values, [name]: value})
+  }
+
   return (
     <Segment clearing>
       <Header content={'create new event'} />

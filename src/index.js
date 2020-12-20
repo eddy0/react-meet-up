@@ -5,16 +5,14 @@ import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import App from './app/layout/App'
 
-
 function render() {
   ReactDOM.render(
     <Router>
       <App/>
     </Router>,
-    document.getElementById('root')
+    document.getElementById('root'),
   )
 }
-
 
 if (module.hot) {
   module.hot.accept('./app/layout/App', function () {
