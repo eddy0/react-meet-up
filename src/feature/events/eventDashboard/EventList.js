@@ -1,8 +1,15 @@
 import React from 'react'
+import EventListItem from './EventListItem'
 
-function EventList(props) {
+function EventList({events}) {
   return (
-    <h1>List</h1>
+    <>
+      {
+        events.map((event) => {
+          return <EventListItem key={event.id} event={event}/>
+        })
+      }
+    </>
   )
 }
 
