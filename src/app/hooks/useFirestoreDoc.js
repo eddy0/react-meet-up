@@ -1,13 +1,16 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { asyncActionError, asyncActionFinish, asyncActionStart } from '../async/asyncReducer'
 import { dataFromSnapshot } from '../firestore/fireStoreService'
 
 
-function useFirestoreCollection({query, callback, deps}) {
+function useFirestoreDoc({query, callback, deps, shouldExcute=true}) {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    if (shouldExcute === false) {
+      return
+    }
     dispatch(asyncActionStart())
     const unsubscribe = query().onSnapshot(
       snapshot => {
@@ -15,15 +18,14 @@ function useFirestoreCollection({query, callback, deps}) {
           dispatch(asyncActionError({'code': 'not-found', 'message': 'docs not found'}))
           return
         }
-        const docs = snapshot.docs.map((doc) => dataFromSnapshot(doc))
-        callback(docs)
+        callback(dataFromSnapshot(snapshot))
         dispatch(asyncActionFinish())
       },
       error => dispatch(asyncActionError())
     )
-    return  () => unsubscribe()
+    return () => unsubscribe()
   }, deps)
 
 }
 
-export default useFirestoreCollection
+export default useFirestoreDoc
