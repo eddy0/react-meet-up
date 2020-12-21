@@ -7,10 +7,12 @@ import { Provider } from 'react-redux'
 import { configureStore } from './app/store/configureStore'
 import App from './app/layout/App'
 import ScrollToTop from './app/layout/ScrollToTop'
+import { loadEvents } from './feature/events/eventActions'
 
 const store = configureStore()
 
-console.log(store.getState())
+store.dispatch(loadEvents())
+
 function render() {
   ReactDOM.render(
     <Provider store={store}>
