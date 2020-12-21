@@ -39,9 +39,17 @@ const loadEvents = () => {
   }
 }
 
+const listenToEvents = (events) => {
+  return {
+    type: FETCH_EVENTS,
+    payload: events,
+  }
+}
+
 export  {
   createEvent,
   updateEvent,
   deleteEvent,
   loadEvents,
+  listenToEvents,
 }
