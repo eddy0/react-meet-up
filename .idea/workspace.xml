@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -32,15 +35,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="add header">
-      <change afterPath="$PROJECT_DIR$/src/app/api/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/feature/events/eventForm/EventForm.js" afterDir="false" />
+    <list default="true" id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="fix bugs">
+      <change afterPath="$PROJECT_DIR$/src/app/hooks/useFirestoreCollection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/firestore/fireStoreService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/firestore/fireStoreService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/util/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/util/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventListItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventlistAttendee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventlistAttendee.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +58,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -79,6 +81,8 @@
       <updated>1608484647935</updated>
       <workItem from="1608484649208" duration="378000" />
       <workItem from="1608485039640" duration="3880000" />
+      <workItem from="1608513489611" duration="156000" />
+      <workItem from="1608513657607" duration="1718000" />
     </task>
     <task id="LOCAL-00001" summary="add header">
       <created>1608487365827</created>
@@ -87,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608487365827</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix bugs">
+      <created>1608511907969</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608511907969</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,39 +114,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add header" />
-    <option name="LAST_COMMIT_MESSAGE" value="add header" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1379" height="271" key="GridCell.Tab.0.bottom" timestamp="1608484753791">
-      <screen x="0" y="23" width="2048" height="1129" />
-    </state>
-    <state width="1379" height="271" key="GridCell.Tab.0.bottom/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753791" />
-    <state width="1379" height="271" key="GridCell.Tab.0.center" timestamp="1608484753790">
-      <screen x="0" y="23" width="2048" height="1129" />
-    </state>
-    <state width="1379" height="271" key="GridCell.Tab.0.center/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753790" />
-    <state width="1379" height="271" key="GridCell.Tab.0.left" timestamp="1608484753790">
-      <screen x="0" y="23" width="2048" height="1129" />
-    </state>
-    <state width="1379" height="271" key="GridCell.Tab.0.left/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753790" />
-    <state width="1379" height="271" key="GridCell.Tab.0.right" timestamp="1608484753791">
-      <screen x="0" y="23" width="2048" height="1129" />
-    </state>
-    <state width="1379" height="271" key="GridCell.Tab.0.right/0.23.2048.1129@0.23.2048.1129" timestamp="1608484753791" />
-    <state x="469" y="139" key="SettingsEditor" timestamp="1608485027145">
-      <screen x="0" y="23" width="2048" height="1129" />
-    </state>
-    <state x="469" y="139" key="SettingsEditor/0.23.2048.1129@0.23.2048.1129" timestamp="1608485027145" />
-    <state x="860" y="294" key="Vcs.Push.Dialog.v2" timestamp="1608487367341">
-      <screen x="0" y="23" width="2048" height="1129" />
-    </state>
-    <state x="860" y="294" key="Vcs.Push.Dialog.v2/0.23.2048.1129@0.23.2048.1129" timestamp="1608487367341" />
-    <state x="923" y="273" width="672" height="678" key="search.everywhere.popup" timestamp="1608487394311">
-      <screen x="0" y="23" width="2048" height="1129" />
-    </state>
-    <state x="923" y="273" width="672" height="678" key="search.everywhere.popup/0.23.2048.1129@0.23.2048.1129" timestamp="1608487394311" />
+    <MESSAGE value="fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs" />
   </component>
 </project>

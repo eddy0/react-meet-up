@@ -4,8 +4,9 @@ import EventList from './EventList'
 import { useDispatch, useSelector } from 'react-redux'
 import EventListItemPlaceholder from './EventListPlaceholder'
 import EventFilters from './EventFilters'
-import { dateFromSnapshot, getEventsFromFirestore } from '../../../app/firestore/fireStoreService'
+import { dataFromSnapshot, getEventsFromFirestore } from '../../../app/firestore/fireStoreService'
 import { listenToEvents } from '../eventActions'
+import { asyncActionFinish, asyncActionStart } from '../../../app/async/asyncReducer'
 
 function EventDashboard(props) {
   const dispatch = useDispatch()
@@ -13,8 +14,12 @@ function EventDashboard(props) {
   const {loading} = useSelector(state => state.async)
   
   useEffect(() => {
+    dispatch(asyncActionStart())
     const unsubscribe = getEventsFromFirestore({
-      next: snapshot => dispatch(listenToEvents(snapshot.docs.map(doc => dateFromSnapshot(doc)))),
+      next: snapshot => {
+        dispatch(listenToEvents(snapshot.docs.map(doc => dataFromSnapshot(doc))))
+        dispatch(asyncActionFinish())
+      },
       error: error => console.log(error)
     })
     return unsubscribe

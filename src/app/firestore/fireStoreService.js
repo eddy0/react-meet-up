@@ -2,7 +2,7 @@ import firebase from '../config/firebase'
 
 const db = firebase.firestore()
 
-export function dateFromSnapshot(snapshot) {
+export function dataFromSnapshot(snapshot) {
   if (!snapshot.exists) {
     return undefined
   }
@@ -24,4 +24,8 @@ export function dateFromSnapshot(snapshot) {
 
 export function getEventsFromFirestore(observer) {
   return db.collection('events').onSnapshot(observer)
+}
+
+export function listenToEventsFromFirestore() {
+  return db.collection('events')
 }
