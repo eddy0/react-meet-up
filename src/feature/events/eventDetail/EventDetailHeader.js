@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header, Image, Item, Segment, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import { format } from "date-fns"
 
 
 const eventImageStyle = {
@@ -18,7 +19,9 @@ const eventImageTextStyle = {
 
 
 const EventDetailHeader = ({event}) => {
-  const {id, title, date, category, hostedBy} = event
+  let {id, title, date, category, hostedBy} = event
+  date = format(date, 'MMMM d, yyyy h:mm a')
+  
   
   return (
     <Segment.Group>

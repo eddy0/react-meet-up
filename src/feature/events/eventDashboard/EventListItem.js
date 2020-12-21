@@ -4,10 +4,12 @@ import EventlistAttendee from './EventlistAttendee'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { deleteEvent } from '../eventActions'
+import {format} from 'date-fns'
 
 function EventListItem({event}) {
-  const {id, title, date, category, description, city, venue, hostedBy, hostPhotoURL, attendees,} = event
+  let {id, title, date, category, description, city, venue, hostedBy, hostPhotoURL, attendees,} = event
   const dispatch = useDispatch()
+  date = format(date, 'MMMM d, yyyy h:mm a')
   return (
     <Segment.Group>
       <Segment>

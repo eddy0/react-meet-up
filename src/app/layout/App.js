@@ -6,6 +6,7 @@ import { Route, useLocation } from 'react-router-dom'
 import HomePage from '../../feature/home/HomePage'
 import EventDetailPage from '../../feature/events/eventDetail/EventDetailPage'
 import EventForm from '../../feature/events/eventForm/EventForm'
+import ModalManager from '../../common/modals/ModalManager'
 
 function App() {
   const {key} = useLocation()
@@ -15,6 +16,7 @@ function App() {
       <Route path={('/(.+)')} render={() => {
         return (
           <>
+            <ModalManager />
             <NavBar/>
             <Container className={'main'}>
               <Route exact={true} path={'/events'} component={EventDashboard}/>

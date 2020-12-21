@@ -1,8 +1,10 @@
 import React from 'react'
 import { Segment, Button, Grid, Icon } from 'semantic-ui-react'
+import { format } from "date-fns"
 
 const EventDetailInfo = ({event}) => {
-  const { date, description, venue} = event
+  let { date, description, venue} = event
+  date = format(date, 'MMMM d, yyyy h:mm a')
   
   return (
     
