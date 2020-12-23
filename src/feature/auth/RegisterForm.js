@@ -7,19 +7,20 @@ import { Button, Label } from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
 import { signInUser } from './authActions'
 import { closeModal } from '../../common/modals/modalReducer'
-import { signInWithEmail } from '../../app/firestore/firebaseService'
+import { registerInFirebase, signInWithEmail } from '../../app/firestore/firebaseService'
 
-function LoginForm(props) {
+function RegisterForm(props) {
   const dispatch = useDispatch()
   
   const validationSchema = Yup.object({
+    displayName: Yup.string().required(),
     email: Yup.string().required().email(),
     password: Yup.string().required(),
   })
   
   const handleSubmit = async (values, {setSubmitting, setErrors}) => {
     try {
-      await signInWithEmail(values)
+      await registerInFirebase(values)
       setSubmitting(false)
       dispatch(closeModal())
     } catch (error) {
@@ -33,6 +34,7 @@ function LoginForm(props) {
     <ModalWrapper size={'mini'} header={'Login in'}>
       <Formik
         initialValues={{
+          displayName: '',
           email: '',
           password: '',
         }}
@@ -42,9 +44,11 @@ function LoginForm(props) {
         {({isSubmitting, dirty, isValid, errors}) => {
           return (
             <Form className={'ui form'}>
+              <MyTextInput name={'displayName'} placeholder={'displayName'}/>
               <MyTextInput name={'email'} placeholder={'email'}/>
               <MyTextInput name={'password'} type={'password'} placeholder={'password'}/>
               {errors.auth && <Label basic color={'red'} style={{marginBottom: 10}} content={errors.auth}/>}
+  
               <Button
                 loading={isSubmitting}
                 disabled={!isValid || !dirty || isSubmitting}
@@ -52,7 +56,7 @@ function LoginForm(props) {
                 fluid={true}
                 size={'large'}
                 color={'teal'}
-                content={'Login'}
+                content={'register'}
               />
             </Form>
           )
@@ -65,4 +69,4 @@ function LoginForm(props) {
   )
 }
 
-export default LoginForm
+export default RegisterForm

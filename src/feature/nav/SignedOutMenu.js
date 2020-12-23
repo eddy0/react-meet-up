@@ -8,7 +8,7 @@ const SignedOutMenu = () => {
   return (
     <>
       <Button basic={true} inverted={true} content={'Login'}  onClick={() => dispatch(openModal({modalType: 'LoginForm'}))} />
-      <Button basic={true} inverted={true} content={'Reigster'}  style={{marginLeft: '0.5em'}} />
+      <Button basic={true} inverted={true} content={'Reigster'}  style={{marginLeft: '0.5em'}}  onClick={() => dispatch(openModal({modalType: 'RegisterForm'}))}/>
     </>
   )
 }

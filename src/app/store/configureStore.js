@@ -2,15 +2,13 @@ import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from './rootReducer'
 import thunk from 'redux-thunk'
-
-const reducer = () => {
-  return {
-    data: 10,
-  }
-}
-
+import { verifyAuth } from '../../feature/auth/authActions'
 
 
 export function configureStore() {
-  return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+  
+  const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+  store.dispatch(verifyAuth())
+  
+  return store
 }
