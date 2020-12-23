@@ -35,13 +35,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="fix bugs">
-      <change afterPath="$PROJECT_DIR$/src/app/hooks/useFirestoreCollection.js" afterDir="false" />
+    <list default="true" id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="after custom hook update firestore">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/firestore/fireStoreService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/firestore/fireStoreService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/util/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/util/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/auth/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/auth/authActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/auth/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/auth/authReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventDashboard/EventListItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/events/eventForm/EventForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventForm/EventForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +82,7 @@
       <workItem from="1608484649208" duration="378000" />
       <workItem from="1608485039640" duration="3880000" />
       <workItem from="1608513489611" duration="156000" />
-      <workItem from="1608513657607" duration="1718000" />
+      <workItem from="1608513657607" duration="8428000" />
     </task>
     <task id="LOCAL-00001" summary="add header">
       <created>1608487365827</created>
@@ -98,7 +98,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608511907969</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="before customs hook">
+      <created>1608535738792</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608535738792</updated>
+    </task>
+    <task id="LOCAL-00004" summary="after custom hook update firestore">
+      <created>1608539457216</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608539457216</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,6 +133,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add header" />
     <MESSAGE value="fix bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bugs" />
+    <MESSAGE value="before customs hook" />
+    <MESSAGE value="after custom hook update firestore" />
+    <option name="LAST_COMMIT_MESSAGE" value="after custom hook update firestore" />
   </component>
 </project>
