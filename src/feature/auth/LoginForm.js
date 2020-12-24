@@ -3,11 +3,12 @@ import ModalWrapper from '../../common/modals/ModalWrapper'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import MyTextInput from '../../common/form/MyTextInput'
-import { Button, Label } from 'semantic-ui-react'
+import { Button, Divider, Label } from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
 import { signInUser } from './authActions'
 import { closeModal } from '../../common/modals/modalReducer'
 import { signInWithEmail } from '../../app/firestore/firebaseService'
+import SocialLogin from './SocialLogin'
 
 function LoginForm(props) {
   const dispatch = useDispatch()
@@ -54,7 +55,10 @@ function LoginForm(props) {
                 color={'teal'}
                 content={'Login'}
               />
+              {/*<Divider horizontal> Or </Divider>*/}
+              {/*<SocialLogin />*/}
             </Form>
+
           )
         }}
       

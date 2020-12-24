@@ -16,7 +16,6 @@ export function dataFromSnapshot(snapshot) {
       }
     }
   }
-
   return {
     ...data,
     id: snapshot.id,
@@ -54,13 +53,13 @@ export function updateEventToFirestore(event) {
 }
 
 export function deleteEventInFirestore(eventId) {
-  return db.collection('events').doc(eventId).delete();
+  return db.collection('events').doc(eventId).delete()
 }
 
 export function cancelEventToggle(event) {
   return db.collection('events').doc(event.id).update({
     isCancelled: !event.isCancelled,
-  });
+  })
 }
 
 export function setUserProfileData(user) {
@@ -69,4 +68,22 @@ export function setUserProfileData(user) {
     email: user.email,
     createdAt: firebase.firestore.FieldValue.serverTimestamp()
   })
+}
+
+export function getUserProfil(userId) {
+  return db.collection('users').doc(userId)
+}
+
+export async function updateUserProfile(profile) {
+  const user = firebase.auth().currentUser
+  try {
+    if (user.displayName !== profile.displayName) {
+      await user.updateProfile({
+        displayName: profile.displayName
+      })
+      return await db.collection('users').doc(user.uid).update()
+    }
+  } catch (error) {
+    
+  }
 }
