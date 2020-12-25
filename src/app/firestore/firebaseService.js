@@ -12,7 +12,7 @@ export function signOutFirebase() {
 
 export async function registerInFirebase(creds) {
   try {
-    const result = await  firebase.auth().createUserWithEmailAndPassword(creds.email, creds.password)
+    const result = await firebase.auth().createUserWithEmailAndPassword(creds.email, creds.password)
     await result.user.updateProfile({
       displayName: creds.displayName,
     })
@@ -23,6 +23,14 @@ export async function registerInFirebase(creds) {
 }
 
 export function updateUserPassword(creds) {
-  const user = firebase.auth().currentUser;
-  return user.updatePassword(creds.newPassword1);
+  const user = firebase.auth().currentUser
+  return user.updatePassword(creds.newPassword1)
 }
+
+export function uploadToFirebaseStorage(file, filename) {
+  const user = firebase.auth().currentUser
+  const storageRef = firebase.storage().ref()
+  return storageRef.child(`${user.uid}/user_images/${filename}`).put(file)
+}
+
+

@@ -1,5 +1,6 @@
 import firebase from '../config/firebase'
 import cuid from 'cuid'
+import { log } from '../../common/util/util'
 
 const db = firebase.firestore()
 
@@ -83,6 +84,30 @@ export async function updateUserProfile(profile) {
       })
     }
     return await db.collection('users').doc(user.uid).update(profile)
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function updateUserProfilePhoto(downloadURL, filename) {
+  const user = firebase.auth().currentUser
+  const userRef = db.collection('users').doc(user.uid)
+  try {
+    const userDoc = await userRef.get()
+    // log(userDoc, userDoc.data())
+    if (!userDoc.data().photoURL) {
+      await db.collection('users').doc(user.uid).update({
+        photoURL: downloadURL
+      })
+      await user.updateProfile({
+        photoURL: downloadURL
+      })
+    }
+    return await db.collection('users').doc(user.uid).collection('photos').add({
+      name: filename,
+      url: downloadURL,
+    })
+    
   } catch (error) {
     throw error
   }

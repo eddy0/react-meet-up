@@ -21,7 +21,7 @@ function PhotosTab({profile, isCurrentUser}) {
           {
             editMode
               ? (
-              <PhotoUpload />
+              <PhotoUpload setEditMode={setEditMode} />
               )
               : (
                 <>

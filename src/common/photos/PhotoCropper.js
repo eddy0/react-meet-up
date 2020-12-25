@@ -8,7 +8,8 @@ const PhotoCropper = ({setImage, imagePreview}) => {
   const onCrop = () => {
     const imageElement = cropperRef?.current;
     const cropper = imageElement?.cropper;
-    console.log(cropper.getCroppedCanvas().toDataURL());
+    // console.log(cropper.getCroppedCanvas().toDataURL());
+    cropImage(cropper)
   };
   
   const cropImage = (cropper) => {
@@ -24,7 +25,6 @@ const PhotoCropper = ({setImage, imagePreview}) => {
     <Cropper
       src={imagePreview}
       style={{ height: 200, width: "100%" }}
-
       initialAspectRatio={1}
       guides={false}
       viewMode={1}
