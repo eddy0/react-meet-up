@@ -70,7 +70,7 @@ export function setUserProfileData(user) {
   })
 }
 
-export function getUserProfil(userId) {
+export function getUserProfile(userId) {
   return db.collection('users').doc(userId)
 }
 

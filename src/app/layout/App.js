@@ -11,9 +11,17 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css';
 import ErrorComponent from '../../common/errors/ErrorComponent'
 import AccountPage from '../../feature/auth/AccountPage'
+import { useSelector } from 'react-redux'
+import LoadingComponent from './LoadingComponent'
+import ProfilePage from '../../feature/profiles/profilePage/ProfilePage'
 
 function App() {
   const {key} = useLocation()
+  const {initialized} = useSelector(state => state.async)
+
+  if (!initialized) {
+    return <LoadingComponent content={'loading..'} />
+  }
   return (
     <>
       <Route exact={true} path={'/'} component={HomePage}/>
@@ -28,6 +36,7 @@ function App() {
               <Route exact={true} path={'/events/:id'} component={EventDetailPage}/>
               <Route exact={true} path={['/createEvent', '/manage/:id']} component={EventForm} key={key}/>
               <Route exact={true} path={'/error'} component={ErrorComponent} />
+              <Route exact={true} path={'/profile'} component={ProfilePage} />
               <Route exact={true} path={'/account'} component={AccountPage} />
               {/*<EventDashboard formOpen={formOpen} setFormOpen={setFormOpen}/>*/}
             </Container>

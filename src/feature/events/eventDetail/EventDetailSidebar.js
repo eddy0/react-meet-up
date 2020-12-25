@@ -19,13 +19,13 @@ const EventDetailSidebar = ({event}) => {
       <Segment attached>
         <Item.Group relaxed divided>
           {attendees.map((attendee) =>{
-            const {id, name, photoURL} = attendee
+            const {id, displayName, photoURL} = attendee
             return (
               <Item style={{position: 'relative'}} key={id}>
                 <Item.Image size="tiny" src={photoURL}/>
                 <Item.Content verticalAlign="middle">
                   <Item.Header as="h3">
-                    <span>{name}</span>
+                    <span>{displayName}</span>
                   </Item.Header>
                 </Item.Content>
               </Item>

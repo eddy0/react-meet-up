@@ -24,7 +24,7 @@ const SignedInMenu = () => {
       <Dropdown pointing={'top left'} text={currentUser.email}>
         <Dropdown.Menu>
           <Dropdown.Item as={Link} to={'/createEvent'} text={'create Event'} icon={'plus'}/>
-          <Dropdown.Item as={Link} to={'/createEvent'} text={'profile'} icon={'user'}/>
+          <Dropdown.Item as={Link} to={'/profile'} text={'profile'} icon={'user'}/>
           <Dropdown.Item as={Link} to={'/account'} text={'account'} icon={'settings'}/>
           <Dropdown.Item text={'logout'} icon={'power'} onClick={handleSignOut}/>
         </Dropdown.Menu>

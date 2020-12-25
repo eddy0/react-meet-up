@@ -35,17 +35,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="update auth">
-      <change afterPath="$PROJECT_DIR$/src/feature/auth/AccountPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/feature/auth/SocialLogin.js" afterDir="false" />
+    <list default="true" id="589517fd-d568-4ebb-9b26-d5ac0b29fcbf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/feature/profiles/profilePage/ProfileHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/profiles/profilePage/ProfilePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/firestore/fireStoreService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/firestore/fireStoreService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/firestore/firebaseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/firestore/firebaseService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/auth/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/auth/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/auth/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/auth/RegisterForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/auth/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/auth/authReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/auth/SocialLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/auth/SocialLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/auth/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/auth/authActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/events/eventDetail/EventDetailSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/events/eventDetail/EventDetailSidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/feature/nav/SignedInMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/nav/SignedInMenu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +89,7 @@
       <workItem from="1608513657607" duration="8485000" />
       <workItem from="1608701763349" duration="8000" />
       <workItem from="1608710947086" duration="2828000" />
-      <workItem from="1608794538844" duration="144000" />
+      <workItem from="1608794538844" duration="3524000" />
     </task>
     <task id="LOCAL-00001" summary="add header">
       <created>1608487365827</created>
@@ -127,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608699564173</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add social login">
+      <created>1608794705221</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608794705221</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +157,7 @@
     <MESSAGE value="before customs hook" />
     <MESSAGE value="after custom hook update firestore" />
     <MESSAGE value="update auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="update auth" />
+    <MESSAGE value="add social login" />
+    <option name="LAST_COMMIT_MESSAGE" value="add social login" />
   </component>
 </project>
