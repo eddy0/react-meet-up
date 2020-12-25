@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 const SignedInMenu = () => {
   const history = useHistory()
-  const {currentUser} = useSelector(state => state.auth)
+  const {currentUserProfile} = useSelector(state => state.profile)
   
   const handleSignOut = async () => {
     try {
@@ -18,13 +18,15 @@ const SignedInMenu = () => {
     }
   }
   
+  const {photoURL, displayName, id}= currentUserProfile
+  
   return (
     <>
-      <Image avatar spaced={'right'} src={currentUser.photoURL || 'assets/user.png'}/>
-      <Dropdown pointing={'top left'} text={currentUser.email}>
+      <Image avatar spaced={'right'} src={photoURL || '/assets/user.png'}/>
+      <Dropdown pointing={'top left'} text={displayName}>
         <Dropdown.Menu>
           <Dropdown.Item as={Link} to={'/createEvent'} text={'create Event'} icon={'plus'}/>
-          <Dropdown.Item as={Link} to={'/profile'} text={'profile'} icon={'user'}/>
+          <Dropdown.Item as={Link} to={`/profile/${id}`} text={'profile'} icon={'user'}/>
           <Dropdown.Item as={Link} to={'/account'} text={'account'} icon={'settings'}/>
           <Dropdown.Item text={'logout'} icon={'power'} onClick={handleSignOut}/>
         </Dropdown.Menu>

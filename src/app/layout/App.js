@@ -36,7 +36,7 @@ function App() {
               <Route exact={true} path={'/events/:id'} component={EventDetailPage}/>
               <Route exact={true} path={['/createEvent', '/manage/:id']} component={EventForm} key={key}/>
               <Route exact={true} path={'/error'} component={ErrorComponent} />
-              <Route exact={true} path={'/profile'} component={ProfilePage} />
+              <Route exact={true} path={'/profile/:id'} component={ProfilePage} />
               <Route exact={true} path={'/account'} component={AccountPage} />
               {/*<EventDashboard formOpen={formOpen} setFormOpen={setFormOpen}/>*/}
             </Container>

@@ -8,7 +8,7 @@ export function dataFromSnapshot(snapshot) {
     return undefined
   }
   const data = snapshot.data()
-
+  
   for (let prop in data) {
     if (data.hasOwnProperty(prop)) {
       if (data[prop] instanceof firebase.firestore.Timestamp) {
@@ -41,8 +41,8 @@ export function addEventToFirestore(event) {
     attendees: firebase.firestore.FieldValue.arrayUnion({
       id: cuid(),
       displayName: 'gua',
-      photoURL: 'https://randomuser.me/api/portraits/women/27.jpg'
-
+      photoURL: 'https://randomuser.me/api/portraits/women/27.jpg',
+      
     }),
     hostPhotoURL: 'https://randomuser.me/api/portraits/men/27.jpg',
   })
@@ -62,16 +62,16 @@ export function cancelEventToggle(event) {
   })
 }
 
+export function getUserProfile(userId) {
+  return db.collection('users').doc(userId)
+}
+
 export function setUserProfileData(user) {
   return db.collection('users').doc(user.uid).set({
     displayName: user.displayName,
     email: user.email,
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
   })
-}
-
-export function getUserProfile(userId) {
-  return db.collection('users').doc(userId)
 }
 
 export async function updateUserProfile(profile) {
@@ -79,11 +79,12 @@ export async function updateUserProfile(profile) {
   try {
     if (user.displayName !== profile.displayName) {
       await user.updateProfile({
-        displayName: profile.displayName
+        displayName: profile.displayName,
       })
-      return await db.collection('users').doc(user.uid).update()
     }
+    return await db.collection('users').doc(user.uid).update(profile)
   } catch (error) {
-    
+    throw error
   }
 }
+
