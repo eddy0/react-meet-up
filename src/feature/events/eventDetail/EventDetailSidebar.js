@@ -1,8 +1,9 @@
 import React from 'react'
-import { Segment, Item } from 'semantic-ui-react'
+import { Segment, Item, Label } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const EventDetailSidebar = ({event}) => {
-  const {attendees} = event
+  const {attendees, hostUid} = event
   return (
     <>
       <Segment
@@ -21,7 +22,10 @@ const EventDetailSidebar = ({event}) => {
           {attendees.map((attendee) =>{
             const {id, displayName, photoURL} = attendee
             return (
-              <Item style={{position: 'relative'}} key={id}>
+              <Item as={Link} to={`/profile/${id}`} style={{position: 'relative'}} key={id}>
+                {hostUid === id &&
+                  <Label style={{position: 'absolute'}} color={'orange'} ribbon={'right'} content={'Host'} />
+                }
                 <Item.Image size="tiny" src={photoURL}/>
                 <Item.Content verticalAlign="middle">
                   <Item.Header as="h3">

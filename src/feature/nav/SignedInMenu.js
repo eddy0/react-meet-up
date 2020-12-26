@@ -17,6 +17,9 @@ const SignedInMenu = () => {
       toast.error(error.message)
     }
   }
+  if (currentUserProfile === null) {
+    return <span />
+  }
   
   const {photoURL, displayName, id}= currentUserProfile
   

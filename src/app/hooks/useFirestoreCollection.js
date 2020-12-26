@@ -19,7 +19,7 @@ function useFirestoreCollection({query, callback, deps}) {
         callback(docs)
         dispatch(asyncActionFinish())
       },
-      error => dispatch(asyncActionError())
+      error => dispatch(asyncActionError(error))
     )
     return  () => unsubscribe()
   }, deps)

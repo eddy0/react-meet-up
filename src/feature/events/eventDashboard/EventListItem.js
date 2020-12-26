@@ -8,8 +8,7 @@ import {format} from 'date-fns'
 import { deleteEventInFirestore } from '../../../app/firestore/fireStoreService'
 
 function EventListItem({event}) {
-  let {id, title, date, category, description, city, venue, hostedBy, hostPhotoURL, attendees,} = event
-  const dispatch = useDispatch()
+  let {id, title, date, description, city, venue, hostedBy, hostPhotoURL, attendees,} = event
   date = format(date, 'MMMM d, yyyy h:mm a')
   return (
     <Segment.Group>
@@ -20,7 +19,7 @@ function EventListItem({event}) {
             <Item.Content>
               <Item.Header content={title}/>
               <Item.Description>
-                hosted by {hostedBy}
+                hosted by <Link to={`/profile/${id}`}>{hostedBy}</Link>
               </Item.Description>
               {
                 event.isCancelled && (

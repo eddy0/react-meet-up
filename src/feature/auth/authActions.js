@@ -3,6 +3,7 @@ import firebase from '../../app/config/firebase'
 import { APP_LOADED } from '../../app/async/asyncReducer'
 import { dataFromSnapshot, getUserProfile } from '../../app/firestore/fireStoreService'
 import { listenToCurrentUserProfile } from '../profiles/profileActions'
+import { log } from '../../common/util/util'
 
 export function signInUser(user) {
   return {
@@ -18,6 +19,7 @@ export function verifyAuth() {
         dispatch(signInUser(user))
         const profile = getUserProfile(user.uid)
         profile.onSnapshot(snapshot => {
+          log(snapshot)
           dispatch(listenToCurrentUserProfile(dataFromSnapshot(snapshot)))
           
           dispatch({type: APP_LOADED})

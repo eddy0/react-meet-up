@@ -18,6 +18,7 @@ import {
 } from '../../../app/firestore/fireStoreService'
 import LoadingComponent from '../../../app/layout/LoadingComponent'
 import { toast } from 'react-toastify'
+import DatePicker from 'react-datepicker'
 
 const EventForm = ({match, history}) => {
   const selectedEvent = useSelector(state => state.event.events.find(e => e.id === match.params.id))
@@ -33,7 +34,7 @@ const EventForm = ({match, history}) => {
     description: '',
     city: '',
     venue: '',
-    data: '',
+    date: '',
   }
 
   const handleFormSubmit = async (values, {setSubmitting}) => {
@@ -117,6 +118,7 @@ const EventForm = ({match, history}) => {
                 showTimeSelect={true}
                 timeCaption={'time'}
                 dateFormat={'MMMM d, yyyy h:mm a'}
+                autoComplete={'off'}
               />
               {
                 selectedEvent &&
