@@ -39,7 +39,7 @@ const EventDetailPage = ({match, history}) => {
       <Grid.Column width={10}>
         <EventDetailHeader event={event} isGoing={isGoing} isHost={isHost}/>
         <EventDetailInfo event={event}/>
-        <EventDetailChat/>
+        <EventDetailChat eventId={event.id} parentId={event.id}/>
       </Grid.Column>
 
       <Grid.Column width={6}>

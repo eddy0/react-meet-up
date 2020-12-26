@@ -1,8 +1,16 @@
 import { sampleData } from '../../app/api/data'
-import { CREATE_EVENT, DELETE_EVENT, FETCH_EVENTS, UPDATE_EVENT } from './eventConstants'
+import {
+  CLEAR_COMMENTS,
+  CREATE_EVENT,
+  DELETE_EVENT,
+  FETCH_EVENTS,
+  LISTEN_TO_EVENT_CHAT,
+  UPDATE_EVENT,
+} from './eventConstants'
 
 const initialState = {
   events: [],
+  comments: []
 }
 
 const eventReduer = (state = initialState, {type, payload}) => {
@@ -26,6 +34,16 @@ const eventReduer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         events: [...payload]
+      }
+    case LISTEN_TO_EVENT_CHAT:
+      return {
+        ...state,
+        comments: [...payload]
+      }
+    case CLEAR_COMMENTS:
+      return {
+        ...state,
+        comments: [],
       }
     default:
       return state
