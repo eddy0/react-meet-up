@@ -9,7 +9,7 @@ export function dataFromSnapshot(snapshot) {
     return undefined
   }
   const data = snapshot.data()
-  
+
   for (let prop in data) {
     if (data.hasOwnProperty(prop)) {
       if (data[prop] instanceof firebase.firestore.Timestamp) {
@@ -124,7 +124,7 @@ export async function updateUserProfilePhoto(downloadURL, filename) {
       name: filename,
       url: downloadURL,
     })
-    
+
   } catch (error) {
     throw error
   }
@@ -240,20 +240,67 @@ export async function cancelUserAttendance(event) {
 }
 
 export function getUserEventsQuery(activeTab, userUid) {
-  let eventsRef = db.collection('events');
-  const today = new Date();
+  let eventsRef = db.collection('events')
+  const today = new Date()
   switch (activeTab) {
     case 1: // past events
       return eventsRef
         .where('attendeeIds', 'array-contains', userUid)
         .where('date', '<=', today)
-        .orderBy('date', 'desc');
+        .orderBy('date', 'desc')
     case 2: // hosting
-      return eventsRef.where('hostUid', '==', userUid).orderBy('date');
+      return eventsRef.where('hostUid', '==', userUid).orderBy('date')
     default:
       return eventsRef
         .where('attendeeIds', 'array-contains', userUid)
         .where('date', '>=', today)
-        .orderBy('date');
+        .orderBy('date')
+  }
+}
+
+export async function followUser(profile) {
+  const user = firebase.auth().currentUser
+  const batch = db.batch()
+  try {
+    batch.set(
+      db.collection('following')
+        .doc(user.uid)
+        .collection('userFollowing')
+        .doc(profile.id),
+      {
+        displayName: profile.displayName,
+        photoURL: profile.photoURL,
+        uid: profile.id,
+      }
+    )
+    batch.update(db.collection('users').doc(user.uid), {
+      followingCount: firebase.firestore.FieldValue.increment(1),
+    })
+    return await batch.commit()
+  } catch (error) {
+    throw error
+  }
+}
+
+
+export async function unfollowUser(profile) {
+  const user = firebase.auth().currentUser;
+  const batch = db.batch();
+  try {
+    batch.delete(
+      db
+        .collection('following')
+        .doc(user.uid)
+        .collection('userFollowing')
+        .doc(profile.id)
+    );
+
+    batch.update(db.collection('users').doc(user.uid), {
+      followingCount: firebase.firestore.FieldValue.increment(-1),
+    });
+
+    return await batch.commit();
+  } catch (error) {
+    throw error;
   }
 }
