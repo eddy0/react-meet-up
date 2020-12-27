@@ -1,6 +1,7 @@
 import { CREATE_EVENT, DELETE_EVENT, FETCH_EVENTS, LISTEN_TO_EVENT_CHAT, UPDATE_EVENT } from './eventConstants'
 import { asyncActionError, asyncActionFinish, asyncActionStart } from '../../app/async/asyncReducer'
 import { fetchSampleData } from '../../app/api/mockApi'
+import {LISTEN_TO_FOLLOWERS, LISTEN_TO_FOLLOWINGS} from "../profiles/profileConstants";
 
 const createEvent = (event) => {
   return {
@@ -53,6 +54,20 @@ const listenToEventChat = (comments) => {
   }
 }
 
+const listenToFollowers = (followers) => {
+  return {
+    type: LISTEN_TO_FOLLOWERS,
+    payload: followers
+  }
+}
+
+const listenToFollowerings = (followings) => {
+  return {
+    type: LISTEN_TO_FOLLOWINGS,
+    payload: followings
+  }
+}
+
 export  {
   createEvent,
   updateEvent,
@@ -60,4 +75,6 @@ export  {
   loadEvents,
   listenToEvents,
   listenToEventChat,
+  listenToFollowers,
+  listenToFollowerings,
 }

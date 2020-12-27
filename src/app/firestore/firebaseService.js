@@ -62,3 +62,9 @@ export function getUserFeedRef() {
   const user = firebase.auth().currentUser;
   return firebase.database().ref(`posts/${user.uid}`).orderByKey().limitToLast(5)
 }
+
+export function eventUpdated(eventId) {
+  firebase.database().ref(`events/${eventId}`).on('value', () => {
+
+  })
+}
